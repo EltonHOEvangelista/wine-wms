@@ -1,0 +1,76 @@
+{
+  "wines": [
+    {
+      "id": 1,
+      "image_path": "images/wine1.jpg",
+      "name": "Château Rouge 2018",
+      "producer": "Domaine Du Rouge",
+      "type": "Red",
+      "country": "France",
+      "description": "A full-bodied red wine with notes of blackberries, plums, and hints of oak.",
+      "price": 45.99,
+      "discount": 0.10,
+      "taste_characteristics": {
+        "lightness": 6,
+        "tannin": 4,
+        "dryness": 5,
+        "acidity": 3
+      },
+      "rate": 4.5,
+      "food_pair": ["Steak", "Lamb Chops", "Mature Cheese"],
+      "reviews": [
+        "Fantastic wine, pairs beautifully with red meat.",
+        "Smooth and well-balanced with a great finish.",
+        "A bit pricey, but worth it for special occasions."
+      ]
+    },
+    {
+      "id": 2,
+      "image_path": "images/wine2.jpg",
+      "name": "White Valley Reserve",
+      "producer": "Valley Wines Co.",
+      "type": "White",
+      "country": "United States",
+      "description": "Crisp and refreshing with citrus and green apple notes.",
+      "price": 22.49,
+      "discount": 0.50,
+      "taste_characteristics": {
+        "lightness": 5,
+        "tannin": 1,
+        "dryness": 4,
+        "acidity": 5
+      },
+      "rate": 4.2,
+      "food_pair": ["Seafood", "Salad", "Pasta with Cream Sauce"],
+      "reviews": [
+        "Perfectly light and fresh for a summer evening.",
+        "Loved the acidity, pairs well with seafood.",
+        "A bit too acidic for my taste, but refreshing nonetheless."
+      ]
+    },
+    {
+      "id": 3,
+      "image_path": "images/wine3.jpg",
+      "name": "Sparkling Sun",
+      "producer": "Bubbly Co.",
+      "type": "Sparkling",
+      "country": "Italy",
+      "description": "Elegant and bubbly with hints of pear, apple, and toasted almonds.",
+      "price": 30.00,
+      "discount": 0.15,
+      "taste_characteristics": {
+        "lightness": 3,
+        "tannin": 1,
+        "dryness": 3,
+        "acidity": 4
+      },
+      "rate": 4.7,
+      "food_pair": ["Oysters", "Brunch Dishes", "Light Desserts"],
+      "reviews": [
+        "Great for celebrations, light and refreshing.",
+        "One of the best sparkling wines I've had in a long time.",
+        "Good price for such high quality."
+      ]
+    }
+  ]
+}

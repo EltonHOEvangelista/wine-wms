@@ -1,4 +1,4 @@
-package com.example.winewms.sql
+package com.example.winewms.data.sql
 
 //database file: data\data\com.examples,winewms
 
