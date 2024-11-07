@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Wine WMS</string>
+    <string name="company_name">Wine Warehouse</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_wishlist">WishList</string>
+    <string name="title_account">Account</string>
+    <string name="title_control">Control</string>
+    <string name="title_cart">Cart</string>
+
+    <string name="image_logo">Image Logo</string>
+    <string name="image_background">Image Background</string>
+    <string name="image_arrow">Image Arrow</string>
+
+    <string name="labelName">Name</string>
+    <string name="labelAccountDetails">Account Details</string>
+    <string name="labelFirstName">First Name:</string>
+    <string name="txtFirstName" />
+    <string name="labelLastName">Last Name:</string>
+    <string name="txtLastName" />
+    <string name="labelEmail">E-mail:</string>
+    <string name="txtEmail" />
+    <string name="labelPassword">Password:</string>
+    <string name="txtPassword" />
+    <string name="labelConfirmPassword">Confirm Password:</string>
+    <string name="txConfirmPassword" />
+    <string name="labelPhone">Telephone:</string>
+    <string name="txtPhone" />
+    <string name="labelAddress">Address:</string>
+
+    <string name="labelAddressLineOne">Address Line 1:</string>
+    <string name="txtAddressLineOne" />
+    <string name="labelAddressLineTwo">Address Line 2:</string>
+    <string name="txtAddressLineTwo" />
+    <string name="labelCity">City:</string>
+    <string name="txtCity" />
+    <string name="labelState">State:</string>
+    <string name="txtState" />
+    <string name="labelPostalCode">Postal Code:</string>
+    <string name="txtPostalCode" />
+    <string name="labelCountry">Country:</string>
+    <string name="txtCountry" />
+
+    <string name="labelOrders">Orders</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnSignup">Sign Up</string>
+    <string name="btnSignin">Sign In</string>
+    <string name="labelDontHaveAcc">Don\'t have account?</string>
+    <string name="btnGoToSignup">Sign Up</string>
+    <string name="txtRecoverPassword">Recover Password</string>
+    <string name="labelLogout">Logout</string>
+    <string name="labelLogin">Login</string>
+
+</resources>

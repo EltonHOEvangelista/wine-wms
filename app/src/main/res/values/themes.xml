@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.WineWMS" parent="Theme.AppCompat.DayNight.DarkActionBar">
+<!--        Theme.MaterialComponents.DayNight.NoActionBar-->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/DarkRedWine</item>
+        <item name="colorPrimaryVariant">@color/DarkGray</item>
+        <item name="colorOnPrimary">@color/WhiteSmoke</item>
+        <item name="colorSecondary">@color/LightRedWine</item>
+        <item name="colorSecondaryVariant">@color/RedWine</item>
+        <item name="colorOnSecondary">@color/Dark</item>
+
+        <!-- Font family and color -->
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textColor">@color/DarkGray</item>
+
+        <!-- Button style -->
+        <item name="buttonStyle">@style/WineButton</item>
+
+    </style>
+
+    <!-- Custom Button Style -->
+    <style name="WineButton" parent="Widget.AppCompat.Button">
+        <!-- Background color -->
+        <item name="backgroundTint">@color/DarkRedWine</item>
+        <!-- Text color -->
+        <item name="android:textColor">@color/WhiteSmoke</item>
+        <!-- Corner radius for rounded edges -->
+        <item name="shapeAppearanceOverlay">@style/CustomButtonShape</item>
+        <!-- Elevation and padding -->
+        <item name="android:elevation">4dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!-- Shape style for rounded corners -->
+    <style name="CustomButtonShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+</resources>

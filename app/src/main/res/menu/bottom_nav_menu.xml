@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_wishlist"
+        android:icon="@drawable/bookmark_24"
+        android:title="@string/title_wishlist" />
+
+    <item
+        android:id="@+id/navigation_control"
+        android:icon="@drawable/control_settings_24"
+        android:title="@string/title_control"
+        android:visible="false"
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/navigation_cart"
+        android:icon="@drawable/shopping_cart_24"
+        android:title="@string/title_cart" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/accounts_24"
+        android:title="@string/title_account">
+    </item>
+
+</menu>
