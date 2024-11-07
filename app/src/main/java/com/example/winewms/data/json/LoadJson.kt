@@ -1,15 +1,16 @@
 package com.example.winewms.data.json
 
 import android.content.Context
+import com.example.winewms.data.model.DataWrapper
+import com.example.winewms.data.model.WineModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.util.Locale
 
 class LoadJson {
 
-    fun readJsonFile(context: Context, fileName: String): List<Vehicle> {
+    fun readJsonFile(context: Context, fileName: String): List<WineModel> {
 
-        var vehicleList: List<Vehicle> = emptyList()
+        var wineList: List<WineModel> = emptyList()
         var jsonData: String? = null
 
         try {
@@ -28,13 +29,9 @@ class LoadJson {
             val gson = Gson()
             val dataWrapperType = object : TypeToken<DataWrapper>() {}.type
             val dataWrapper: DataWrapper = gson.fromJson(it, dataWrapperType)
-            vehicleList = dataWrapper.data
-            vehicleList.map {
-                val picId = context.resources.getIdentifier("v_" + it.Model.lowercase(Locale.getDefault()), "drawable", context.packageName)
-                it.PicId = picId
-            }
+            wineList = dataWrapper.wines
         }
 
-        return vehicleList
+        return wineList
     }
 }
