@@ -49,9 +49,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
     implementation("com.squareup.retrofit2:retrofit:2.9.0") //Retrofit for making API calls
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") //Gson Converter for Retrofit
     implementation("com.google.code.gson:gson:2.8.8")
+
+    implementation("com.squareup.picasso:picasso:2.71828") //For loading images
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

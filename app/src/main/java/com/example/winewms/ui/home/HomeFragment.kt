@@ -4,39 +4,50 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.winewms.data.model.WineModel
+import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.FragmentHomeBinding
+import com.example.winewms.ui.home.adapter.featured.FeaturedWinesAdapter
+import com.example.winewms.ui.home.adapter.featured.onFeaturedWinesClickListener
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), onFeaturedWinesClickListener {
 
-    private var _binding: FragmentHomeBinding? = null
+    lateinit var binding: FragmentHomeBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    //variable used to transfer objects among activities and fragments
+    private val wineViewModel: WineViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        binding = FragmentHomeBinding.inflate(inflater)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        //load featured wines into recycler view reading data from View Model
+        loadFeaturedWinesIntoRecyclerView()
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+
+
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    //function to load featured wines into recycler view reading data from View Model
+    private fun loadFeaturedWinesIntoRecyclerView() {
+
+        wineViewModel.wineList.observe(viewLifecycleOwner, Observer { listOfWines ->
+            val adapter = FeaturedWinesAdapter(listOfWines, this)
+            binding.recyclerViewFeaturedWines.adapter = adapter
+            binding.recyclerViewFeaturedWines.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        })
+    }
+
+    override fun onFeaturedWinesClickListener(wineModel: WineModel) {
+        TODO("Not yet implemented")
     }
 }

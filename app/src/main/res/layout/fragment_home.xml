@@ -6,19 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <ImageView
+        android:id="@+id/imgWineBackground"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wine_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/rounded_corners_white_b"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgWineBackground">
+
+        <EditText
+            android:id="@+id/txtWineSearch"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/txtWineSearchHint"
+            android:inputType="text"
+            android:text="@string/txtWineSearch"
+            android:textAlignment="textEnd"
+            android:textColor="@color/Dark"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+
+            android:layout_weight="1"
+            android:src="@drawable/search_24" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutSearch"
+        app:layout_constraintVertical_bias="0.02">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutFeaturedWines"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/labelFeattuedWines"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/labelFeattuedWines"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewFeaturedWines"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:background="@drawable/rounded_corners_light_red"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

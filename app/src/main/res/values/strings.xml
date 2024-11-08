@@ -51,5 +51,12 @@
     <string name="txtRecoverPassword">Recover Password</string>
     <string name="labelLogout">Logout</string>
     <string name="labelLogin">Login</string>
+    <string name="txtPrice">$ .00</string>
+    <string name="txtWineName">Wine Name</string>
+    <string name="txtWineProcuder">Producer</string>
+    <string name="txtWineCountry">Country/Region</string>
+    <string name="txtWineSearch" />
+    <string name="txtWineSearchHint">Search any wine</string>
+    <string name="labelFeattuedWines">Featured Wines</string>
 
 </resources>

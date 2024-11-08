@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     //wine list variable
     lateinit var wineList: List<WineModel>
 
-    //variable used to send objects among activities and fragments
+    //variable used to transfer objects among activities and fragments
     val wineViewModel: WineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
