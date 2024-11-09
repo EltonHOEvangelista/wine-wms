@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
 import com.example.winewms.data.json.LoadJson
+import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.ActivityMainBinding
@@ -112,20 +113,23 @@ class MainActivity : AppCompatActivity() {
         val apiCall = wineApi.getAllWines()
 
         //Asynchronous call to fetch data from Wine's Api
-        apiCall.enqueue(object: Callback<List<WineModel>> {
+        apiCall.enqueue(object: Callback<DataWrapper> {
 
-            override fun onFailure(call: Call<List<WineModel>>, t: Throwable) {
+            override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
                 Toast.makeText(baseContext, "Failed to fetch data.", Toast.LENGTH_SHORT).show()
-                Log.d("API Service Failure", t.message.toString())
+                Log.e("API Service Failure", t.message.toString())
             }
 
-            override fun onResponse(call: Call<List<WineModel>>, response: Response<List<WineModel>>) {
+            override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
                 if (response.isSuccessful) {
                     //Successfully fetched data
-                    wineList = response.body()!!
+                    val dataWrapper = response.body()
+                    if (dataWrapper != null) {
+                        wineList = dataWrapper.wines
 
-                    //Loading Wine View Model. It's required to share the wineModel object among fragments
-                    loadWineViewModel()
+                        //Loading Wine View Model. It's required to share the wineModel object among fragments
+                        loadWineViewModel()
+                    }
                 }
                 else {
                     Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
