@@ -32,8 +32,6 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
         //load featured wines into recycler view reading data from View Model
         loadFeaturedWinesIntoRecyclerView()
 
-
-
         return binding.root
     }
 
