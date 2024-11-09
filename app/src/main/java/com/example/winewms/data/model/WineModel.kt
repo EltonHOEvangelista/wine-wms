@@ -15,6 +15,7 @@ data class WineModel(
     var name: String,
     var producer: String,
     var type: String,
+    var grapes: List<String>,
     var country: String,
     var harvest: Int,
     var description: String,

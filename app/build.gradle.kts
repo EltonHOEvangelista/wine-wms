@@ -54,7 +54,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") //Gson Converter for Retrofit
     implementation("com.google.code.gson:gson:2.8.8")
 
-    implementation("com.squareup.picasso:picasso:2.71828") //For loading images
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment.ktx) //For loading images
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

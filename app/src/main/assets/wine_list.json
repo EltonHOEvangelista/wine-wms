@@ -5,6 +5,11 @@
       "name": "Château Rouge",
       "producer": "Domaine Du Rouge",
       "type": "Red",
+      "grapes": [
+        "Cabernet Sauvignon",
+        "Merlot",
+        "Cabernet Franc"
+      ],
       "country": "France",
       "harvest": 2018,
       "description": "A full-bodied red wine with notes of blackberries, plums, and hints of oak.",
@@ -30,6 +35,10 @@
       "name": "White Valley Reserve",
       "producer": "Valley Wines Co.",
       "type": "White",
+      "grapes": [
+        "Sauvignon Blanc",
+        "Sémillon"
+      ],
       "country": "United States",
       "harvest": 2023,
       "description": "Crisp and refreshing with citrus and green apple notes.",
@@ -55,6 +64,9 @@
       "name": "Sparkling Sun",
       "producer": "Bubbly Co.",
       "type": "Sparkling",
+      "grapes": [
+        "Chardonnay"
+      ],
       "country": "Italy",
       "harvest": 2021,
       "description": "Elegant and bubbly with hints of pear, apple, and toasted almonds.",

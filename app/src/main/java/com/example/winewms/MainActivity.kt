@@ -104,9 +104,6 @@ class MainActivity : AppCompatActivity() {
 
         val dataFile = LoadJson()
         wineList = dataFile.readJsonFile(this,"wine_list.json")!!
-
-        //Loading Wine View Model. It's required to share the wineModel object among fragments
-        //loadWineViewModel()
     }
 
     //Function to fetch data from backend using Wine API
