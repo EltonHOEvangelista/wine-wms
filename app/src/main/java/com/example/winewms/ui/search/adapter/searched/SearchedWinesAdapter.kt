@@ -30,6 +30,14 @@ class SearchedWinesAdapter(
                 Picasso.get().load(wine.image_path).into(imgBottle)
             }
 
+            // Calculate discounted price and set discount information
+            val discount = wine.discount
+            val discountedPrice = wine.price * (1 - discount)
+
+            // Set discount and discounted price in searched_wine_card.xml
+            binding.txtDiscount.text = "Discount: ${(discount * 100).toInt()}%"
+            binding.txtDiscountedPrice.text = String.format("Final Price: $%.2f", discountedPrice)
+
             // Set click listeners for the buttons in searched_wine_card.xml
             binding.btnBuy.setOnClickListener {
                 listener.onBuyClick(wine)

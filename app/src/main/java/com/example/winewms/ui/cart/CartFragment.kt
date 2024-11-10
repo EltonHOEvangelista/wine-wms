@@ -51,7 +51,9 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
             binding.recyclerViewCartItems.adapter = adapter
 
             // Calculate total price
-            val totalPrice = cartItems.sumOf { it.wine.price.toDouble() * it.quantity }
+            val totalPrice = cartItems.sumOf {
+                it.wine.price.toDouble() * (1-it.wine.discount.toDouble()) * it.quantity
+            }
             binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
         })
     }
@@ -66,9 +68,13 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
     }
 
     override fun onIncreaseQuantityClick(model: CartItemModel) {
-        model.quantity += 1
-        updateCartInViewModel()
-        Toast.makeText(context, "Increased quantity of ${model.wine.name}", Toast.LENGTH_SHORT).show()
+        if (model.quantity < model.wine.stock) {  // Check if quantity is less than stock
+            model.quantity += 1
+            updateCartInViewModel()
+            Toast.makeText(context, "Increased quantity of ${model.wine.name}", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Only ${model.wine.stock} items available in stock", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDecreaseQuantityClick(model: CartItemModel) {

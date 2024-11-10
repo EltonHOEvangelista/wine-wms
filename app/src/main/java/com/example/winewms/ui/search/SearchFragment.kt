@@ -105,17 +105,25 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         // Check if the item is already in the cart
         val existingItem = cartWineViewModel.cartItems.value?.find { it.wine.id == wineModel.id }
         if (existingItem != null) {
-            // Item exists, increase quantity
-            existingItem.quantity += 1
+            // Item exists, check if adding one more exceeds stock
+            if (existingItem.quantity < wineModel.stock) {
+                existingItem.quantity += 1
+                Toast.makeText(context, "Increased quantity of ${wineModel.name}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Only ${wineModel.stock} items available in stock", Toast.LENGTH_SHORT).show()
+            }
         } else {
-            // Item does not exist, add as new CartItemModel
-            val newCartItem = CartItemModel(wine = wineModel, quantity = 1)
-            val updatedCart = cartWineViewModel.cartItems.value.orEmpty().toMutableList()
-            updatedCart.add(newCartItem)
-            cartWineViewModel.updateCartItems(updatedCart)
+            // Item does not exist, add as new CartItemModel if stock is available
+            if (wineModel.stock > 0) {
+                val newCartItem = CartItemModel(wine = wineModel, quantity = 1)
+                val updatedCart = cartWineViewModel.cartItems.value.orEmpty().toMutableList()
+                updatedCart.add(newCartItem)
+                cartWineViewModel.updateCartItems(updatedCart)
+                Toast.makeText(context, "${wineModel.name} added to cart", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "${wineModel.name} is out of stock", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        Toast.makeText(context, "${wineModel.name} added to cart", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDetailsClick(wineModel: WineModel) {

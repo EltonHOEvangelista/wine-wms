@@ -17,7 +17,6 @@ class CartWinesAdapter(
     inner class CartWineViewHolder(private val binding: CartWineCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(cartItem: CartItemModel) {
-            // Retrieve the wine data from the cartItem
             val wine = cartItem.wine
 
             // Bind wine information within wine_card.xml
@@ -30,18 +29,25 @@ class CartWinesAdapter(
                 Picasso.get().load(wine.image_path).into(imgBottle)
             }
 
-            // Set the current quantity in the TextView
-            binding.txtQuantity.text = cartItem.quantity.toString()
+            // Calculate discounted price and set discount information
+            val discount = wine.discount
+            val discountedPrice = wine.price * (1 - discount)
 
-            // Click listeners for quantity adjustment and removal
-            binding.btnIncreaseQuantity.setOnClickListener {
-                listener.onIncreaseQuantityClick(cartItem)
-            }
-            binding.btnDecreaseQuantity.setOnClickListener {
-                listener.onDecreaseQuantityClick(cartItem)
-            }
-            binding.btnRemoveItem.setOnClickListener {
-                listener.onRemoveItemClick(cartItem)
+            binding.apply {
+                txtDiscount.text = "Discount: ${(discount*100).toInt()}%"
+                txtDiscountedPrice.text = String.format("Final Price: $%.2f", discountedPrice)
+                txtQuantity.text = cartItem.quantity.toString()
+
+                // Set click listeners for quantity adjustment and item removal
+                btnIncreaseQuantity.setOnClickListener {
+                    listener.onIncreaseQuantityClick(cartItem)
+                }
+                btnDecreaseQuantity.setOnClickListener {
+                    listener.onDecreaseQuantityClick(cartItem)
+                }
+                btnRemoveItem.setOnClickListener {
+                    listener.onRemoveItemClick(cartItem)
+                }
             }
         }
     }
