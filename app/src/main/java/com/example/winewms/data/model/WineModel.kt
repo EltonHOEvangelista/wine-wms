@@ -1,16 +1,21 @@
 package com.example.winewms.data.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DataWrapper(
+    var page: Int,
+    var limit: Int,
+    var total_count: Int,
+    var total_pages: Int,
     var wines: List<WineModel>
 ) : Parcelable
 
 @Parcelize
 data class WineModel(
-    var id: String,
+    @SerializedName("_id") var id: String,
     var image_path: String,
     var name: String,
     var producer: String,
@@ -21,7 +26,7 @@ data class WineModel(
     var description: String,
     var price: Float,
     var discount: Float,
-    var stock: Int,
+    var stock: Int = 0,
     var taste_characteristics: TasteCharacteristics,
     var rate: Float,
     var food_pair: List<String>,
