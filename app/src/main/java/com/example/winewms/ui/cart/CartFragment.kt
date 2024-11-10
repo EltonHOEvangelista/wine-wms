@@ -1,60 +1,88 @@
 package com.example.winewms.ui.cart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.winewms.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.winewms.data.model.CartItemModel
+import com.example.winewms.data.model.CartWineViewModel
+import com.example.winewms.databinding.FragmentCartBinding
+import com.example.winewms.ui.cart.adapter.cart.CartWinesAdapter
+import com.example.winewms.ui.cart.adapter.cart.OnCartWinesClickListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CartFragment : Fragment(), OnCartWinesClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentCartBinding
+    private val cartWineViewModel: CartWineViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentCartBinding.inflate(inflater)
+
+        setupRecyclerView()
+        observeCartItems()
+
+        binding.btnCheckout.setOnClickListener {
+            Toast.makeText(context, "Proceeding to checkout!", Toast.LENGTH_SHORT).show()
+            // Add logic for checkout process
+        }
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerViewCartItems.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = CartWinesAdapter(emptyList(), this@CartFragment)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+    private fun observeCartItems() {
+        cartWineViewModel.cartItems.observe(viewLifecycleOwner, Observer { cartItems ->
+            val adapter = CartWinesAdapter(cartItems, this)
+            binding.recyclerViewCartItems.adapter = adapter
+
+            // Calculate total price
+            val totalPrice = cartItems.sumOf { it.wine.price.toDouble() * it.quantity }
+            binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
+        })
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun updateCartInViewModel() {
+        val updatedList = cartWineViewModel.cartItems.value ?: emptyList()
+        cartWineViewModel.updateCartItems(updatedList)
+    }
+
+    override fun onCartWinesClickListener(model: CartItemModel) {
+        Toast.makeText(context, "Selected ${model.wine.name}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onIncreaseQuantityClick(model: CartItemModel) {
+        model.quantity += 1
+        updateCartInViewModel()
+        Toast.makeText(context, "Increased quantity of ${model.wine.name}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDecreaseQuantityClick(model: CartItemModel) {
+        if (model.quantity > 1) {
+            model.quantity -= 1
+            updateCartInViewModel()
+            Toast.makeText(context, "Decreased quantity of ${model.wine.name}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onRemoveItemClick(model: CartItemModel) {
+        val currentList = cartWineViewModel.cartItems.value?.toMutableList()
+        currentList?.remove(model)
+        cartWineViewModel.updateCartItems(currentList ?: emptyList())
+        Toast.makeText(context, "Removed ${model.wine.name} from cart", Toast.LENGTH_SHORT).show()
     }
 }
