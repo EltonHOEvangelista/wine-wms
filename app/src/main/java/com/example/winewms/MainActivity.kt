@@ -110,7 +110,11 @@ class MainActivity : AppCompatActivity() {
     //Function to fetch data from backend using Wine API
     private fun fetchDataFromBackend() {
 
-        val apiCall = wineApi.getAllWines()
+        // Set up filter for discounts great of equal to 15%
+        val filters = mutableMapOf<String, String>()
+        filters["discount"] = "0.15"
+        // Fetch filtered data from api
+        val apiCall = wineApi.getAllWines(filters = filters)
 
         //Asynchronous call to fetch data from Wine's Api
         apiCall.enqueue(object: Callback<DataWrapper> {
