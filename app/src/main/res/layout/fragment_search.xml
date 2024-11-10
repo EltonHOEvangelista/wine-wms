@@ -39,9 +39,25 @@
             android:src="@drawable/search_24" />
     </LinearLayout>
 
+    <!-- "No results found" message TextView -->
+    <TextView
+        android:id="@+id/txtNoResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:text="No wines found."
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        android:gravity="center"/>
+
+    <!-- RecyclerView for displaying search results with padding for bottom navigation bar -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearchedWines"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingBottom="56dp"
+    android:clipToPadding="false" />
 </LinearLayout>

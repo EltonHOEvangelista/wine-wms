@@ -20,6 +20,9 @@ import com.example.winewms.ui.search.adapter.searched.SearchedWinesAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+
 
 class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
@@ -43,6 +46,9 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             if (query.isNotEmpty()) {
                 Log.d("SearchFragment", "Search icon clicked with query: $query")
                 Toast.makeText(context, "Searching for: $query", Toast.LENGTH_SHORT).show()
+
+                hideKeyboard()
+
                 fetchDataWithFilters(query)
             } else {
                 Toast.makeText(context, "Please enter a search term", Toast.LENGTH_SHORT).show()
@@ -74,10 +80,19 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
                 if (response.isSuccessful) {
                     val dataWrapper = response.body()
                     dataWrapper?.let {
-                        // Update the RecyclerView adapter with the new list
-                        binding.recyclerViewSearchedWines.adapter = SearchedWinesAdapter(it.wines, this@SearchFragment)
-                        // Update ViewModel with the fetched data
-                        wineViewModel.setWineList(it.wines)
+                        if (it.wines.isEmpty()) {
+                            // No results found
+                            binding.txtNoResults.visibility = View.VISIBLE
+                            binding.recyclerViewSearchedWines.visibility = View.GONE
+                        } else {
+                            // Wines found
+                            binding.txtNoResults.visibility = View.GONE
+                            binding.recyclerViewSearchedWines.visibility = View.VISIBLE
+                            // Update RecyclerView adapter with results
+                            binding.recyclerViewSearchedWines.adapter = SearchedWinesAdapter(it.wines, this@SearchFragment)
+                            // Update ViewModel with the fetched data
+                            wineViewModel.setWineList(it.wines)
+                        }
                     }
                 } else {
                     Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
@@ -100,4 +115,10 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         Toast.makeText(context, "Viewing details for ${wineModel.name}", Toast.LENGTH_SHORT).show()
         // Logic for showing wine details
     }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.txtWineSearch.windowToken, 0)
+    }
+    
 }
