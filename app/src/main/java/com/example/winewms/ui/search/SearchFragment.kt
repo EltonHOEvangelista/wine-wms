@@ -22,12 +22,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import com.example.winewms.data.model.SearchWineViewModel
 
 
 class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
     private lateinit var binding: FragmentSearchBinding
-    private val wineViewModel: WineViewModel by activityViewModels()
+    private val wineViewModel: SearchWineViewModel by activityViewModels()
 
     // Initialize the Wine API
     private val wineApi: WineApiService by lazy { WineApi.retrofit.create(WineApiService::class.java) }
