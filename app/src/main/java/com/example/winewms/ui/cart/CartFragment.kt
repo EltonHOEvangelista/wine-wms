@@ -30,18 +30,21 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
         binding = FragmentCartBinding.inflate(inflater)
 
         setupRecyclerView()
-        observeCartItems()
 
         binding.btnCheckout.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_cart_to_navigation_checkout)
         }
 
-        // Set up the Reset Cart button functionality
         binding.btnResetCart.setOnClickListener {
             resetCart()
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        observeCartItems() // Re-observe to update when navigating back
     }
 
     private fun setupRecyclerView() {
@@ -56,21 +59,31 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
         cartWineViewModel.cartItems.observe(viewLifecycleOwner, Observer { cartItems ->
             cartAdapter.updateCartItems(cartItems)
 
-            // Calculate total price
-            val totalPrice = cartItems.sumOf {
-                it.wine.price.toDouble() * (1 - it.wine.discount.toDouble()) * it.quantity
+            // Enable or disable the checkout button based on cart contents
+            binding.btnCheckout.isEnabled = cartItems.isNotEmpty()
+            binding.btnCheckout.alpha = if (cartItems.isNotEmpty()) 1f else 0.5f // Full opacity if enabled, 50% opacity if disabled
+
+            // Update UI visibility for empty cart
+            if (cartItems.isEmpty()) {
+                binding.txtEmptyCart.visibility = View.VISIBLE
+                binding.recyclerViewCartItems.visibility = View.GONE
+            } else {
+                binding.txtEmptyCart.visibility = View.GONE
+                binding.recyclerViewCartItems.visibility = View.VISIBLE
             }
-            binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
+
+            updateTotalPrice(cartItems)
         })
     }
 
-    private fun updateCartInViewModel() {
-        val updatedList = cartWineViewModel.cartItems.value ?: emptyList()
-        cartWineViewModel.updateCartItems(updatedList)
+    private fun updateTotalPrice(cartItems: List<CartItemModel>) {
+        val totalPrice = cartItems.sumOf {
+            it.wine.price.toDouble() * (1 - it.wine.discount.toDouble()) * it.quantity
+        }
+        binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
     }
 
     private fun resetCart() {
-        // Clear the cart in the ViewModel
         cartWineViewModel.updateCartItems(emptyList())
         Toast.makeText(context, "Cart has been reset", Toast.LENGTH_SHORT).show()
     }
@@ -102,5 +115,10 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
         currentList?.remove(model)
         cartWineViewModel.updateCartItems(currentList ?: emptyList())
         Toast.makeText(context, "Removed ${model.wine.name} from cart", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun updateCartInViewModel() {
+        val updatedList = cartWineViewModel.cartItems.value ?: emptyList()
+        cartWineViewModel.updateCartItems(updatedList)
     }
 }

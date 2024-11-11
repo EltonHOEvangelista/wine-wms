@@ -6,5 +6,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class CartItemModel(
     val wine: WineModel,
-    var quantity: Int = 1
+    var quantity: Int = 1,
+    var stockNotification: String? = null
 ) : Parcelable

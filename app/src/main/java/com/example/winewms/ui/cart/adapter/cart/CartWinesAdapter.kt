@@ -1,6 +1,7 @@
 package com.example.winewms.ui.cart.adapter.cart
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.winewms.data.model.CartItemModel
@@ -30,6 +31,14 @@ class CartWinesAdapter(
             val discountedPrice = wine.price * (1 - discount)
 
             binding.apply {
+                // Set stock notification if available
+                if (!cartItem.stockNotification.isNullOrEmpty()) {
+                    txtStockNotification.text = cartItem.stockNotification
+                    txtStockNotification.visibility = View.VISIBLE
+                } else {
+                    txtStockNotification.visibility = View.GONE
+                }
+
                 txtDiscount.text = "Discount: ${(discount * 100).toInt()}%"
                 txtDiscountedPrice.text = String.format("Final Price: $%.2f", discountedPrice)
                 txtQuantity.text = cartItem.quantity.toString()
@@ -58,7 +67,7 @@ class CartWinesAdapter(
 
     override fun getItemCount() = cartItems.size
 
-    // Method to update the cart items
+    // Method to update the cart items selectively
     fun updateCartItems(newItems: List<CartItemModel>) {
         cartItems = newItems
         notifyDataSetChanged()

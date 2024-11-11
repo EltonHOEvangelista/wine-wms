@@ -19,6 +19,17 @@
         android:orientation="vertical"
         android:layout_gravity="center_vertical">
 
+        <!-- New Stock Notification TextView -->
+        <TextView
+            android:id="@+id/txtStockNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone" />
+
         <!-- Discount and discounted price -->
         <TextView
             android:id="@+id/txtDiscount"
