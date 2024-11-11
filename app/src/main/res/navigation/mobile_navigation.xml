@@ -21,7 +21,11 @@
         android:id="@+id/navigation_cart"
         android:name="com.example.winewms.ui.cart.CartFragment"
         android:label="@string/title_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_navigation_cart_to_navigation_checkout"
+            app:destination="@id/navigation_checkout" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_account"
@@ -40,20 +44,34 @@
         android:name="com.example.winewms.ui.control.ControlFragment"
         android:label="@string/title_control"
         tools:layout="@layout/fragment_control" />
+
     <fragment
         android:id="@+id/navigation_signin"
         android:name="com.example.winewms.ui.account.signin.SigninFragment"
         android:label="fragment_signin"
         tools:layout="@layout/fragment_signin" />
+
     <fragment
         android:id="@+id/navigation_signup"
         android:name="com.example.winewms.ui.account.signup.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
+
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.example.winewms.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_checkout"
+        android:name="com.example.winewms.ui.checkout.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_navigation_checkout_to_navigation_cart"
+            app:destination="@id/navigation_cart" />
+    </fragment>
+
 
 </navigation>

@@ -9,17 +9,14 @@ import com.example.winewms.databinding.WineCardBinding
 import com.squareup.picasso.Picasso
 
 class CartWinesAdapter(
-    private val cartItems: List<CartItemModel>,
+    private var cartItems: List<CartItemModel>,
     private val listener: OnCartWinesClickListener,
 ) : RecyclerView.Adapter<CartWinesAdapter.CartWineViewHolder>() {
 
-    // ViewHolder class for cart wine items
     inner class CartWineViewHolder(private val binding: CartWineCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(cartItem: CartItemModel) {
             val wine = cartItem.wine
-
-            // Bind wine information within wine_card.xml
             val wineCardBinding = WineCardBinding.bind(binding.wineCard.root)
             wineCardBinding.apply {
                 txtPrice.text = String.format("$%.2f", wine.price)
@@ -29,16 +26,14 @@ class CartWinesAdapter(
                 Picasso.get().load(wine.image_path).into(imgBottle)
             }
 
-            // Calculate discounted price and set discount information
             val discount = wine.discount
             val discountedPrice = wine.price * (1 - discount)
 
             binding.apply {
-                txtDiscount.text = "Discount: ${(discount*100).toInt()}%"
+                txtDiscount.text = "Discount: ${(discount * 100).toInt()}%"
                 txtDiscountedPrice.text = String.format("Final Price: $%.2f", discountedPrice)
                 txtQuantity.text = cartItem.quantity.toString()
 
-                // Set click listeners for quantity adjustment and item removal
                 btnIncreaseQuantity.setOnClickListener {
                     listener.onIncreaseQuantityClick(cartItem)
                 }
@@ -62,4 +57,10 @@ class CartWinesAdapter(
     }
 
     override fun getItemCount() = cartItems.size
+
+    // Method to update the cart items
+    fun updateCartItems(newItems: List<CartItemModel>) {
+        cartItems = newItems
+        notifyDataSetChanged()
+    }
 }

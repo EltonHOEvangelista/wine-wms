@@ -11,9 +11,9 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingBottom="72dp"
-    android:clipToPadding="false" />
+        android:clipToPadding="false" />
 
-    <!-- Cart total and checkout button -->
+    <!-- Cart total and action buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,9 +35,23 @@
         <!-- Checkout button -->
         <Button
             android:id="@+id/btnCheckout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Checkout"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/purple_500"
+            android:padding="12dp" />
+
+        <!-- Reset Cart button -->
+        <Button
+            android:id="@+id/btnResetCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reset Cart"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:padding="12dp" />
     </LinearLayout>
 </LinearLayout>
