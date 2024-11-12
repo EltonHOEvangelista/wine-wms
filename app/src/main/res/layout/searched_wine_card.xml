@@ -12,23 +12,44 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <!-- Buttons aligned to the right of each wine item -->
+    <!-- Vertical layout for price, discount, and action buttons -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_vertical">
 
+        <!-- Discount percentage -->
+        <TextView
+            android:id="@+id/txtDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discount: 10%"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Discounted price -->
+        <TextView
+            android:id="@+id/txtDiscountedPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Final Price: $9.99"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Buttons aligned to the right of each wine item -->
         <Button
             android:id="@+id/btnBuy"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Buy"
             android:padding="8dp" />
 
         <Button
             android:id="@+id/btnDetails"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Details"
             android:padding="8dp"

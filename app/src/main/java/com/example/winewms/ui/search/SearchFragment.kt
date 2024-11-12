@@ -23,12 +23,16 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import com.example.winewms.data.model.CartItemModel
+import com.example.winewms.data.model.CartWineViewModel
 
 class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchWineViewModel: SearchWineViewModel by activityViewModels()
     private val wineApi: WineApiService by lazy { WineApi.retrofit.create(WineApiService::class.java) }
+    private val cartWineViewModel: CartWineViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,7 +102,28 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     }
 
     override fun onBuyClick(wineModel: WineModel) {
-        Toast.makeText(context, "Buying ${wineModel.name}", Toast.LENGTH_SHORT).show()
+        // Check if the item is already in the cart
+        val existingItem = cartWineViewModel.cartItems.value?.find { it.wine.id == wineModel.id }
+        if (existingItem != null) {
+            // Item exists, check if adding one more exceeds stock
+            if (existingItem.quantity < wineModel.stock) {
+                existingItem.quantity += 1
+                Toast.makeText(context, "Increased quantity of ${wineModel.name}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Only ${wineModel.stock} items available in stock", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            // Item does not exist, add as new CartItemModel if stock is available
+            if (wineModel.stock > 0) {
+                val newCartItem = CartItemModel(wine = wineModel, quantity = 1)
+                val updatedCart = cartWineViewModel.cartItems.value.orEmpty().toMutableList()
+                updatedCart.add(newCartItem)
+                cartWineViewModel.updateCartItems(updatedCart)
+                Toast.makeText(context, "${wineModel.name} added to cart", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "${wineModel.name} is out of stock", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onDetailsClick(wineModel: WineModel) {
