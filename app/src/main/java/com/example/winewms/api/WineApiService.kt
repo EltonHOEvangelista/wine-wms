@@ -2,6 +2,8 @@ package com.example.winewms.api
 
 import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.WineModel
+import com.example.winewms.data.model.payloads.PurchaseRequest
+import com.example.winewms.data.model.payloads.PurchaseResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -41,4 +43,10 @@ interface WineApiService {
     //remove current wines and create new ones (initial list)
     @POST("wines/all")
     fun createInitialWines(@Body wineList: List<WineModel>): Call<String>
+
+    @POST("purchases")
+    fun placeOrder(@Body purchaseRequest: PurchaseRequest): Call<PurchaseResponse>
+
+    @POST("wines/bulk")
+    fun getBulkWines(@Body wineIds: List<String>): Call<List<WineModel>>
 }

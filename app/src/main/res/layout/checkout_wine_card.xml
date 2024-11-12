@@ -1,0 +1,66 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <!-- Wine Bottle Image -->
+    <ImageView
+        android:id="@+id/imgBottle"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Wine Name -->
+        <TextView
+            android:id="@+id/txtWineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wine Name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Quantity -->
+        <TextView
+            android:id="@+id/txtQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity: 0"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Original Total Price -->
+        <TextView
+            android:id="@+id/txtOriginalTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Original: $0.00"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Discount Percentage -->
+        <TextView
+            android:id="@+id/txtDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discount: 0%"
+            android:layout_marginBottom="4dp"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <!-- Discounted Total Price -->
+        <TextView
+            android:id="@+id/txtDiscountedTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discounted Total: $0.00"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_green_dark" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,156 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Title for the summary section aligned to the left -->
+    <TextView
+        android:id="@+id/txtSummaryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Summary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Total Price Display aligned to the right -->
+    <TextView
+        android:id="@+id/txtTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: $0.00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ScrollView to ensure scrollable content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txtSummaryTitle"
+        app:layout_constraintBottom_toTopOf="@id/buttonContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- RecyclerView for listing items in the order summary -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewOrderSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Address section title -->
+            <TextView
+                android:id="@+id/txtAddressTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipping Address"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Checkbox for using user address -->
+            <CheckBox
+                android:id="@+id/chkUseUserAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Use user address"
+                android:layout_marginBottom="8dp"
+                android:checked="true" />
+
+            <!-- Container for address fields -->
+            <LinearLayout
+                android:id="@+id/addressContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <!-- Address Line -->
+                <EditText
+                    android:id="@+id/edtAddressLine1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:padding="8dp"
+                    android:background="@android:drawable/editbox_background"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- City -->
+                <EditText
+                    android:id="@+id/edtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="City"
+                    android:padding="8dp"
+                    android:background="@android:drawable/editbox_background"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Province -->
+                <EditText
+                    android:id="@+id/edtProvince"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Province"
+                    android:padding="8dp"
+                    android:background="@android:drawable/editbox_background"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Postal Code -->
+                <EditText
+                    android:id="@+id/edtPostalCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Postal Code"
+                    android:padding="8dp"
+                    android:background="@android:drawable/editbox_background"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Button container for Place Order and Cancel buttons -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="48dp"> <!-- Margin to avoid overlap with navigation bar -->
+
+        <!-- Place Order Button -->
+        <Button
+            android:id="@+id/btnPlaceOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Place Order"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/purple_500"
+            android:padding="12dp" />
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:padding="12dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

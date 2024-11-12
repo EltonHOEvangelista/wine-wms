@@ -1,60 +1,124 @@
 package com.example.winewms.ui.cart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
+import com.example.winewms.data.model.CartItemModel
+import com.example.winewms.data.model.CartWineViewModel
+import com.example.winewms.databinding.FragmentCartBinding
+import com.example.winewms.ui.cart.adapter.cart.CartWinesAdapter
+import com.example.winewms.ui.cart.adapter.cart.OnCartWinesClickListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CartFragment : Fragment(), OnCartWinesClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentCartBinding
+    private val cartWineViewModel: CartWineViewModel by activityViewModels()
+    private lateinit var cartAdapter: CartWinesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+    ): View {
+        binding = FragmentCartBinding.inflate(inflater)
+
+        setupRecyclerView()
+
+        binding.btnCheckout.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_cart_to_navigation_checkout)
+        }
+
+        binding.btnResetCart.setOnClickListener {
+            resetCart()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onResume() {
+        super.onResume()
+        observeCartItems() // Re-observe to update when navigating back
+    }
+
+    private fun setupRecyclerView() {
+        cartAdapter = CartWinesAdapter(emptyList(), this)
+        binding.recyclerViewCartItems.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = cartAdapter
+        }
+    }
+
+    private fun observeCartItems() {
+        cartWineViewModel.cartItems.observe(viewLifecycleOwner, Observer { cartItems ->
+            cartAdapter.updateCartItems(cartItems)
+
+            // Enable or disable the checkout button based on cart contents
+            binding.btnCheckout.isEnabled = cartItems.isNotEmpty()
+            binding.btnCheckout.alpha = if (cartItems.isNotEmpty()) 1f else 0.5f // Full opacity if enabled, 50% opacity if disabled
+
+            // Update UI visibility for empty cart
+            if (cartItems.isEmpty()) {
+                binding.txtEmptyCart.visibility = View.VISIBLE
+                binding.recyclerViewCartItems.visibility = View.GONE
+            } else {
+                binding.txtEmptyCart.visibility = View.GONE
+                binding.recyclerViewCartItems.visibility = View.VISIBLE
             }
+
+            updateTotalPrice(cartItems)
+        })
+    }
+
+    private fun updateTotalPrice(cartItems: List<CartItemModel>) {
+        val totalPrice = cartItems.sumOf {
+            it.wine.price.toDouble() * (1 - it.wine.discount.toDouble()) * it.quantity
+        }
+        binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
+    }
+
+    private fun resetCart() {
+        cartWineViewModel.updateCartItems(emptyList())
+        Toast.makeText(context, "Cart has been reset", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCartWinesClickListener(model: CartItemModel) {
+        Toast.makeText(context, "Selected ${model.wine.name}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onIncreaseQuantityClick(model: CartItemModel) {
+        if (model.quantity < model.wine.stock) {
+            model.quantity += 1
+            updateCartInViewModel()
+            Toast.makeText(context, "Increased quantity of ${model.wine.name}", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Only ${model.wine.stock} items available in stock", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onDecreaseQuantityClick(model: CartItemModel) {
+        if (model.quantity > 1) {
+            model.quantity -= 1
+            updateCartInViewModel()
+            Toast.makeText(context, "Decreased quantity of ${model.wine.name}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onRemoveItemClick(model: CartItemModel) {
+        val currentList = cartWineViewModel.cartItems.value?.toMutableList()
+        currentList?.remove(model)
+        cartWineViewModel.updateCartItems(currentList ?: emptyList())
+        Toast.makeText(context, "Removed ${model.wine.name} from cart", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun updateCartInViewModel() {
+        val updatedList = cartWineViewModel.cartItems.value ?: emptyList()
+        cartWineViewModel.updateCartItems(updatedList)
     }
 }
