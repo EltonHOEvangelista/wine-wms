@@ -1,0 +1,75 @@
+<!-- res/layout/filter_popup.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/rounded_corners_white_b">
+
+    <!-- Wine Type Filters -->
+    <CheckBox
+        android:id="@+id/filter_option_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red Wine" />
+
+    <CheckBox
+        android:id="@+id/filter_option_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="White Wine" />
+
+    <CheckBox
+        android:id="@+id/filter_option_rose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rosé Wine" />
+
+    <CheckBox
+        android:id="@+id/filter_option_sparkling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sparkling Wine" />
+
+    <!-- Harvest Year Range -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harvest Year Range"
+        android:paddingTop="12dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <NumberPicker
+            android:id="@+id/numberPickerHarvestYearStart"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" - "
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="8dp" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerHarvestYearEnd"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Button to apply filters -->
+    <Button
+        android:id="@+id/btn_apply_filters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply Filters"
+        android:layout_marginTop="12dp"/>
+</LinearLayout>

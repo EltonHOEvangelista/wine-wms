@@ -6,37 +6,55 @@
     android:orientation="vertical"
     tools:context=".ui.search.SearchFragment">
 
+    <!-- Parent LinearLayout to hold the filter icon and the search input -->
     <LinearLayout
-        android:id="@+id/linearLayoutSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/rounded_corners_white_b"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp">
 
-        <EditText
-            android:id="@+id/txtWineSearch"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:hint="@string/txtWineSearchHint"
-            android:inputType="text"
-            android:text="@string/txtWineSearch"
-            android:textAlignment="textEnd"
-            android:textColor="@color/Dark"
-            android:textSize="16sp" />
-
+        <!-- Filter Icon positioned outside of linearLayoutSearch -->
         <ImageView
-            android:id="@+id/imgSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:id="@+id/imgFilter"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_filter_list"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Search input layout -->
+        <LinearLayout
+            android:id="@+id/linearLayoutSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/search_24" />
+            android:background="@drawable/rounded_corners_white_b"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtWineSearch"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/txtWineSearchHint"
+                android:inputType="text"
+                android:text="@string/txtWineSearch"
+                android:textAlignment="textEnd"
+                android:textColor="@color/Dark"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imgSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/search_24" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- "No results found" message TextView -->
@@ -60,4 +78,5 @@
         android:layout_weight="1"
         android:paddingBottom="56dp"
         android:clipToPadding="false" />
+
 </LinearLayout>
