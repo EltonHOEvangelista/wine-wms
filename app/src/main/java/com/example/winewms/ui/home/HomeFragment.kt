@@ -13,10 +13,10 @@ import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.FragmentHomeBinding
 import com.example.winewms.ui.home.adapter.featured.FeaturedWinesAdapter
 import com.example.winewms.ui.home.adapter.featured.onFeaturedWinesClickListener
-import androidx.navigation.fragment.findNavController
 import androidx.core.os.bundleOf
-import androidx.navigation.NavOptions
+import com.example.winewms.MainActivity
 import com.example.winewms.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment(), onFeaturedWinesClickListener {
 
@@ -62,18 +62,19 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
 
     private fun navigateToSearchWithFilter(wineType: String) {
         val bundle = bundleOf("wineType" to wineType)
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.navigation_home, true) // Clears HomeFragment from the stack
-            .build()
-        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
+        parentFragmentManager.setFragmentResult("searchFilterRequest", bundle)
+
+        // Navigate to SearchFragment using the BottomNavigationView
+        (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view)
+            .selectedItemId = R.id.navigation_search
     }
 
     private fun navigateToSearchWithText(searchText: String) {
         val bundle = bundleOf("searchText" to searchText)
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.navigation_home, true) // Clears HomeFragment from the stack
-            .build()
-        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
+        parentFragmentManager.setFragmentResult("searchFilterRequest", bundle)
+
+        (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view)
+            .selectedItemId = R.id.navigation_search
     }
 
     //function to load featured wines into recycler view reading data from View Model

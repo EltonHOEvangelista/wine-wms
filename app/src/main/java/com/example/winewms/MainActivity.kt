@@ -13,6 +13,7 @@ import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
 import com.example.winewms.data.json.LoadJson
 import com.example.winewms.data.model.DataWrapper
+import com.example.winewms.data.model.SearchWineViewModel
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.ActivityMainBinding
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     //variable used to transfer objects among activities and fragments
     val wineViewModel: WineViewModel by viewModels()
+    private val searchWineViewModel: SearchWineViewModel by viewModels()
 
     //Instantiate Wine Api
     var wineApi = WineApi.retrofit.create(WineApiService::class.java)
@@ -47,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         //Fetch data from backend using Wine API
         fetchDataFromBackend()
+
+        //Starts the app by
+        fetchAllWines()
     }
 
     private fun setBottomNavigationView() {
@@ -137,6 +142,25 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
+                }
+            }
+        })
+    }
+
+    private fun fetchAllWines() {
+        val wineApi = WineApi.retrofit.create(WineApiService::class.java)
+        val apiCall = wineApi.getAllWines()
+
+        apiCall.enqueue(object : Callback<DataWrapper> {
+            override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Failed to fetch data.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
+                if (response.isSuccessful) {
+                    response.body()?.wines?.let {
+                        searchWineViewModel.setWineList(it)  // Store fetched data in the ViewModel
+                    }
                 }
             }
         })

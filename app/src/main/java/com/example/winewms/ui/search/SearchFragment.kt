@@ -31,6 +31,7 @@ import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.data.model.CartWineViewModel
 import java.util.Calendar
+import androidx.fragment.app.setFragmentResultListener
 
 class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
@@ -43,7 +44,6 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     private val selectedWineTypes = mutableListOf<String>()
     private var harvestYearStart: String? = null
     private var harvestYearEnd: String? = null
-    private var hasInitialized = false  // New flag to ensure setup runs only once
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,29 +52,28 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     ): View {
         binding = FragmentSearchBinding.inflate(inflater)
 
-        // Show "No results found" message initially
-        binding.txtNoResults.visibility = View.VISIBLE
-
         setupRecyclerView()
         observeWineList()
 
-        val searchText = arguments?.getString("searchText")
-        val wineType = arguments?.getString("wineType")
-
-        when {
-            searchText != null -> {
+        // Listen for filter or search text updates from HomeFragment
+        setFragmentResultListener("searchFilterRequest") { _, bundle ->
+            bundle.getString("searchText")?.let { searchText ->
+                // Set search text in the text box if we're searching by name
                 binding.txtWineSearch.setText(searchText)
                 fetchDataWithFilters(searchText)
             }
-            wineType != null -> {
+
+            bundle.getString("wineType")?.let { wineType ->
+                // Clear the text box if we're filtering by wine type
+                binding.txtWineSearch.text.clear()
                 selectedWineTypes.clear()
                 selectedWineTypes.add(wineType)
                 fetchDataWithFilters("")
             }
-            else -> {
-                binding.txtNoResults.visibility = View.VISIBLE
-            }
         }
+
+        // Show "No results found" message if the list is empty
+        binding.txtNoResults.visibility = if (searchWineViewModel.wineList.value.isNullOrEmpty()) View.VISIBLE else View.GONE
 
         // Search button click listener
         binding.imgSearch.setOnClickListener {
