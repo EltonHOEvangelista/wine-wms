@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
+    <!-- Buttons aligned to the right of each wine item -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,12 +21,14 @@
 
         <Button
             android:id="@+id/btnBuy"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buy"
             android:padding="8dp" />
 
         <Button
             android:id="@+id/btnDetails"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
             android:padding="8dp"
