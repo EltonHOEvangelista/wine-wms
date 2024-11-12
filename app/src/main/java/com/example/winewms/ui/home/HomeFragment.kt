@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.FragmentHomeBinding
 import com.example.winewms.ui.home.adapter.featured.FeaturedWinesAdapter
 import com.example.winewms.ui.home.adapter.featured.onFeaturedWinesClickListener
+import androidx.navigation.fragment.findNavController
+import androidx.core.os.bundleOf
+import androidx.navigation.NavOptions
+import com.example.winewms.R
 
 class HomeFragment : Fragment(), onFeaturedWinesClickListener {
 
@@ -29,10 +32,48 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
 
-        //load featured wines into recycler view reading data from View Model
+        // Set up button click listeners for filtering
+        binding.linearLayoutButtonRed.setOnClickListener {
+            navigateToSearchWithFilter("red")
+        }
+        binding.linearLayoutButtonRose.setOnClickListener {
+            navigateToSearchWithFilter("rose")
+        }
+        binding.linearLayoutButtonWhite.setOnClickListener {
+            navigateToSearchWithFilter("white")
+        }
+        binding.linearLayoutButtonSparkling.setOnClickListener {
+            navigateToSearchWithFilter("sparkling")
+        }
+
+        // Set up text search functionality
+        binding.imgSearch.setOnClickListener {
+            val searchText = binding.txtWineSearch.text.toString().trim()
+            if (searchText.isNotEmpty()) {
+                navigateToSearchWithText(searchText)
+            }
+        }
+
+        // Load featured wines
         loadFeaturedWinesIntoRecyclerView()
 
         return binding.root
+    }
+
+    private fun navigateToSearchWithFilter(wineType: String) {
+        val bundle = bundleOf("wineType" to wineType)
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.navigation_home, true) // Clears HomeFragment from the stack
+            .build()
+        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
+    }
+
+    private fun navigateToSearchWithText(searchText: String) {
+        val bundle = bundleOf("searchText" to searchText)
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.navigation_home, true) // Clears HomeFragment from the stack
+            .build()
+        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
     }
 
     //function to load featured wines into recycler view reading data from View Model
