@@ -1,4 +1,3 @@
-<!-- res/layout/filter_popup.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
@@ -7,30 +6,117 @@
     android:padding="16dp"
     android:background="@drawable/rounded_corners_white_b">
 
-    <!-- Wine Type Filters -->
-    <CheckBox
-        android:id="@+id/filter_option_red"
+    <!-- Wine Type Filters in Two Columns -->
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red Wine" />
+        android:text="Wine Type"
+        android:paddingBottom="8dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
 
-    <CheckBox
-        android:id="@+id/filter_option_white"
+    <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="White Wine" />
+        android:columnCount="2"
+        android:layout_marginBottom="8dp">
 
-    <CheckBox
-        android:id="@+id/filter_option_rose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rosé Wine" />
+        <CheckBox
+            android:id="@+id/filter_option_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red Wine" />
 
-    <CheckBox
-        android:id="@+id/filter_option_sparkling"
+        <CheckBox
+            android:id="@+id/filter_option_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_rose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rosé Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_sparkling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sparkling Wine" />
+    </GridLayout>
+
+    <!-- Price Range -->
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sparkling Wine" />
+        android:text="Price Range"
+        android:paddingTop="12dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Min Price Controls -->
+        <Button
+            android:id="@+id/btn_decrement_min_price"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="−"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_min_price"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:text="0"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btn_increment_min_price"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:textSize="18sp" />
+
+        <!-- Space between Min and Max Price Controls -->
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
+
+        <!-- Max Price Controls -->
+        <Button
+            android:id="@+id/btn_decrement_max_price"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="−"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_max_price"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:text="1000"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btn_increment_max_price"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <!-- Harvest Year Range -->
     <TextView
@@ -40,6 +126,13 @@
         android:paddingTop="12dp"
         android:textSize="16sp"
         android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="bottom">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -65,11 +158,21 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <!-- Button to apply filters -->
-    <Button
-        android:id="@+id/btn_apply_filters"
-        android:layout_width="wrap_content"
+    <!-- Apply Button Aligned to Bottom Right -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Apply Filters"
-        android:layout_marginTop="12dp"/>
+        android:gravity="end"
+        android:paddingTop="16dp">
+
+        <Button
+            android:id="@+id/btn_apply_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APPLY"
+            android:layout_marginLeft="8dp"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

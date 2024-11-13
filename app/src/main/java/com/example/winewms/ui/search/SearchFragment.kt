@@ -27,6 +27,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.Button
 import android.widget.NumberPicker
+import android.widget.TextView
 import androidx.fragment.app.setFragmentResultListener
 import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
@@ -44,7 +45,8 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     private val selectedWineTypes = mutableListOf<String>()
     private var harvestYearStart: String? = null
     private var harvestYearEnd: String? = null
-    private var hasInitialized = false  // New flag to ensure setup runs only once
+    var minPrice = 0
+    var maxPrice = 1000
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -140,7 +142,7 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         })
     }
 
-    private fun fetchDataWithFilters(query: String) {
+    private fun fetchDataWithFilters(query: String, minPrice: Int? = null, maxPrice: Int? = null) {
         val filters = mutableMapOf<String, String>()
         filters["name"] = query  // Wine name query
 
@@ -151,6 +153,10 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
         harvestYearStart?.let { filters["min_harvest"] = it }
         harvestYearEnd?.let { filters["max_harvest"] = it }
+
+        // Add minPrice and maxPrice to filters if provided
+        minPrice?.let { filters["min_price"] = it.toString() }
+        maxPrice?.let { filters["max_price"] = it.toString() }
 
         val apiCall = wineApi.getAllWines(filters = filters)
         apiCall.enqueue(object : Callback<DataWrapper> {
@@ -179,6 +185,7 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         val roseCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_rose)
         val sparklingCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_sparkling)
 
+        // Set up harvest year NumberPickers
         val startPicker = popupView.findViewById<NumberPicker>(R.id.numberPickerHarvestYearStart)
         val endPicker = popupView.findViewById<NumberPicker>(R.id.numberPickerHarvestYearEnd)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
@@ -191,6 +198,36 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         endPicker.maxValue = years.size - 1
         endPicker.displayedValues = years
 
+        // Set up price range NumberPickers
+        val minPriceTextView = popupView.findViewById<TextView>(R.id.et_min_price)
+        val maxPriceTextView = popupView.findViewById<TextView>(R.id.et_max_price)
+        minPriceTextView.text = minPrice.toString()
+        maxPriceTextView.text = maxPrice.toString()
+
+        popupView.findViewById<Button>(R.id.btn_decrement_min_price).setOnClickListener {
+            if (minPrice > 0) {
+                minPrice -= 1
+                minPriceTextView.text = minPrice.toString()
+            }
+        }
+
+        popupView.findViewById<Button>(R.id.btn_increment_min_price).setOnClickListener {
+            minPrice += 1
+            minPriceTextView.text = minPrice.toString()
+        }
+
+        popupView.findViewById<Button>(R.id.btn_decrement_max_price).setOnClickListener {
+            if (maxPrice > minPrice) {
+                maxPrice -= 1
+                maxPriceTextView.text = maxPrice.toString()
+            }
+        }
+
+        popupView.findViewById<Button>(R.id.btn_increment_max_price).setOnClickListener {
+            maxPrice += 1
+            maxPriceTextView.text = maxPrice.toString()
+        }
+
         popupView.findViewById<Button>(R.id.btn_apply_filters).setOnClickListener {
             selectedWineTypes.clear()
             if (redCheckBox.isChecked) selectedWineTypes.add("red")
@@ -201,13 +238,23 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             harvestYearStart = if (startPicker.value != 0) years[startPicker.value] else null
             harvestYearEnd = if (endPicker.value != 0) years[endPicker.value] else null
 
+            minPrice = minPriceTextView.text.toString().toIntOrNull() ?: 0
+            maxPrice = maxPriceTextView.text.toString().toIntOrNull() ?: 1000
+
             binding.txtWineSearch.text.clear()
             popupWindow.dismiss()
-            fetchDataWithFilters(binding.txtWineSearch.text.toString().trim())
+
+            // Apply filters with the price range
+            fetchDataWithFilters(
+                query = binding.txtWineSearch.text.toString().trim(),
+                minPrice = minPrice,
+                maxPrice = maxPrice
+            )
         }
 
         popupWindow.showAsDropDown(anchorView, 0, 0)
     }
+
 
     override fun onSearchedWinesClickListener(wineModel: WineModel) {
         Toast.makeText(context, "Selected wine: ${wineModel.name}", Toast.LENGTH_SHORT).show()
