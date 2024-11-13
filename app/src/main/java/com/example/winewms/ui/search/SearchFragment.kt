@@ -27,6 +27,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.Button
 import android.widget.NumberPicker
+import androidx.fragment.app.setFragmentResultListener
 import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.data.model.CartWineViewModel
@@ -52,40 +53,27 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     ): View {
         binding = FragmentSearchBinding.inflate(inflater)
 
-        // Show "No results found" message initially
-        //binding.txtNoResults.visibility = View.VISIBLE
-
         setupRecyclerView()
         observeWineList()
 
-        // Retrieve the wineModelId from Home Fragment
-        val wineModelId = arguments?.getString("wineModelId")
+        // Listen for filter or search text updates from HomeFragment
+        setFragmentResultListener("searchFilterRequest") { _, bundle ->
+            bundle.getString("searchText")?.let { searchText ->
+                // Set search text in the text box if we're searching by name
+                binding.txtWineSearch.setText(searchText)
+                fetchDataWithFilters(searchText)
+            }
 
-        // Optionally, check for null if necessary
-        wineModelId?.let {
-            fetchDataWithWineId(wineModelId)
-        } ?: run {
-            // Handle the case where wineModelId is null
-            val searchText = arguments?.getString("searchText")
-            val wineType = arguments?.getString("wineType")
-
-            when {
-                searchText != null -> {
-                    binding.txtWineSearch.setText(searchText)
-                    fetchDataWithFilters(searchText)
-                }
-                wineType != null -> {
-                    selectedWineTypes.clear()
-                    selectedWineTypes.add(wineType)
-                    fetchDataWithFilters("")
-                }
-                else -> {
-                    binding.txtNoResults.visibility = View.VISIBLE
-                }
+            bundle.getString("wineType")?.let { wineType ->
+                // Clear the text box if we're filtering by wine type
+                binding.txtWineSearch.text.clear()
+                selectedWineTypes.clear()
+                selectedWineTypes.add(wineType)
+                fetchDataWithFilters("")
             }
         }
 
-        // Search button click listener
+        // Additional setup for search and filter UI
         binding.imgSearch.setOnClickListener {
             val query = binding.txtWineSearch.text.toString().trim()
             if (query.isNotEmpty()) {
@@ -96,7 +84,6 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             }
         }
 
-        // Filter button click listener
         binding.imgFilter.setOnClickListener {
             showFilterPopup(it)
         }
