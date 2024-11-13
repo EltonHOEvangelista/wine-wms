@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.databinding.FragmentAccountBinding
@@ -34,7 +35,7 @@ class AccountFragment : Fragment() {
 
         // Set click listener for Sign In
         binding.imgSignin.setOnClickListener {
-            findNavController().navigate(R.id.navigation_signin)
+            findNavController().navigate(R.id.action_navigation_account_to_navigation_signin)
         }
     }
 

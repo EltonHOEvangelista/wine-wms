@@ -58,6 +58,31 @@
     <string name="txtWineCountry">Country/Region</string>
     <string name="txtWineSearch" />
     <string name="txtWineSearchHint">Search any wine</string>
-    <string name="labelFeattuedWines">Featured Wines</string>
+    <string name="labelFeattuedWines">Featured wines</string>
+    <string name="txtDiscount">Save %</string>
+    <string name="txtOginalPrice">$ .00</string>
+    <string name="btnAddToCart">Add to Cart</string>
+    <string name="txtSummary">Summary</string>
+    <string name="txtWineDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="labelGrapes">Grapes</string>
+    <string name="txtGrapes">grape</string>
+    <string name="labelTasteCharacteristics">Taste Characteristics</string>
+    <string name="labelLight">Light</string>
+    <string name="labelBold">Bold</string>
+    <string name="labelSmooth">Smooth</string>
+    <string name="labelTannic">Tannic</string>
+    <string name="labelDry">Dry</string>
+    <string name="labelSweet">Sweet</string>
+    <string name="labelSoft">Soft</string>
+    <string name="labelAcidic">Acidic</string>
+    <string name="labelFoodPair">Pairs well with</string>
+    <string name="txtFoodPair">Beef, Lamb</string>
+    <string name="labelWineReviews">Reviews</string>
+    <string name="txtType">Red</string>
+    <string name="labelHarvest">Harvest</string>
+    <string name="txtHarvest">year</string>
+    <string name="txtNoResults">No wines found.</string>
+    <string name="btnRemoveItem">Remove</string>
+    <string name="labelShopByType">Shop wines by type</string>
 
 </resources>

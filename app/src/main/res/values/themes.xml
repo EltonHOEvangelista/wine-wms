@@ -38,4 +38,10 @@
         <item name="cornerSize">32dp</item>
     </style>
 
+    <style name="CustomRatingBar" parent="@style/Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_bar</item>
+        <item name="android:minHeight">15dip</item>
+        <item name="android:maxHeight">15dip</item>
+    </style>
+
 </resources>

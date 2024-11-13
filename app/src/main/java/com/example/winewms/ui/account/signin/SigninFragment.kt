@@ -3,13 +3,11 @@ package com.example.winewms.ui.account.signin
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
-import com.example.winewms.databinding.FragmentAccountBinding
 import com.example.winewms.databinding.FragmentSigninBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -37,11 +35,11 @@ class SigninFragment : Fragment() {
             bottomNavigationView.menu.findItem(R.id.navigation_control)?.isVisible = true
             bottomNavigationView.menu.findItem(R.id.navigation_control)?.isEnabled = true
 
-            findNavController().navigate(R.id.navigation_account)
+            findNavController().navigate(R.id.action_navigation_signin_to_navigation_account)
         }
 
         binding.btnGoToSignup.setOnClickListener{
-            findNavController().navigate(R.id.navigation_signup)
+            findNavController().navigate(R.id.action_nav_signin_to_nav_signup)
         }
     }
 }

@@ -18,18 +18,10 @@ class FeaturedWinesAdapter (
     // ViewHolder class holds the views for each item in the list.
     inner class WineViewHolder(val binding: WineCardBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            // Sets an onClickListener for the item view that triggers the listener's function.
             binding.root.setOnClickListener {
-
-                if (adapterPosition == selectedIndex) {
-                    setSelectedIndex(-1)
-                }
-                else {
-                    setSelectedIndex(adapterPosition)
-                }
-
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
+                    // Pass the selected wine to the listener
                     listener.onFeaturedWinesClickListener(wineList[position])
                 }
             }

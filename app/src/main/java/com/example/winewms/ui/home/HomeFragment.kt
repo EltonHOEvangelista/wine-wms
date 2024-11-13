@@ -33,16 +33,16 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
         binding = FragmentHomeBinding.inflate(inflater)
 
         // Set up button click listeners for filtering
-        binding.linearLayoutButtonRed.setOnClickListener {
+        binding.btnRedWine.setOnClickListener {
             navigateToSearchWithFilter("red")
         }
-        binding.linearLayoutButtonRose.setOnClickListener {
+        binding.btnRoseWine.setOnClickListener {
             navigateToSearchWithFilter("rose")
         }
-        binding.linearLayoutButtonWhite.setOnClickListener {
+        binding.btnWhiteWine.setOnClickListener {
             navigateToSearchWithFilter("white")
         }
-        binding.linearLayoutButtonSparkling.setOnClickListener {
+        binding.btnSparklingWine.setOnClickListener {
             navigateToSearchWithFilter("sparkling")
         }
 
@@ -86,7 +86,14 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
         })
     }
 
+    // function to navigate to search fragment using NavController, passing wine id
     override fun onFeaturedWinesClickListener(wineModel: WineModel) {
-        TODO("Not yet implemented")
+        val bundle = Bundle().apply {
+            putString("wineModelId", wineModel.id)
+        }
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.navigation_home, true) // Clears HomeFragment from the stack
+            .build()
+        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
     }
 }

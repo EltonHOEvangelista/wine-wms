@@ -53,26 +53,35 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         binding = FragmentSearchBinding.inflate(inflater)
 
         // Show "No results found" message initially
-        binding.txtNoResults.visibility = View.VISIBLE
+        //binding.txtNoResults.visibility = View.VISIBLE
 
         setupRecyclerView()
         observeWineList()
 
-        val searchText = arguments?.getString("searchText")
-        val wineType = arguments?.getString("wineType")
+        // Retrieve the wineModelId from Home Fragment
+        val wineModelId = arguments?.getString("wineModelId")
 
-        when {
-            searchText != null -> {
-                binding.txtWineSearch.setText(searchText)
-                fetchDataWithFilters(searchText)
-            }
-            wineType != null -> {
-                selectedWineTypes.clear()
-                selectedWineTypes.add(wineType)
-                fetchDataWithFilters("")
-            }
-            else -> {
-                binding.txtNoResults.visibility = View.VISIBLE
+        // Optionally, check for null if necessary
+        wineModelId?.let {
+            fetchDataWithWineId(wineModelId)
+        } ?: run {
+            // Handle the case where wineModelId is null
+            val searchText = arguments?.getString("searchText")
+            val wineType = arguments?.getString("wineType")
+
+            when {
+                searchText != null -> {
+                    binding.txtWineSearch.setText(searchText)
+                    fetchDataWithFilters(searchText)
+                }
+                wineType != null -> {
+                    selectedWineTypes.clear()
+                    selectedWineTypes.add(wineType)
+                    fetchDataWithFilters("")
+                }
+                else -> {
+                    binding.txtNoResults.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -109,6 +118,38 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
             // Show or hide the "No results" message based on the list size
             binding.txtNoResults.visibility = if (listOfWines.isEmpty()) View.VISIBLE else View.GONE
+        })
+    }
+
+    private fun fetchDataWithWineId(query: String) {
+
+        val apiCall = wineApi.getWineById(query)
+        apiCall.enqueue(object : Callback<WineModel> {
+            override fun onFailure(call: Call<WineModel>, t: Throwable) {
+                Toast.makeText(requireContext(), "Failed to fetch data.", Toast.LENGTH_SHORT).show()
+                Log.e("API Service Failure", t.message.toString())
+            }
+
+            override fun onResponse(call: Call<WineModel>, response: Response<WineModel>) {
+                if (response.isSuccessful) {
+                    // Initialize a mutable list
+                    val wineList = mutableListOf<WineModel>()
+
+                    // Create the WineModel object
+                    val wine = response.body()
+
+                    // Add the wine to the list
+                    if (wine != null) {
+                        wineList.add(wine)
+                    }
+
+                    // Update the ViewModel with the list
+                    searchWineViewModel.setWineList(wineList)
+                } else {
+                    Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
+                }
+            }
+
         })
     }
 
