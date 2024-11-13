@@ -90,12 +90,11 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
 
     // function to navigate to search fragment using NavController, passing wine id
     override fun onFeaturedWinesClickListener(wineModel: WineModel) {
-        val bundle = Bundle().apply {
-            putString("wineModelId", wineModel.id)
-        }
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.navigation_home, true) // Clears HomeFragment from the stack
-            .build()
-        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
+        val bundle = bundleOf("wineModelId" to wineModel.id)
+        parentFragmentManager.setFragmentResult("searchFilterRequest", bundle)
+
+        // Switch to the SearchFragment
+        (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.nav_view)
+            .selectedItemId = R.id.navigation_search
     }
 }

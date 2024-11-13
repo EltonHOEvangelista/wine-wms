@@ -73,6 +73,12 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
                 selectedWineTypes.add(wineType)
                 fetchDataWithFilters("")
             }
+
+            bundle.getString("wineModelId")?.let { wineModelId ->
+                // Clear search text and filter by the specific wine ID
+                binding.txtWineSearch.text.clear()
+                fetchDataWithWineId(wineModelId)
+            }
         }
 
         // Additional setup for search and filter UI
