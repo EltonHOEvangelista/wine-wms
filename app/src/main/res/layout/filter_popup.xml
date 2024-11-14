@@ -134,45 +134,55 @@
         android:layout_marginTop="8dp"
         android:gravity="bottom">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
-
-        <NumberPicker
-            android:id="@+id/numberPickerHarvestYearStart"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" - "
-            android:layout_gravity="center_vertical"
-            android:paddingHorizontal="8dp" />
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
 
-        <NumberPicker
-            android:id="@+id/numberPickerHarvestYearEnd"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <NumberPicker
+                android:id="@+id/numberPickerHarvestYearStart"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
 
-    <!-- Apply Button Aligned to Bottom Right -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:paddingTop="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:layout_gravity="center_vertical"
+                android:paddingHorizontal="8dp" />
 
-        <Button
-            android:id="@+id/btn_apply_filters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="APPLY"
-            android:layout_marginLeft="8dp"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            <NumberPicker
+                android:id="@+id/numberPickerHarvestYearEnd"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Apply Button Aligned to Bottom Right -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btn_clear_filters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CLEAR"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btn_apply_filters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APPLY"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

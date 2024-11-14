@@ -45,8 +45,8 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     private val selectedWineTypes = mutableListOf<String>()
     private var harvestYearStart: String? = null
     private var harvestYearEnd: String? = null
-    var minPrice = 0
-    var maxPrice = 1000
+    private var minPrice = 0
+    private var maxPrice = 1000
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -186,12 +186,19 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         val popupView = inflater.inflate(R.layout.filter_popup, null)
         val popupWindow = PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true)
 
+        // Retrieve checkboxes for wine types
         val redCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_red)
         val whiteCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_white)
         val roseCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_rose)
         val sparklingCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_sparkling)
 
-        // Set up harvest year NumberPickers
+        // Initialize the CheckBox states based on previously selected wine types
+        redCheckBox.isChecked = selectedWineTypes.contains("red")
+        whiteCheckBox.isChecked = selectedWineTypes.contains("white")
+        roseCheckBox.isChecked = selectedWineTypes.contains("rose")
+        sparklingCheckBox.isChecked = selectedWineTypes.contains("sparkling")
+
+        // Set up harvest year NumberPickers with previously selected values
         val startPicker = popupView.findViewById<NumberPicker>(R.id.numberPickerHarvestYearStart)
         val endPicker = popupView.findViewById<NumberPicker>(R.id.numberPickerHarvestYearEnd)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
@@ -204,53 +211,60 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         endPicker.maxValue = years.size - 1
         endPicker.displayedValues = years
 
-        // Set up price range NumberPickers
+        // Set picker values based on saved harvest year range, or "Any" if not set
+        startPicker.value = years.indexOf(harvestYearStart ?: "Any")
+        endPicker.value = years.indexOf(harvestYearEnd ?: "Any")
+
+        // Price range TextViews
         val minPriceTextView = popupView.findViewById<TextView>(R.id.et_min_price)
         val maxPriceTextView = popupView.findViewById<TextView>(R.id.et_max_price)
         minPriceTextView.text = minPrice.toString()
         maxPriceTextView.text = maxPrice.toString()
 
+        // Price range adjustment buttons
         popupView.findViewById<Button>(R.id.btn_decrement_min_price).setOnClickListener {
             if (minPrice > 0) {
                 minPrice -= 1
                 minPriceTextView.text = minPrice.toString()
             }
         }
-
         popupView.findViewById<Button>(R.id.btn_increment_min_price).setOnClickListener {
             minPrice += 1
             minPriceTextView.text = minPrice.toString()
         }
-
         popupView.findViewById<Button>(R.id.btn_decrement_max_price).setOnClickListener {
             if (maxPrice > minPrice) {
                 maxPrice -= 1
                 maxPriceTextView.text = maxPrice.toString()
             }
         }
-
         popupView.findViewById<Button>(R.id.btn_increment_max_price).setOnClickListener {
             maxPrice += 1
             maxPriceTextView.text = maxPrice.toString()
         }
 
+        // Apply button to save the current filter configuration
         popupView.findViewById<Button>(R.id.btn_apply_filters).setOnClickListener {
+            // Save the selected wine types
             selectedWineTypes.clear()
             if (redCheckBox.isChecked) selectedWineTypes.add("red")
             if (whiteCheckBox.isChecked) selectedWineTypes.add("white")
             if (roseCheckBox.isChecked) selectedWineTypes.add("rose")
             if (sparklingCheckBox.isChecked) selectedWineTypes.add("sparkling")
 
-            harvestYearStart = if (startPicker.value != 0) years[startPicker.value] else null
-            harvestYearEnd = if (endPicker.value != 0) years[endPicker.value] else null
+            // Save the harvest year range
+            harvestYearStart = years.getOrNull(startPicker.value).takeIf { it != "Any" }
+            harvestYearEnd = years.getOrNull(endPicker.value).takeIf { it != "Any" }
 
+            // Save the price range
             minPrice = minPriceTextView.text.toString().toIntOrNull() ?: 0
             maxPrice = maxPriceTextView.text.toString().toIntOrNull() ?: 1000
 
+            // Clear search box if needed and dismiss popup
             binding.txtWineSearch.text.clear()
             popupWindow.dismiss()
 
-            // Apply filters with the price range
+            // Apply filters with updated values
             fetchDataWithFilters(
                 query = binding.txtWineSearch.text.toString().trim(),
                 minPrice = minPrice,
@@ -258,9 +272,32 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             )
         }
 
+        // Clear button click listener to reset controls
+        popupView.findViewById<Button>(R.id.btn_clear_filters).setOnClickListener {
+            // Reset checkboxes
+            redCheckBox.isChecked = false
+            whiteCheckBox.isChecked = false
+            roseCheckBox.isChecked = false
+            sparklingCheckBox.isChecked = false
+
+            // Reset NumberPickers to "Any"
+            startPicker.value = 0
+            endPicker.value = 0
+
+            // Reset price range
+            minPriceTextView.text = "0"
+            maxPriceTextView.text = "1000"
+
+            // Clear the stored filter variables
+            selectedWineTypes.clear()
+            harvestYearStart = null
+            harvestYearEnd = null
+            minPrice = 0
+            maxPrice = 1000
+        }
+
         popupWindow.showAsDropDown(anchorView, 0, 0)
     }
-
 
     override fun onSearchedWinesClickListener(wineModel: WineModel) {
         Toast.makeText(context, "Selected wine: ${wineModel.name}", Toast.LENGTH_SHORT).show()
