@@ -17,9 +17,8 @@ import java.util.Locale
 class DatabaseHelper(
     context: Context?,
     dbName: String = "wine_wms.db",
-    dbVersion: Int = 1,
-    openParams: SQLiteDatabase.OpenParams
-) : SQLiteOpenHelper(context, dbName, dbVersion, openParams) {
+    dbVersion: Int = 1
+) : SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
     //variables for Account Table
     var tableAccount: String = "account"
@@ -31,12 +30,10 @@ class DatabaseHelper(
     var columnPhone: String = "acc_phone"
     var columnAccountStatus: String = "acc_status"
     val columnAccountType: String = "acc_type"
-    var columnAddressLineOne: String = "address_line_one"
-    var columnAddressLineTwo: String = "address_line_two"
+    var columnAddress: String = "address"
     var columnCity: String = "city"
-    var columnState: String = "state"
+    var columnProvince: String = "province"
     var columnPostalCode: String = "postal_code"
-    var columnCountry: String = "country"
 
     //variables for Session Table
     var tableSession: String = "session"
@@ -57,12 +54,10 @@ class DatabaseHelper(
                 + columnPhone + " TEXT,"
                 + columnAccountStatus + " INTEGER,"
                 + columnAccountType + " INTEGER,"
-                + columnAddressLineOne + " TEXT,"
-                + columnAddressLineTwo + " TEXT,"
+                + columnAddress + " TEXT,"
                 + columnCity + " TEXT,"
-                + columnState + " TEXT,"
+                + columnProvince + " TEXT,"
                 + columnPostalCode + " TEXT,"
-                + columnCountry + " TEXT"
                 + ");")
         db?.execSQL(createAccountTable)
 
@@ -78,7 +73,7 @@ class DatabaseHelper(
                 + ");");
         db?.execSQL(createSessionTable)
 
-        db?.close()
+//        db?.close()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -97,28 +92,32 @@ class DatabaseHelper(
     fun createAccount(account: AccountModel): Boolean {
         return try {
             writableDatabase.use { db ->
-                val cValues = ContentValues().apply {
+                val contentValues = ContentValues().apply {
                     put(columnFirstName, account.firstName)
                     put(columnLastName, account.lastName)
                     put(columnEmail, account.email)
                     put(columnPassword, account.password)
                     put(columnPhone, account.phone)
-                    put(columnAccountStatus, true)
+                    put(columnAccountStatus, account.accountStatus)
                     put(columnAccountType, account.accountType)
-                    put(columnAddressLineOne, account.address.addressLineOne)
-                    put(columnAddressLineTwo, account.address.addressLineTwo)
-                    put(columnCity, account.address.city)
-                    put(columnState, account.address.state)
-                    put(columnPostalCode, account.address.postalCode)
-                    put(columnCountry, account.address.country)
+
+                    // Just add the address if it is not null
+                    if (account.address != null) {
+                        put(columnAddress, account.address.address)
+                        put(columnCity, account.address.city)
+                        put(columnProvince, account.address.province)
+                        put(columnPostalCode, account.address.postalCode)
+                    }
                 }
-                db.insert(tableAccount, null, cValues) != -1L
+                //insert into account table
+                db.insert(tableAccount, null, contentValues) != -1L
             }
         } catch (e: SQLiteException) {
             e.printStackTrace()
             false
         }
     }
+
 
     //function to return account by email
     fun getAccount(email: String): AccountModel? {
@@ -129,22 +128,22 @@ class DatabaseHelper(
 
                 val account = if (cursor.moveToFirst()) {
 
+                    // Handle potential null values from the cursor
                     val addressModel = AccountAddressModel(
-                        addressLineOne = cursor.getString(8),
-                        addressLineTwo = cursor.getString(9),
-                        city = cursor.getString(10),
-                        state = cursor.getString(11),
-                        postalCode = cursor.getString(12),
-                        country = cursor.getString(13)
+                        address = cursor.getString(8) ?: "",
+                        city = cursor.getString(9) ?: "",
+                        province = cursor.getString(10) ?: "",
+                        postalCode = cursor.getString(11) ?: ""
                     )
+
                     AccountModel(
                         accountId = cursor.getInt(0),
-                        firstName = cursor.getString(1),
-                        lastName = cursor.getString(2),
-                        email = cursor.getString(3),
-                        password = cursor.getString(4),
-                        confirmPassword = cursor.getString(4),
-                        phone = cursor.getString(5),
+                        firstName = cursor.getString(1) ?: "",
+                        lastName = cursor.getString(2) ?: "",
+                        email = cursor.getString(3) ?: "",
+                        password = cursor.getString(4) ?: "",
+                        confirmPassword = cursor.getString(4) ?: "",
+                        phone = cursor.getString(5) ?: "",
                         accountStatus = cursor.getInt(6),
                         accountType = cursor.getInt(7),
                         address = addressModel
@@ -161,7 +160,6 @@ class DatabaseHelper(
         }
     }
 
-    //function to return account by id
     fun getAccountById(accountId: Int): AccountModel? {
         return try {
             readableDatabase.use { db ->
@@ -170,22 +168,22 @@ class DatabaseHelper(
 
                 val account = if (cursor.moveToFirst()) {
 
+                    // Handle potential null values from the cursor
                     val addressModel = AccountAddressModel(
-                        addressLineOne = cursor.getString(8),
-                        addressLineTwo = cursor.getString(9),
-                        city = cursor.getString(10),
-                        state = cursor.getString(11),
-                        postalCode = cursor.getString(12),
-                        country = cursor.getString(13)
+                        address = cursor.getString(8) ?: "",
+                        city = cursor.getString(9) ?: "",
+                        province = cursor.getString(10) ?: "",
+                        postalCode = cursor.getString(11) ?: ""
                     )
+
                     AccountModel(
                         accountId = cursor.getInt(0),
-                        firstName = cursor.getString(1),
-                        lastName = cursor.getString(2),
-                        email = cursor.getString(3),
-                        password = cursor.getString(4),
-                        confirmPassword = cursor.getString(4),
-                        phone = cursor.getString(5),
+                        firstName = cursor.getString(1) ?: "",
+                        lastName = cursor.getString(2) ?: "",
+                        email = cursor.getString(3) ?: "",
+                        password = cursor.getString(4) ?: "",
+                        confirmPassword = cursor.getString(4) ?: "",
+                        phone = cursor.getString(5) ?: "",
                         accountStatus = cursor.getInt(6),
                         accountType = cursor.getInt(7),
                         address = addressModel
@@ -201,8 +199,7 @@ class DatabaseHelper(
             null
         }
     }
-
-    //function to update account
+    // Function to update account
     fun updateAccount(account: AccountModel): Boolean {
         return try {
             writableDatabase.use { db ->
@@ -214,12 +211,14 @@ class DatabaseHelper(
                     put(columnPhone, account.phone)
                     put(columnAccountStatus, true)
                     put(columnAccountType, account.accountType)
-                    put(columnAddressLineOne, account.address.addressLineOne)
-                    put(columnAddressLineTwo, account.address.addressLineTwo)
-                    put(columnCity, account.address.city)
-                    put(columnState, account.address.state)
-                    put(columnPostalCode, account.address.postalCode)
-                    put(columnCountry, account.address.country)
+
+                    // Verificar se o endereço não é nulo antes de adicionar
+                    if (account.address != null) {
+                        put(columnAddress, account.address.address)
+                        put(columnCity, account.address.city)
+                        put(columnProvince, account.address.province)
+                        put(columnPostalCode, account.address.postalCode)
+                    }
                 }
 
                 val selection = "$columnAccountId = ?"
@@ -351,5 +350,7 @@ class DatabaseHelper(
                 false
             }
     }
+
+
 
 }

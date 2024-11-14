@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_signin">
+<!--    app:startDestination="@+id/navigation_home">-->
 
     <fragment
         android:id="@+id/navigation_home"
@@ -49,7 +50,8 @@
         android:id="@+id/navigation_signup"
         android:name="com.example.winewms.ui.account.signup.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" />
+        tools:layout="@layout/fragment_signup"
+        />
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.example.winewms.ui.search.SearchFragment"

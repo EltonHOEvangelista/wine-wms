@@ -249,7 +249,7 @@
                         android:text="@string/labelAddressLineOne" />
 
                     <EditText
-                        android:id="@+id/txtAddressLineOne"
+                        android:id="@+id/txtAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -329,7 +329,7 @@
                         android:text="@string/labelState" />
 
                     <EditText
-                        android:id="@+id/txtState"
+                        android:id="@+id/txtProvince"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:inputType="text"

@@ -1,5 +1,6 @@
 package com.example.winewms.ui.account
 
+
 data class AccountModel(
     val accountId: Int,
     val firstName: String,
@@ -10,5 +11,6 @@ data class AccountModel(
     val phone: String,
     val accountStatus: Int,
     val accountType: Int,
-    val address: AccountAddressModel
+    val address: AccountAddressModel? = null
+
 )
