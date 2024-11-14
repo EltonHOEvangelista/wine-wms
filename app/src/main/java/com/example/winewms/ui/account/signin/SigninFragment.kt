@@ -51,6 +51,9 @@ class SigninFragment : Fragment() {
                         if (response.isSuccessful) {
                             Toast.makeText(requireContext(), "Login successful (backend)!", Toast.LENGTH_SHORT).show()
                             findNavController().navigate(R.id.navigation_home) // Navega para a página home
+
+                            //local database update missing. Fetch data from backend and send it to SQL Lite.
+
                         } else {
                             Toast.makeText(requireContext(), "Login failed: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                         }
