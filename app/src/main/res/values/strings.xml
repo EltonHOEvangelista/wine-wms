@@ -98,5 +98,6 @@
     <string name="txtQuantity">"Quantity: "</string>
     <string name="txtDiscountedTotal">"Save Total: "</string>
     <string name="btn_clear_filters">Clear</string>
+    <string name="labelSignup">Thank you for signing up! We\'re thrilled to have you on board. Let\'s get started on this amazing journey together!</string>
 
 </resources>

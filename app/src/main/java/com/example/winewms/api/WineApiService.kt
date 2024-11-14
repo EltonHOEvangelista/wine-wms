@@ -4,6 +4,8 @@ import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.model.payloads.PurchaseRequest
 import com.example.winewms.data.model.payloads.PurchaseResponse
+import com.example.winewms.ui.account.AccountModel
+import com.example.winewms.ui.account.signin.SigninModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -15,6 +17,14 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface WineApiService {
+
+    // Signup (register a new user)
+    @POST("users/createAccount")
+    fun createAccount(@Body user: AccountModel): Call<String>
+
+    // Signin (login an existing user)
+    @POST("users/signIn")
+    fun signin(@Body user: SigninModel): Call<String>
 
     // Get all wines with pagination (returns DataWrapper with wines list and pagination details)
     @GET("wines")

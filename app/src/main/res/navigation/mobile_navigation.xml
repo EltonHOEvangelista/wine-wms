@@ -76,7 +76,7 @@
         android:id="@+id/navigation_signup"
         android:name="com.example.winewms.ui.account.signup.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_navigation_signup_to_navigation_account"
             app:destination="@id/navigation_account"
@@ -100,6 +100,5 @@
             android:id="@+id/action_navigation_checkout_to_navigation_cart"
             app:destination="@id/navigation_cart" />
     </fragment>
-
 
 </navigation>

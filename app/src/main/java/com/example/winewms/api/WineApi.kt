@@ -15,4 +15,6 @@ object WineApi {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    val service: WineApiService = retrofit.create(WineApiService::class.java)
 }
