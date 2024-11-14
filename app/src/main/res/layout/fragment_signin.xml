@@ -92,7 +92,7 @@
 
     <Button
         android:id="@+id/btnSignin"
-        style="@style/WineButton"
+        style="@style/RedButton"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -120,14 +120,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/labelDontHaveAcc"
+            android:layout_marginRight="8dp"
             android:textColor="@color/DarkRedWine"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnGoToSignup"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
+            style="@style/RedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
             android:text="@string/btnGoToSignup"
             android:textSize="12sp" />
     </LinearLayout>

@@ -1,66 +1,92 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp">
 
     <!-- Wine Bottle Image -->
-    <ImageView
-        android:id="@+id/imgBottle"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="8dp"
-        android:scaleType="centerCrop" />
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider4">
 
-        <!-- Wine Name -->
-        <TextView
-            android:id="@+id/txtWineName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wine Name"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
 
-        <!-- Quantity -->
-        <TextView
-            android:id="@+id/txtQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantity: 0"
-            android:layout_marginBottom="4dp" />
+        <ImageView
+            android:id="@+id/imgBottle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            app:srcCompat="@drawable/wine_bottle_t" />
 
-        <!-- Original Total Price -->
-        <TextView
-            android:id="@+id/txtOriginalTotalPrice"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Original: $0.00"
-            android:layout_marginBottom="4dp" />
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <!-- Discount Percentage -->
-        <TextView
-            android:id="@+id/txtDiscount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Discount: 0%"
-            android:layout_marginBottom="4dp"
-            android:textColor="@android:color/holo_red_dark" />
+            <!-- Wine Name -->
+            <TextView
+                android:id="@+id/txtWineName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/txtWineName"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <!-- Discounted Total Price -->
-        <TextView
-            android:id="@+id/txtDiscountedTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Discounted Total: $0.00"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_green_dark" />
+            <!-- Quantity -->
+            <TextView
+                android:id="@+id/txtQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/txtQuantity" />
+
+            <!-- Original Total Price -->
+            <TextView
+                android:id="@+id/txtOriginalTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Original: $0.00" />
+
+            <!-- Discount Percentage -->
+            <TextView
+                android:id="@+id/txtDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/txtDiscount"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <!-- Discounted Total Price -->
+            <TextView
+                android:id="@+id/txtDiscountedTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtDiscountedTotal"
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
