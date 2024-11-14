@@ -68,8 +68,9 @@
     <!-- Button to apply filters -->
     <Button
         android:id="@+id/btn_apply_filters"
+        style="@style/RedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apply Filters"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        android:text="@string/btn_apply_filters" />
 </LinearLayout>

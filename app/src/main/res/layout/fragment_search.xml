@@ -94,6 +94,9 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

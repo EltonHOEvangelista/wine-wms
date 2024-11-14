@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.example.winewms.data.model.CartWineViewModel
 import com.example.winewms.databinding.FragmentCartBinding
 import com.example.winewms.ui.cart.adapter.cart.CartWinesAdapter
 import com.example.winewms.ui.cart.adapter.cart.OnCartWinesClickListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CartFragment : Fragment(), OnCartWinesClickListener {
 
@@ -73,7 +75,33 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
             }
 
             updateTotalPrice(cartItems)
+
+            // Update cart badge
+            updateCardBadge()
         })
+    }
+
+    private fun updateCardBadge() {
+
+        // Find your BottomNavigationView
+        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
+        //val navView: BottomNavigationView = binding.root.findViewById(R.id.nav_view)
+
+        val menuItemId = R.id.navigation_cart
+        val badgeDrawable = navView!!.getOrCreateBadge(menuItemId)
+
+        if (cartWineViewModel.cartItems.value?.size!! > 0) {
+            // Set the badge number
+            badgeDrawable.isVisible = true  // Show the badge
+            badgeDrawable.number = cartWineViewModel.cartItems.value?.size ?: 0       // Set the number to show on the badge
+
+            // Optionally customize the badge's appearance
+            badgeDrawable.badgeTextColor = ContextCompat.getColor(requireContext(), android.R.color.white)
+            badgeDrawable.backgroundColor = ContextCompat.getColor(requireContext(), R.color.DarkRedWine)
+        }
+        else {
+            badgeDrawable.isVisible = false  // remove badge
+        }
     }
 
     private fun updateTotalPrice(cartItems: List<CartItemModel>) {

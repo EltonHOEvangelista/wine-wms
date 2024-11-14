@@ -27,14 +27,21 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.Button
 import android.widget.NumberPicker
+import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.data.model.CartWineViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Calendar
 
 class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
-    private lateinit var binding: FragmentSearchBinding
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+    //private lateinit var binding: FragmentSearchBinding
     private val searchWineViewModel: SearchWineViewModel by activityViewModels()
     private val wineApi: WineApiService by lazy { WineApi.retrofit.create(WineApiService::class.java) }
     private val cartWineViewModel: CartWineViewModel by activityViewModels()
@@ -50,7 +57,8 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchBinding.inflate(inflater)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        //binding = FragmentSearchBinding.inflate(inflater)
 
         // Show "No results found" message initially
         //binding.txtNoResults.visibility = View.VISIBLE
@@ -236,10 +244,32 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
                     add(CartItemModel(wine = wineModel, quantity = 1))
                 })
                 Toast.makeText(context, "${wineModel.name} added to cart", Toast.LENGTH_SHORT).show()
+
+                // Update cart badge
+                updateCardBadge()
+
             } else {
                 Toast.makeText(context, "${wineModel.name} is out of stock", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun updateCardBadge() {
+
+        // Find your BottomNavigationView
+        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
+        //val navView: BottomNavigationView = binding.root.findViewById(R.id.nav_view)
+
+        val menuItemId = R.id.navigation_cart
+        val badgeDrawable = navView!!.getOrCreateBadge(menuItemId)
+
+        // Set the badge number
+        badgeDrawable.isVisible = true  // Show the badge
+        badgeDrawable.number = cartWineViewModel.cartItems.value?.size ?: 0  //Set the number to show on the badge
+
+        // Optionally customize the badge's appearance
+        badgeDrawable.badgeTextColor = ContextCompat.getColor(requireContext(), android.R.color.white)
+        badgeDrawable.backgroundColor = ContextCompat.getColor(requireContext(), R.color.DarkRedWine)
     }
 
     override fun onDetailsClick(wineModel: WineModel) {
