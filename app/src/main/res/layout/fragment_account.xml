@@ -250,8 +250,9 @@
 
                     <TextView
                         android:id="@+id/labelAddressLineOne"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
                         android:text="@string/labelAddressLineOne" />
 
                     <EditText
@@ -262,28 +263,6 @@
                         android:ems="10"
                         android:inputType="text"
                         android:text="@string/txtAddressLineOne" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/labelAddressLineTwo"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/labelAddressLineTwo" />
-
-                    <EditText
-                        android:id="@+id/txtAddressLineTwo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="text"
-                        android:text="@string/txtAddressLineTwo" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -315,7 +294,7 @@
 
                     <EditText
                         android:id="@+id/txtPostalCode"
-                        android:layout_width="70dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:text="@string/txtPostalCode" />
@@ -350,7 +329,7 @@
 
                     <EditText
                         android:id="@+id/txtCountry"
-                        android:layout_width="110dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:text="@string/txtCountry" />

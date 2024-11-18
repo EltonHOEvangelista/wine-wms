@@ -1,6 +1,6 @@
 package com.example.winewms.data.sql
 
-//database file: data\data\com.examples,winewms
+//database file: data\data\com.examples\database\winewms
 
 import android.content.ContentValues
 import android.content.Context
@@ -17,7 +17,7 @@ import java.util.Locale
 class DatabaseHelper(
     context: Context?,
     dbName: String = "wine_wms.db",
-    dbVersion: Int = 1
+    dbVersion: Int = 2
 ) : SQLiteOpenHelper(context, dbName, null, dbVersion) {
 
     //variables for Account Table
@@ -34,6 +34,7 @@ class DatabaseHelper(
     var columnCity: String = "city"
     var columnProvince: String = "province"
     var columnPostalCode: String = "postal_code"
+    var columnAccountCountry: String = "country"
 
     //variables for Session Table
     var tableSession: String = "session"
@@ -46,7 +47,7 @@ class DatabaseHelper(
 
         //Create account table.
         val createAccountTable: String = ("CREATE TABLE " + tableAccount + "("
-                + columnAccountId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + columnAccountId + " TEXT PRIMARY KEY,"
                 + columnFirstName + " TEXT,"
                 + columnLastName + " TEXT,"
                 + columnEmail + " TEXT,"
@@ -58,6 +59,7 @@ class DatabaseHelper(
                 + columnCity + " TEXT,"
                 + columnProvince + " TEXT,"
                 + columnPostalCode + " TEXT,"
+                + columnAccountCountry + " TEXT"
                 + ");")
         db?.execSQL(createAccountTable)
 
@@ -67,13 +69,11 @@ class DatabaseHelper(
                 + columnSessionStart + " TEXT,"
                 + columnSessionEnd + " TEXT,"
                 + columnSessionStatus + " INTEGER,"
-                + columnAccountId + " INTEGER,"
+                + columnAccountId + " TEXT,"
                 + "FOREIGN KEY (" + columnAccountId + ") REFERENCES "
                 + tableAccount + "(" + columnAccountId + ")"
                 + ");");
         db?.execSQL(createSessionTable)
-
-//        db?.close()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -93,13 +93,14 @@ class DatabaseHelper(
         return try {
             writableDatabase.use { db ->
                 val contentValues = ContentValues().apply {
+                    put(columnAccountId, account.accountId)
                     put(columnFirstName, account.firstName)
                     put(columnLastName, account.lastName)
                     put(columnEmail, account.email)
                     put(columnPassword, account.password)
                     put(columnPhone, account.phone)
-                    put(columnAccountStatus, account.accountStatus)
-                    put(columnAccountType, account.accountType)
+                    put(columnAccountStatus, account.status)
+                    put(columnAccountType, account.type)
 
                     // Just add the address if it is not null
                     if (account.address != null) {
@@ -107,6 +108,7 @@ class DatabaseHelper(
                         put(columnCity, account.address.city)
                         put(columnProvince, account.address.province)
                         put(columnPostalCode, account.address.postalCode)
+                        put(columnAccountCountry, account.address.country)
                     }
                 }
                 //insert into account table
@@ -117,7 +119,6 @@ class DatabaseHelper(
             false
         }
     }
-
 
     //function to return account by email
     fun getAccount(email: String): AccountModel? {
@@ -133,19 +134,20 @@ class DatabaseHelper(
                         address = cursor.getString(8) ?: "",
                         city = cursor.getString(9) ?: "",
                         province = cursor.getString(10) ?: "",
-                        postalCode = cursor.getString(11) ?: ""
+                        postalCode = cursor.getString(11) ?: "",
+                        country = cursor.getString(12) ?: ""
                     )
 
                     AccountModel(
-                        accountId = cursor.getInt(0),
+                        accountId = cursor.getString(0),
                         firstName = cursor.getString(1) ?: "",
                         lastName = cursor.getString(2) ?: "",
                         email = cursor.getString(3) ?: "",
                         password = cursor.getString(4) ?: "",
                         confirmPassword = cursor.getString(4) ?: "",
                         phone = cursor.getString(5) ?: "",
-                        accountStatus = cursor.getInt(6),
-                        accountType = cursor.getInt(7),
+                        status = cursor.getInt(6),
+                        type = cursor.getInt(7),
                         address = addressModel
                     )
                 } else {
@@ -160,45 +162,23 @@ class DatabaseHelper(
         }
     }
 
-    fun getAccountById(accountId: Int): AccountModel? {
+    //Function to check if account exists.
+    fun checkAccountById(accountId: String): Boolean {
         return try {
             readableDatabase.use { db ->
                 val queryString = "SELECT * FROM $tableAccount WHERE $columnAccountId = ?"
-                val cursor = db.rawQuery(queryString, arrayOf(accountId.toString()))
+                val cursor = db.rawQuery(queryString, arrayOf(accountId))
 
-                val account = if (cursor.moveToFirst()) {
-
-                    // Handle potential null values from the cursor
-                    val addressModel = AccountAddressModel(
-                        address = cursor.getString(8) ?: "",
-                        city = cursor.getString(9) ?: "",
-                        province = cursor.getString(10) ?: "",
-                        postalCode = cursor.getString(11) ?: ""
-                    )
-
-                    AccountModel(
-                        accountId = cursor.getInt(0),
-                        firstName = cursor.getString(1) ?: "",
-                        lastName = cursor.getString(2) ?: "",
-                        email = cursor.getString(3) ?: "",
-                        password = cursor.getString(4) ?: "",
-                        confirmPassword = cursor.getString(4) ?: "",
-                        phone = cursor.getString(5) ?: "",
-                        accountStatus = cursor.getInt(6),
-                        accountType = cursor.getInt(7),
-                        address = addressModel
-                    )
-                } else {
-                    null
-                }
+                val exists = cursor.moveToFirst() // Check if any record exists
                 cursor.close()
-                account
+                exists
             }
         } catch (e: SQLiteException) {
             e.printStackTrace()
-            null
+            false // Return false in case of an exception
         }
     }
+
     // Function to update account
     fun updateAccount(account: AccountModel): Boolean {
         return try {
@@ -210,7 +190,7 @@ class DatabaseHelper(
                     put(columnPassword, account.password)
                     put(columnPhone, account.phone)
                     put(columnAccountStatus, true)
-                    put(columnAccountType, account.accountType)
+                    put(columnAccountType, account.type)
 
                     // Verificar se o endereço não é nulo antes de adicionar
                     if (account.address != null) {
@@ -218,11 +198,12 @@ class DatabaseHelper(
                         put(columnCity, account.address.city)
                         put(columnProvince, account.address.province)
                         put(columnPostalCode, account.address.postalCode)
+                        put(columnAccountCountry, account.address.country)
                     }
                 }
 
                 val selection = "$columnAccountId = ?"
-                val selectionArgs = arrayOf(account.accountId.toString())
+                val selectionArgs = arrayOf(account.accountId)
 
                 // Execute and return result directly
                 db.update(tableAccount, cValues, selection, selectionArgs) > 0
@@ -234,33 +215,25 @@ class DatabaseHelper(
     }
 
     //function to start new session
-    fun signOut(accountId: Int): Boolean {
+    fun signin(accountModel: AccountModel): Boolean {
 
-        return try {
-            writableDatabase.use { db ->
-                val cValues = ContentValues().apply {
-                    put(columnAccountStatus, false)
-                }
-                val selection = "$columnAccountId = ?"
-                val selectionArgs = arrayOf(accountId.toString())
-                // Execute and return result directly
-                db.update(tableAccount, cValues, selection, selectionArgs) > 0
-            }
-        } catch (e: SQLiteException) {
-            e.printStackTrace()
-            false
+        if (checkAccountById(accountModel.accountId)) {
+            updateAccount(accountModel)
         }
+        else {
+            createAccount(accountModel)
+        }
+        return startSession(accountModel.accountId)
     }
 
     //function to start new session
-    fun startSession(accountId: Int): Boolean {
-
+    fun startSession(accountId: String): Boolean {
         return try {
             writableDatabase.use { db ->
                 val dateFormat = SimpleDateFormat("HH:mm:ss MM/dd/yyyy", Locale.US)
                 val cValues = ContentValues().apply {
                     put(columnSessionStart, dateFormat.format(Date()))
-                    put(columnSessionStatus, true)
+                    put(columnSessionStatus, 1)
                     put(columnAccountId, accountId)
                 }
                 db.insert(tableSession, null, cValues) != -1L
@@ -273,12 +246,10 @@ class DatabaseHelper(
 
     //function to return active session
     fun getActiveSession(): SessionModel? {
-
         return try {
             readableDatabase.use { db ->
                 val queryString = "SELECT * FROM $tableSession WHERE $columnSessionStatus = ?"
                 val cursor = db.rawQuery(queryString, arrayOf(true.toString()))
-
                 val session = if (cursor.moveToFirst()) {
                     SessionModel(
                         sessionId = cursor.getInt(0),
@@ -299,58 +270,22 @@ class DatabaseHelper(
         }
     }
 
-    //get latest session
-    fun getLatestSession(): SessionModel? {
-
-        return try {
-            readableDatabase.use { db ->
-                val queryString = "SELECT * FROM $tableSession ORDER BY $columnSessionStart DESC LIMIT 1"
-                val cursor = db.rawQuery(queryString, null)
-
-                val session = if (cursor.moveToFirst()) {
-                    SessionModel(
-                        sessionId = cursor.getInt(0),
-                        sessionStart = cursor.getString(1),
-                        sessionEnd = cursor.getString(2),
-                        sessionStatus = cursor.getInt(3),
-                        accountId = cursor.getInt(4),
-                    )
-                } else {
-                    null
-                }
-                cursor.close()
-                session
-            }
-        } catch (e: SQLiteException) {
-            e.printStackTrace()
-            null
-        }
-    }
-
-    //End all sessions.
-    fun endSessions(): Boolean {
-
+    //function to logout (to end session)
+    fun signout(accountId: String): Boolean {
         return try {
             writableDatabase.use { db ->
                 val dateFormat = SimpleDateFormat("HH:mm:ss MM/dd/yyyy", Locale.US)
                 val cValues = ContentValues().apply {
                     put(columnSessionEnd, dateFormat.format(Date()))
-                    put(columnSessionStatus, false)
+                    put(columnSessionStatus, 0)
                 }
-
-                val selection = "$columnSessionStatus = ?"
-                val selectionArgs = arrayOf(true.toString())
-
-                // Execute and return result directly
+                val selection = "$columnAccountId = ?"
+                val selectionArgs = arrayOf(accountId)
                 db.update(tableSession, cValues, selection, selectionArgs) > 0
-
             }
         } catch (e: SQLiteException) {
-                e.printStackTrace()
-                false
-            }
+            e.printStackTrace()
+            false
+        }
     }
-
-
-
 }

@@ -1,25 +1,23 @@
 package com.example.winewms.ui.account.signup
 
-import android.animation.ObjectAnimator
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
 import com.example.winewms.R
-import com.example.winewms.databinding.FragmentSigninBinding
 import com.example.winewms.databinding.FragmentSignupBinding
 import com.example.winewms.api.WineApi
+import com.example.winewms.api.WineApiService
 import com.example.winewms.data.sql.DatabaseHelper
 import com.example.winewms.ui.account.AccountAddressModel
+import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
+import com.example.winewms.ui.account.AccountViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,9 +25,12 @@ import retrofit2.Response
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
-    private val dbHelper by lazy {
-        DatabaseHelper(requireContext(), "wine_wms.db")
-    }
+
+    lateinit var accountModel: AccountModel
+    private val accountViewModel: AccountViewModel by activityViewModels()
+
+    //Instantiate Wine Api
+    var wineApi = WineApi.retrofit.create(WineApiService::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,19 +39,18 @@ class SignupFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSignupBinding.inflate(inflater, container, false)
 
+        //hide action bar
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        //set click listener on Create Account Button
         binding.btnSignup.setOnClickListener { createAccount() }
 
-        // Toggle for address expand/collapse
-        // Toggle address expand/collapse com animação
+        // Toggle address expand
         binding.toggleAddress.setOnClickListener {
             if (binding.addressLayout.visibility == View.GONE) {
-                // Expandir o layout de endereço
               //  expandView(binding.addressLayout)
                 binding.toggleAddress.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_less, 0)
             } else {
-                // Recolher o layout de endereço
                 //collapseView(binding.addressLayout)
                 binding.toggleAddress.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_more, 0)
             }
@@ -72,6 +72,7 @@ class SignupFragment : Fragment() {
         val city = binding.txtCity.text.toString().trim()
         val province = binding.txtProvince.text.toString().trim()
         val postalCode = binding.txtPostalCode.text.toString().trim()
+        val country = binding.txtAccountCountry.text.toString().trim()
 
         // Check if required fields are filled out
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -85,110 +86,79 @@ class SignupFragment : Fragment() {
             return
         }
 
-        val userAddress = if (address.isNotEmpty() || city.isNotEmpty() || province.isNotEmpty() || postalCode.isNotEmpty()) {
+        val accountAddress = if (address.isNotEmpty() || city.isNotEmpty() || province.isNotEmpty() || postalCode.isNotEmpty()) {
             AccountAddressModel(
                 address = address,
                 city = city,
                 province = province,
-                postalCode = postalCode
+                postalCode = postalCode,
+                country = country
             )
         } else {
             null
         }
 
         // Create the account model with all input data
-        val user = AccountModel(
-            accountId = 0, // Initial ID for a new user
+        val newAccount = AccountModel(
+            accountId = "0", // It will be replaced by backend account id
             firstName = firstName,
             lastName = lastName,
             email = email,
             password = password,
             confirmPassword = confirmPassword,
             phone = phone,
-            accountStatus = 1, // Default status as active
-            accountType = 0, // Default user type
-            address = userAddress
+            status = 1, // Default status as active
+            type = 0, // Default user type (customer). 1 = admin
+            address = accountAddress!!
         )
 
-        // Save the user locally in SQLite
-        val success = dbHelper.createAccount(user)
-        if (success) {
-            Toast.makeText(requireContext(), "Account created successfully!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.navigation_signin)
-            //findNavController().navigate(R.id.action_navigation_signup_to_navigation_account)
-            Toast.makeText(requireContext(), "Please, Sign in with your credentials!", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(requireContext(), "Failed to create account. Please try again.", Toast.LENGTH_SHORT).show()
-        }
+        //Fetch data from api
+        val apiCall = wineApi.signup(newAccount)
 
-        // Save the user locally in SQLite
-//        val localSaveSuccess = dbHelper.createAccount(user)
-//        if (localSaveSuccess) {
-//            Toast.makeText(requireContext(), "User saved locally!", Toast.LENGTH_SHORT).show()
-//        } else {
-//            Toast.makeText(requireContext(), "Failed to save user locally.", Toast.LENGTH_SHORT)
-//                .show()
-//            return
-//        }
-
-        // Send the user data to the backend (MongoDB via Cloud9)
-        WineApi.service.createAccount(user).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Account created successfully in MongoDB!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    // Navigate to the SignIn page
-                    findNavController().navigate(R.id.navigation_signin)
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Create account failed: ${response.errorBody()?.string()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            override fun onFailure(call: Call<String>, t: Throwable) {
+        //Asynchronous call to create new account
+        apiCall.enqueue(object : Callback<AccountDataWrapper> {
+            override fun onFailure(call: Call<AccountDataWrapper>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+            override fun onResponse(call: Call<AccountDataWrapper>, response: Response<AccountDataWrapper>
+            ) {
+                if (response.isSuccessful) {
+                    val dataWrapper = response.body()
+                    if (dataWrapper != null) {
+                        if (dataWrapper.requestStatus) {
+                            accountModel = dataWrapper.accountModel
+                            Toast.makeText(requireContext(), dataWrapper.message, Toast.LENGTH_SHORT).show()
 
+                            // Store fetched data in the ViewModel
+                            accountViewModel.setAccount(accountModel)
+
+                            //create local account on app (SQL Lite database) and signin
+                            signupAndSigninLocally(accountModel)
+                        } else {
+                            Toast.makeText(requireContext(), "Create account failed: ${dataWrapper.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Create account failed: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         })
     }
 
-//    private fun expandView(view: View) {
-//        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-//        val targetHeight = view.measuredHeight
-//
-//        view.layoutParams.height = 0
-//        view.visibility = View.VISIBLE
-//
-//        val animator = ObjectAnimator.ofInt(view, "layoutParams.height", 0, targetHeight)
-//        animator.duration = 300
-//        animator.interpolator = AccelerateDecelerateInterpolator()
-//        animator.addUpdateListener {
-//            view.requestLayout()
-//        }
-//        animator.start()
-//    }
+    //Function to create local account on app (SQL Lite database) and signin
+    private fun signupAndSigninLocally(accountModel: AccountModel) {
+        val dbHelper by lazy {
+            DatabaseHelper(requireContext())
+        }
 
-//    private fun collapseView(view: View) {
-//        val initialHeight = view.measuredHeight
-//
-//        val animator = ObjectAnimator.ofInt(view, "layoutParams.height", initialHeight, 0)
-//        animator.duration = 300
-//        animator.interpolator = AccelerateDecelerateInterpolator()
-//        animator.addUpdateListener {
-//            view.requestLayout()
-//        }
-//        animator.start()
-//
-//        animator.doOnEnd {
-//            view.visibility = View.GONE
-//        }
-//    }
-
-
+        if (dbHelper.createAccount(accountModel) && dbHelper.signin(accountModel)) {
+            Toast.makeText(requireContext(), "Welcome to Wine Warehouse, ${accountModel.firstName}!", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.navigation_home)
+            //findNavController().navigate(R.id.action_navigation_signup_to_navigation_account)
+        } else {
+            Toast.makeText(requireContext(), "Failed to create local account. Please try again.", Toast.LENGTH_SHORT).show()
+        }
+        dbHelper.close()
+    }
 }

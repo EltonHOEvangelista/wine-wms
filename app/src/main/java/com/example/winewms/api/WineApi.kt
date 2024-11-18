@@ -9,12 +9,11 @@ object WineApi {
 
     //use this in production
     private const val BASE_URL = "http://52.0.58.207:8888/v1/api/"
+
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-    val service: WineApiService = retrofit.create(WineApiService::class.java)
 }

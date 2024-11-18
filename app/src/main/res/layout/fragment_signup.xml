@@ -107,13 +107,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="8dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <EditText
                     android:id="@+id/txtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address Line 1"
+                    android:hint="Address"
                     android:inputType="text" />
 
 
@@ -137,6 +137,13 @@
                     android:layout_height="wrap_content"
                     android:hint="Postal Code"
                     android:inputType="textPostalAddress" />
+
+                <EditText
+                    android:id="@+id/txtAccountCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Country"
+                    android:inputType="text" />
 
             </LinearLayout>
 

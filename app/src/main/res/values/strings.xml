@@ -30,10 +30,8 @@
     <string name="txtPhone" />
     <string name="labelAddress">Address:</string>
 
-    <string name="labelAddressLineOne">Address Line 1:</string>
+    <string name="labelAddressLineOne">Address:</string>
     <string name="txtAddressLineOne" />
-    <string name="labelAddressLineTwo">Address Line 2:</string>
-    <string name="txtAddressLineTwo" />
     <string name="labelCity">City:</string>
     <string name="txtCity" />
     <string name="labelState">State:</string>

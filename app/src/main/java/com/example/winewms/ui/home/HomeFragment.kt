@@ -13,9 +13,7 @@ import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.FragmentHomeBinding
 import com.example.winewms.ui.home.adapter.featured.FeaturedWinesAdapter
 import com.example.winewms.ui.home.adapter.featured.onFeaturedWinesClickListener
-import androidx.navigation.fragment.findNavController
 import androidx.core.os.bundleOf
-import androidx.navigation.NavOptions
 import com.example.winewms.MainActivity
 import com.example.winewms.R
 import com.google.android.material.bottomnavigation.BottomNavigationView

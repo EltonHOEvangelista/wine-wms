@@ -3,17 +3,19 @@ package com.example.winewms.ui.account.signin
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavOptions
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.api.WineApi
+import com.example.winewms.api.WineApiService
 import com.example.winewms.data.sql.DatabaseHelper
 import com.example.winewms.databinding.FragmentSigninBinding
+import com.example.winewms.ui.account.AccountDataWrapper
+import com.example.winewms.ui.account.AccountModel
+import com.example.winewms.ui.account.AccountViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,9 +23,15 @@ import retrofit2.Response
 class SigninFragment : Fragment() {
 
     private lateinit var binding: FragmentSigninBinding
-    private val apiService = WineApi.service
+
+    lateinit var accountModel: AccountModel
+    private val accountViewModel: AccountViewModel by activityViewModels()
+
+    //Instantiate Wine Api
+    var wineApi = WineApi.retrofit.create(WineApiService::class.java)
+
     private val dbHelper by lazy {
-        DatabaseHelper(requireContext(), "wine_wms.db")
+        DatabaseHelper(requireContext())
     }
 
     override fun onCreateView(
@@ -41,38 +49,16 @@ class SigninFragment : Fragment() {
             val email = binding.txtEmail.text.toString().trim()
             val password = binding.txtPassword.text.toString().trim()
 
-            // Verify login locally (SQLite)
-            val localUser = dbHelper.getAccount(email)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                val signinModel = SigninModel(
+                    email = email,
+                    password = password
+                )
+                // call function to signin on backend
+                signinServer(signinModel)
 
-            if (localUser != null && localUser.password == password) {
-                Toast.makeText(requireContext(), "Login successful (local)!", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.navigation_home) // Navega para a página home
             } else {
-                // Verify login remotely (API)
-                val user = SigninModel(email = email, password = password)
-                apiService.signin(user).enqueue(object : Callback<String> {
-                    override fun onResponse(call: Call<String>, response: Response<String>) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(requireContext(), "Login successful (backend)!", Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(R.id.navigation_home) // Navega para a página home
-                            //findNavController().navigate(R.id.action_navigation_signin_to_navigation_account)
-
-//            val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
-//            bottomNavigationView.menu.findItem(R.id.navigation_control)?.isVisible = true
-//            bottomNavigationView.menu.findItem(R.id.navigation_control)?.isEnabled = true
-
-
-//            local database update missing. Fetch data from backend and send it to SQL Lite.
-
-                        } else {
-                            Toast.makeText(requireContext(), "Login failed: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<String>, t: Throwable) {
-                        Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                Toast.makeText(requireContext(), "Please, enter your email and password", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -85,6 +71,57 @@ class SigninFragment : Fragment() {
         binding.txtRecoverPassword.setOnClickListener {
             Toast.makeText(requireContext(), "Password recovery feature coming soon!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    //Function to signin on server/backend
+    private fun signinServer(signinModel: SigninModel) {
+        //Fetch data from api
+        val apiCall = wineApi.signin(signinModel)
+
+        //Asynchronous call to create new account
+        apiCall.enqueue(object : Callback<AccountDataWrapper> {
+            override fun onFailure(call: Call<AccountDataWrapper>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+            override fun onResponse(call: Call<AccountDataWrapper>, response: Response<AccountDataWrapper>) {
+                if (response.isSuccessful) {
+                    val dataWrapper = response.body()
+                    if (dataWrapper != null) {
+                        if (dataWrapper.requestStatus) {
+                            accountModel = dataWrapper.accountModel
+                            Toast.makeText(requireContext(), dataWrapper.message, Toast.LENGTH_SHORT).show()
+
+                            //Signin locally
+                            signinApp(accountModel)
+                        } else {
+                            Toast.makeText(requireContext(), "Login fail: ${dataWrapper.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Login fail: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun signinApp(accountModel: AccountModel) {
+        val dbHelper by lazy {
+            DatabaseHelper(requireContext())
+        }
+
+        val success = dbHelper.signin(accountModel)
+        if (success) {
+            // Store fetched data in the ViewModel
+            accountViewModel.setAccount(accountModel)
+
+            Toast.makeText(requireContext(), "Welcome to Wine Warehouse, ${accountModel.firstName}!", Toast.LENGTH_SHORT).show()
+            // Navigate to the SignIn page
+            findNavController().navigate(R.id.navigation_home)
+            //findNavController().navigate(R.id.action_navigation_signup_to_navigation_account)
+        } else {
+            Toast.makeText(requireContext(), "Fail to login. Please try again.", Toast.LENGTH_SHORT).show()
+        }
+        dbHelper.close()
     }
 }
 
