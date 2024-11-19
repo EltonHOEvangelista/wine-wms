@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
 
@@ -141,6 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:enabled="false"
                         android:inputType="text"
                         android:text="@string/txtFirstName" />
                 </LinearLayout>
@@ -163,6 +165,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:enabled="false"
                         android:inputType="text"
                         android:text="@string/txtLastName" />
                 </LinearLayout>
@@ -233,19 +236,33 @@
                         android:text="@string/txtPassword" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/labelAddress"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:text="@string/labelAddress"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/labelType"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/labelType" />
+
+                    <EditText
+                        android:id="@+id/txtType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:inputType="text"
+                        android:text="@string/txtPassword" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -268,7 +285,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -303,7 +320,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -333,7 +350,62 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:text="@string/txtCountry" />
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutSignoffAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtSignoffAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/txtSignoffAccount" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutSignoffDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/txtSignoffEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:inputType="text"
+                            android:hint="@string/labelEmail"
+                            android:text="@string/txtSignoffEmail"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/txtSignoffPassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+                            android:inputType="textPassword"
+                            android:hint="@string/labelPassword"
+                            android:text="@string/txtSignoffPassword"
+                            android:textSize="10sp" />
+
+                        <Button
+                            android:id="@+id/btnSignoffAccount"
+                            style="@style/Widget.AppCompat.Button.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:paddingHorizontal="0dp"
+                            android:text="@string/btnSignoffAccount"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -388,7 +460,7 @@
 
             <LinearLayout
                 android:id="@+id/linearLayoutSignin"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"

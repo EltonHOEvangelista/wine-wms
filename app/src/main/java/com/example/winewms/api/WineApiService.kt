@@ -19,6 +19,9 @@ import retrofit2.http.QueryMap
 
 interface WineApiService {
 
+    //---------------------------------------------------------------------------
+    // Account endpoints
+
     // Signup (register a new account)
     @POST("account/signup")
     fun signup(@Body accountModel: AccountModel): Call<AccountDataWrapper>
@@ -26,6 +29,16 @@ interface WineApiService {
     // Signin (login an existing account)
     @POST("account/signin")
     fun signin(@Body signinModel: SigninModel): Call<AccountDataWrapper>
+
+    // Delete an account
+    @DELETE("account/delete")
+    fun deleteAccount(
+        @Query("email") email: String,
+        @Query("password") password: String
+    ): Call<AccountDataWrapper>
+
+    //---------------------------------------------------------------------------
+    // Wine endpoints
 
     // Get all wines with pagination (returns DataWrapper with wines list and pagination details)
     @GET("wines")
@@ -55,9 +68,16 @@ interface WineApiService {
     @POST("wines/all")
     fun createInitialWines(@Body wineList: List<WineModel>): Call<String>
 
+    @POST("wines/bulk")
+    fun getBulkWines(@Body wineIds: List<String>): Call<List<WineModel>>
+
+    //---------------------------------------------------------------------------
+    // Purchases endpoints
+
     @POST("purchases")
     fun placeOrder(@Body purchaseRequest: PurchaseRequest): Call<PurchaseResponse>
 
-    @POST("wines/bulk")
-    fun getBulkWines(@Body wineIds: List<String>): Call<List<WineModel>>
+    //---------------------------------------------------------------------------
+
+
 }

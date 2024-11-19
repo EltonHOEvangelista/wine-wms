@@ -18,6 +18,7 @@ import com.example.winewms.ui.account.AccountAddressModel
 import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.AccountViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -108,7 +109,9 @@ class SignupFragment : Fragment() {
             confirmPassword = confirmPassword,
             phone = phone,
             status = 1, // Default status as active
-            type = 0, // Default user type (customer). 1 = admin
+            // Account Type: 0 (customer); 1 (admin)
+            // In case of first account, type will be set as admin by the backend.
+            type = 0,
             address = accountAddress!!
         )
 
@@ -153,7 +156,16 @@ class SignupFragment : Fragment() {
         }
 
         if (dbHelper.createAccount(accountModel) && dbHelper.signin(accountModel)) {
+
             Toast.makeText(requireContext(), "Welcome to Wine Warehouse, ${accountModel.firstName}!", Toast.LENGTH_SHORT).show()
+
+            //Activate UI admin features. Type = 1 (administrator)
+            if (accountModel.type == 1) {
+                val navView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+                navView.menu.findItem(R.id.navigation_control)?.isVisible = true
+                navView.menu.findItem(R.id.navigation_control)?.isEnabled = true
+            }
+
             findNavController().navigate(R.id.navigation_home)
             //findNavController().navigate(R.id.action_navigation_signup_to_navigation_account)
         } else {

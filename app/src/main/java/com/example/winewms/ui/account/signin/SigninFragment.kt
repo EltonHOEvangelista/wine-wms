@@ -16,6 +16,7 @@ import com.example.winewms.databinding.FragmentSigninBinding
 import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.AccountViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,16 +31,14 @@ class SigninFragment : Fragment() {
     //Instantiate Wine Api
     var wineApi = WineApi.retrofit.create(WineApiService::class.java)
 
-    private val dbHelper by lazy {
-        DatabaseHelper(requireContext())
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
+
         setupClickListeners()
+
         return binding.root
     }
 
@@ -100,6 +99,9 @@ class SigninFragment : Fragment() {
                         Toast.makeText(requireContext(), "Login fail: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                     }
                 }
+                else {
+                    Toast.makeText(requireContext(), "Invalid credentials", Toast.LENGTH_SHORT).show()
+                }
             }
         })
     }
@@ -115,6 +117,14 @@ class SigninFragment : Fragment() {
             accountViewModel.setAccount(accountModel)
 
             Toast.makeText(requireContext(), "Welcome to Wine Warehouse, ${accountModel.firstName}!", Toast.LENGTH_SHORT).show()
+
+            //Activate UI admin features. Type = 1 (administrator)
+            if (accountModel.type == 1) {
+                val navView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+                navView.menu.findItem(R.id.navigation_control)?.isVisible = true
+                navView.menu.findItem(R.id.navigation_control)?.isEnabled = true
+            }
+
             // Navigate to the SignIn page
             findNavController().navigate(R.id.navigation_home)
             //findNavController().navigate(R.id.action_navigation_signup_to_navigation_account)

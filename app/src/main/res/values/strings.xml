@@ -97,5 +97,10 @@
     <string name="txtDiscountedTotal">"Save Total: "</string>
     <string name="btn_clear_filters">Clear</string>
     <string name="labelSignup">Thank you for signing up! We\'re thrilled to have you on board. Let\'s get started on this amazing journey together!</string>
+    <string name="txtSignoffAccount">Signoff Account</string>
+    <string name="txtSignoffEmail" />
+    <string name="txtSignoffPassword" />
+    <string name="btnSignoffAccount">Signoff</string>
+    <string name="labelType">Account Type</string>
 
 </resources>

@@ -121,11 +121,11 @@ class DatabaseHelper(
     }
 
     //function to return account by email
-    fun getAccount(email: String): AccountModel? {
+    fun getAccountById(accountId: String): AccountModel? {
         return try {
             readableDatabase.use { db ->
-                val queryString = "SELECT * FROM $tableAccount WHERE $columnEmail = ?"
-                val cursor = db.rawQuery(queryString, arrayOf(email))
+                val queryString = "SELECT * FROM $tableAccount WHERE $columnAccountId = ?"
+                val cursor = db.rawQuery(queryString, arrayOf(accountId))
 
                 val account = if (cursor.moveToFirst()) {
 
@@ -214,7 +214,7 @@ class DatabaseHelper(
         }
     }
 
-    //function to start new session
+    //function to signin and start new session
     fun signin(accountModel: AccountModel): Boolean {
 
         if (checkAccountById(accountModel.accountId)) {
@@ -244,25 +244,19 @@ class DatabaseHelper(
         }
     }
 
-    //function to return active session
-    fun getActiveSession(): SessionModel? {
+    //function to return active session account
+    fun getActiveSessionAccount(): AccountModel? {
         return try {
+            val sessionStatus: String = "1" //active session
             readableDatabase.use { db ->
                 val queryString = "SELECT * FROM $tableSession WHERE $columnSessionStatus = ?"
-                val cursor = db.rawQuery(queryString, arrayOf(true.toString()))
-                val session = if (cursor.moveToFirst()) {
-                    SessionModel(
-                        sessionId = cursor.getInt(0),
-                        sessionStart = cursor.getString(1),
-                        sessionEnd = cursor.getString(2),
-                        sessionStatus = cursor.getInt(3),
-                        accountId = cursor.getInt(4),
-                    )
-                } else {
-                    null
+                db.rawQuery(queryString, arrayOf(sessionStatus)).use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        getAccountById(cursor.getString(4))
+                    } else {
+                        null
+                    }
                 }
-                cursor.close()
-                session
             }
         } catch (e: SQLiteException) {
             e.printStackTrace()

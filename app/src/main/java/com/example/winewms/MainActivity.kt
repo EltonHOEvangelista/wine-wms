@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
@@ -16,7 +18,10 @@ import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.SearchWineViewModel
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.model.WineViewModel
+import com.example.winewms.data.sql.DatabaseHelper
 import com.example.winewms.databinding.ActivityMainBinding
+import com.example.winewms.ui.account.AccountModel
+import com.example.winewms.ui.account.AccountViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,9 +33,13 @@ class MainActivity : AppCompatActivity() {
     //wine list variable
     lateinit var wineList: List<WineModel>
 
+    //Variable to manage bottom navigation view
+    lateinit var navView: BottomNavigationView
+
     //variable used to transfer objects among activities and fragments
     val wineViewModel: WineViewModel by viewModels()
     private val searchWineViewModel: SearchWineViewModel by viewModels()
+    private val accountViewModel: AccountViewModel by viewModels()
 
     //Instantiate Wine Api
     var wineApi = WineApi.retrofit.create(WineApiService::class.java)
@@ -52,10 +61,13 @@ class MainActivity : AppCompatActivity() {
 
         //Starts the app by
         fetchAllWines()
+
+        //Start opened account session
+        startOpenedAccountSession()
     }
 
     private fun setBottomNavigationView() {
-        val navView: BottomNavigationView = binding.navView
+        navView = binding.navView
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         navView.setupWithNavController(navController)
@@ -63,11 +75,6 @@ class MainActivity : AppCompatActivity() {
         //Action Bar Setup
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.action_bar)
-    }
-
-    //function to load Wine View Model. It's required to share the wineModel object among fragments
-    private fun loadWineViewModel() {
-        wineViewModel.setWineList(wineList)
     }
 
     //Function to load initial data from json file to MongoDB
@@ -137,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                         wineList = dataWrapper.wines
 
                         //Loading Wine View Model. It's required to share the wineModel object among fragments
-                        loadWineViewModel()
+                        wineViewModel.setWineList(wineList)
                     }
                 }
                 else {
@@ -155,7 +162,6 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Failed to fetch data.", Toast.LENGTH_SHORT).show()
             }
-
             override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
                 if (response.isSuccessful) {
                     response.body()?.wines?.let {
@@ -164,5 +170,27 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun startOpenedAccountSession() {
+
+        val dbHelper by lazy {
+            DatabaseHelper(this)
+        }
+
+        val accountModel = dbHelper.getActiveSessionAccount()
+        if (accountModel != null) {
+            // Store fetched data in the ViewModel
+            accountViewModel.setAccount(accountModel)
+
+            //Activate UI admin features. Type = 1 (administrator)
+            if (accountModel.type == 1) {
+                navView.menu.findItem(R.id.navigation_control)?.isVisible = true
+                navView.menu.findItem(R.id.navigation_control)?.isEnabled = true
+            }
+
+            Toast.makeText(this, "Welcome to Wine Warehouse, ${accountModel.firstName}!", Toast.LENGTH_SHORT).show()
+        }
+        dbHelper.close()
     }
 }
