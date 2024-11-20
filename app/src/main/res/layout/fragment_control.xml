@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Horizontal RecyclerView to display wines. When click over the wine card, it extends the card allowing admin to edit, set stock, etc.. It will be loaded based on search and filter criteria"
+                    android:text="Inventory"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

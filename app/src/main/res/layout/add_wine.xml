@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtWineName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Wine Name" />
+
+        <EditText
+            android:id="@+id/edtWineType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type (e.g., Red, White)" />
+
+        <EditText
+            android:id="@+id/edtWinePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price" />
+
+        <EditText
+            android:id="@+id/edtWineStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stock" />
+
+        <EditText
+            android:id="@+id/edtWineImagePath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Image Path (URL)" />
+
+        <EditText
+            android:id="@+id/edtWineProducer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Producer" />
+
+        <EditText
+            android:id="@+id/edtWineCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country" />
+
+        <EditText
+            android:id="@+id/edtWineHarvest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harvest Year" />
+
+        <EditText
+            android:id="@+id/edtWineDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description" />
+
+        <EditText
+            android:id="@+id/edtWineDiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Discount (e.g., 0.10 for 10%)" />
+
+        <EditText
+            android:id="@+id/edtWineGrapes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Grapes" />
+
+        <EditText
+            android:id="@+id/edtWineFoodPair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Food Pairing" />
+
+        <Button
+            android:id="@+id/btnAddWine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Wine" />
+    </LinearLayout>
+</ScrollView>
