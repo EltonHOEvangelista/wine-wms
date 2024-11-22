@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.plugin.parcelize") // add this
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -54,11 +55,15 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") //Gson Converter for Retrofit
     implementation("com.google.code.gson:gson:2.8.8")
 
+    implementation("com.google.firebase:firebase-storage-ktx") // Firebase Storage dependency
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx) //For loading images
 
     implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.firebase.common.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

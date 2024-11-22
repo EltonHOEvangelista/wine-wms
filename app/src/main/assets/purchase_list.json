@@ -1,0 +1,40 @@
+{
+  "purchases": [
+    {
+      "wine_id": "674067bc3b0ab4200ce1ad0c",
+      "cost_price": 14.50,
+      "amount": 210,
+      "date": "21:58:21 11/17/2024"
+    },
+    {
+      "wine_id": "674067bc3b0ab4200ce1ad0d",
+      "cost_price": 13.50,
+      "amount": 125,
+      "date": "21:58:21 11/17/2024"
+    },
+    {
+      "wine_id": "674067bc3b0ab4200ce1ad0e",
+      "cost_price": 10.50,
+      "amount": 430,
+      "date": "21:58:21 11/17/2024"
+    },
+    {
+      "wine_id": "674067bc3b0ab4200ce1ad0c",
+      "cost_price": 14.50,
+      "amount": 50,
+      "date": "21:58:21 11/18/2024"
+    },
+    {
+      "wine_id": "674067bc3b0ab4200ce1ad0d",
+      "cost_price": 13.50,
+      "amount": 12,
+      "date": "21:58:21 11/18/2024"
+    },
+    {
+      "wine_id": "674067bc3b0ab4200ce1ad0e",
+      "cost_price": 10.50,
+      "amount": 30,
+      "date": "21:58:21 11/18/2024"
+    }
+  ]
+}

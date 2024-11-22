@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.databinding.WineCardBinding
 import com.squareup.picasso.Picasso
+import com.example.winewms.R
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class FeaturedWinesAdapter (
     private val wineList: List<WineModel>,
@@ -35,16 +38,27 @@ class FeaturedWinesAdapter (
 
     override fun onBindViewHolder(holder: WineViewHolder, position: Int) {
 
-        val item = wineList[position] // Gets the current item from the list
+        // Gets the current item from the list
+        val item = wineList[position]
+
+        //Load image from Google Firebase
+        val storageRef = Firebase.storage.reference.child(item.image_path)
+        // Fetch the image URL from Firebase Storage
+        storageRef.downloadUrl.addOnSuccessListener { uri ->
+            Picasso.get()
+                .load(uri.toString())
+                .error(R.drawable.wine_bottle_t)
+                .into(holder.binding.imgBottle)
+        }.addOnFailureListener {
+            holder.binding.imgBottle.setImageResource(R.drawable.wine_bottle_t)
+        }
+
+        //Load following wine data
         val unknown = "unknown"
-        // Bind data to the views
-        holder.binding.txtPrice.text = String.format(" $%.2f", item.price) ?: unknown
+        holder.binding.txtPrice.text = String.format(" $%.2f", item.sale_price) ?: unknown
         holder.binding.txtWineName.text = item.name ?: unknown
         holder.binding.txtWineProcuder.text = item.producer ?: unknown
         holder.binding.txtWineCountry.text = item.country ?: unknown
-        Picasso.get()
-            .load(item.image_path)
-            .into(holder.binding.imgBottle)
     }
 
     // Returns the total number of items in the list.

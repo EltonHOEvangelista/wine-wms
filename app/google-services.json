@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "752561033530",
+    "project_id": "wine-wms",
+    "storage_bucket": "wine-wms.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752561033530:android:f79cc2f5eb9a63de500003",
+        "android_client_info": {
+          "package_name": "com.example.winewms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWZqcIwLi8bHEDX0hZC-Sw5trdDfOgMY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

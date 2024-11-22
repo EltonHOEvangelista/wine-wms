@@ -159,7 +159,7 @@ class AccountFragment : Fragment() {
                     if (response.isSuccessful) {
                         val dataWrapper = response.body()
                         if (dataWrapper != null) {
-                            if (dataWrapper.requestStatus) {
+                            if (dataWrapper.responseStatus) {
                                 //Signout locally
                                 signoutAccount()
                             } else {

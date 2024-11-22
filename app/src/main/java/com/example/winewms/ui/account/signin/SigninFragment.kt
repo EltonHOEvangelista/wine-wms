@@ -86,7 +86,7 @@ class SigninFragment : Fragment() {
                 if (response.isSuccessful) {
                     val dataWrapper = response.body()
                     if (dataWrapper != null) {
-                        if (dataWrapper.requestStatus) {
+                        if (dataWrapper.responseStatus) {
                             accountModel = dataWrapper.accountModel
                             Toast.makeText(requireContext(), dataWrapper.message, Toast.LENGTH_SHORT).show()
 

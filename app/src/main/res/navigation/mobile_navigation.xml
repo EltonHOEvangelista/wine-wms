@@ -16,12 +16,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_wishlist"
-        android:name="com.example.winewms.ui.wishlist.WishListFragment"
-        android:label="@string/title_wishlist"
-        tools:layout="@layout/fragment_wish_list" />
-
-    <fragment
         android:id="@+id/navigation_cart"
         android:name="com.example.winewms.ui.cart.CartFragment"
         android:label="@string/title_cart"
@@ -53,7 +47,13 @@
         android:id="@+id/navigation_control"
         android:name="com.example.winewms.ui.control.ControlFragment"
         android:label="@string/title_control"
-        tools:layout="@layout/fragment_control" />
+        tools:layout="@layout/fragment_control" >
+        <action
+            android:id="@+id/action_navigation_control_to_addWineFragment"
+            app:destination="@id/addWineFragment"
+            app:popUpTo="@id/addWineFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_signin"
@@ -100,5 +100,10 @@
             android:id="@+id/action_navigation_checkout_to_navigation_cart"
             app:destination="@id/navigation_cart" />
     </fragment>
+    <fragment
+        android:id="@+id/addWineFragment"
+        android:name="com.example.winewms.ui.control.addwine.AddWineFragment"
+        android:label="fragment_add_wine"
+        tools:layout="@layout/fragment_add_wine" />
 
 </navigation>

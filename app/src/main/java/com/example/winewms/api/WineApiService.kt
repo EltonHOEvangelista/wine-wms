@@ -1,9 +1,12 @@
 package com.example.winewms.api
 
 import com.example.winewms.data.model.DataWrapper
+import com.example.winewms.data.model.PurchaseModel
+import com.example.winewms.data.model.ResponseModel
+import com.example.winewms.data.model.SalesDataWrapper
+import com.example.winewms.data.model.SalesModel
+import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
-import com.example.winewms.data.model.payloads.PurchaseRequest
-import com.example.winewms.data.model.payloads.PurchaseResponse
 import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.signin.SigninModel
@@ -32,17 +35,14 @@ interface WineApiService {
 
     // Delete an account
     @DELETE("account/delete")
-    fun deleteAccount(
-        @Query("email") email: String,
-        @Query("password") password: String
-    ): Call<AccountDataWrapper>
+    fun deleteAccount(@Query("email") email: String, @Query("password") password: String): Call<AccountDataWrapper>
 
     //---------------------------------------------------------------------------
     // Wine endpoints
 
     // Get all wines with pagination (returns DataWrapper with wines list and pagination details)
     @GET("wines")
-    fun getAllWines(
+    fun getWines(
         @Query("page") page: Int = 1,
         @Query("limit") limit: Int = 10,
         @QueryMap filters: Map<String, String>? = emptyMap()
@@ -53,8 +53,9 @@ interface WineApiService {
     fun getWineById(@Path("id") wineId: String): Call<WineModel>
 
     //create a new wine
+    //return wine id from backend
     @POST("wines")
-    fun createWine(@Body wineModel: WineModel): Call<String>
+    fun createWine(@Body wineModel: WineModel): Call<ResponseModel>
 
     //update an existing wine by ID
     @PUT("wines/{id}")
@@ -66,7 +67,7 @@ interface WineApiService {
 
     //remove current wines and create new ones (initial list)
     @POST("wines/all")
-    fun createInitialWines(@Body wineList: List<WineModel>): Call<String>
+    fun createInitialWines(@Body wineList: List<WineModel>): Call<ResponseModel>
 
     @POST("wines/bulk")
     fun getBulkWines(@Body wineIds: List<String>): Call<List<WineModel>>
@@ -74,10 +75,24 @@ interface WineApiService {
     //---------------------------------------------------------------------------
     // Purchases endpoints
 
-    @POST("purchases")
-    fun placeOrder(@Body purchaseRequest: PurchaseRequest): Call<PurchaseResponse>
+    @POST("purchase/all")
+    fun create_initial_purchase(@Body purchaseList: List<PurchaseModel>): Call<ResponseModel>
+
+    @POST("purchase")
+    fun placePurchaseOrder(@Body purchaseModel: PurchaseModel): Call<ResponseModel>
 
     //---------------------------------------------------------------------------
+    // Sales endpoints
 
+    @POST("sales")
+    fun placeSalesOrder(@Body salesModel: SalesModel): Call<SalesDataWrapper>
 
+    //---------------------------------------------------------------------------
+    // Warehouse/Stock endpoints
+
+    @POST("warehouse/all")
+    fun create_initial_stock(@Body warehouseList: List<WarehouseModel>): Call<ResponseModel>
+
+    @POST("warehouse")
+    fun updateStock(@Body warehouseModel: WarehouseModel): Call<ResponseModel>
 }

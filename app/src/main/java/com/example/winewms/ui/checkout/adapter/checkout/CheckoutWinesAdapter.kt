@@ -3,8 +3,11 @@ package com.example.winewms.ui.checkout.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.databinding.CheckoutWineCardBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 
 class CheckoutWinesAdapter(
@@ -16,16 +19,27 @@ class CheckoutWinesAdapter(
         fun bind(cartItem: CartItemModel) {
             val wine = cartItem.wine
             val discount = wine.discount
-            val discountedPricePerUnit = wine.price * (1 - discount)
+            val discountedPricePerUnit = wine.sale_price * (1 - discount)
             val totalDiscountedPrice = discountedPricePerUnit * cartItem.quantity
 
             binding.apply {
                 txtWineName.text = wine.name
                 txtQuantity.text = "Quantity: ${cartItem.quantity}"
-                txtOriginalTotalPrice.text = String.format("Original: $%.2f", wine.price * cartItem.quantity)
+                txtOriginalTotalPrice.text = String.format("Original: $%.2f", wine.sale_price * cartItem.quantity)
                 txtDiscount.text = String.format("Discount: %d%%", (discount * 100).toInt())
                 txtDiscountedTotal.text = String.format("Discounted Total: $%.2f", totalDiscountedPrice)
-                Picasso.get().load(wine.image_path).into(imgBottle)
+
+                //Load image from Google Firebase
+                val storageRef = Firebase.storage.reference.child(wine.image_path)
+                // Fetch the image URL from Firebase Storage
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get()
+                        .load(uri.toString())
+                        .error(R.drawable.wine_bottle_t)
+                        .into(imgBottle)
+                }.addOnFailureListener {
+                    imgBottle.setImageResource(R.drawable.wine_bottle_t)
+                }
             }
         }
     }

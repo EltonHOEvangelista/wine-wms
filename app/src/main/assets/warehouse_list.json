@@ -1,0 +1,48 @@
+{
+  "warehouses": [
+    {
+      "location": "Richmond",
+      "aisles": [
+        {
+          "aisle": "A1",
+          "shelves": [
+            {
+              "shelf": "S1",
+              "wines": [
+                {
+                  "wine_id": "674067bc3b0ab4200ce1ad0c",
+                  "stock": 210
+                },
+                {
+                  "wine_id": "674067bc3b0ab4200ce1ad0d",
+                  "stock": 125
+                },
+                {
+                  "wine_id": "674067bc3b0ab4200ce1ad0e",
+                  "stock": 430
+                }
+              ]
+            },
+            {
+              "shelf": "S2",
+              "wines": [
+                {
+                  "wine_id": "674067bc3b0ab4200ce1ad0c",
+                  "stock": 50
+                },
+                {
+                  "wine_id": "674067bc3b0ab4200ce1ad0d",
+                  "stock": 12
+                },
+                {
+                  "wine_id": "674067bc3b0ab4200ce1ad0e",
+                  "stock": 30
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

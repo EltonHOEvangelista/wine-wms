@@ -106,7 +106,7 @@ class CartFragment : Fragment(), OnCartWinesClickListener {
 
     private fun updateTotalPrice(cartItems: List<CartItemModel>) {
         val totalPrice = cartItems.sumOf {
-            it.wine.price.toDouble() * (1 - it.wine.discount.toDouble()) * it.quantity
+            it.wine.sale_price.toDouble() * (1 - it.wine.discount.toDouble()) * it.quantity
         }
         binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
     }

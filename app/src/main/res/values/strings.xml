@@ -101,6 +101,114 @@
     <string name="txtSignoffEmail" />
     <string name="txtSignoffPassword" />
     <string name="btnSignoffAccount">Signoff</string>
-    <string name="labelType">Account Type</string>
+    <string name="labelType">Account type</string>
+    <string name="labelAddWine">Add New Wine</string>
+    <string name="txtAddWineName" />
+    <string name="txtAddWineProducer" />
+    <string name="txtAddWineCountry" />
+    <string name="txtAddWineHarvest" />
+    <string name="txtAddWineDescription" />
+    <string name="txtAddWineDescriptionHint">Description</string>
+    <string name="txtAddWineRate" />
+    <string name="txtAddWineRateHint">Wine rate</string>
+    <string name="txtAddWineReviewsHint">Reviews. Use semi-colon to separate them.</string>
+    <string name="txtAddWineReviews" />
+    <string name="labelWineGrapes">Grapes:</string>
+
+    <string name="checkBoxCabernetSauvignon">Cabernet Sauvignon</string>
+    <string name="checkBoxMerlot">Merlot</string>
+    <string name="checkBoxMalbec">Malbec</string>
+
+    <string name="checkBoxPinotNoir">Pinot Noir</string>
+    <string name="checkBoxSyrah">Syrah</string>
+    <string name="checkBoxZinfandel">Zinfandel</string>
+
+    <string name="checkBoxTempranillo">Tempranillo</string>
+    <string name="checkBoxSangiovese">Sangiovese</string>
+    <string name="checkBoxGrenache">Grenache</string>
+
+    <string name="checkBoxChardonnay">Chardonnay</string>
+    <string name="checkBoxSauvignonBlanc">Sauvignon Blanc</string>
+    <string name="checkBoxPinotGrigio">Pinot Grigio</string>
+    <string name="checkBoxOtherGrapes">Other Grapes</string>
+
+    <string name="txtTasteCharacteristics">Taste Characteristics:</string>
+    <string name="txtLightness">Lightness</string>
+    <string name="txtTannin">Tannin</string>
+    <string name="txtDryness">Dryness</string>
+    <string name="txtAcidity">Acidity</string>
+
+    <string name="checkBoxStake">Stake</string>
+    <string name="checkBoxLamb">Lamb</string>
+    <string name="checkBoxChicken">Chicken</string>
+
+    <string name="checkBoxPork">Pork</string>
+    <string name="checkBoxPasta">Pasta</string>
+    <string name="checkBoxAgedCheeses">Aged Cheeses</string>
+
+    <string name="checkBoxSeafood">Seafood</string>
+    <string name="checkBoxFish">Fish</string>
+    <string name="checkBoxSalad">Salad</string>
+
+    <string name="checkBoxCharcuterie">Charcuterie</string>
+    <string name="checkBoxDarkChocolate">Dark Chocolate</string>
+    <string name="checkBoxOtherFoods">Others</string>
+    <string name="labelAddFoodPair">Food Pairing:</string>
+    <string name="spinnerWineType">Wine type</string>
+
+    <string name="labelAddPrices">Sale Price:</string>
+    <string name="txtSalePrice" />
+    <string name="txtSalePriceHint">Sale price: $ .00</string>
+    <string name="txtSaleDiscont" />
+    <string name="txtSaleDiscontHint">Discount: %</string>
+
+    <string name="labelPurchase">Initial Purchase:</string>
+    <string name="txtCostPrice" />
+    <string name="txtCostPriceHint">Cost price: $ .00</string>
+    <string name="txtStock" />
+    <string name="txtStockHint">Initial stock (units)</string>
+    <string name="btnSaveWine">Add Wine</string>
+    <string name="labelSetPricesStock">Prices and Initial Stock</string>
+    <string name="txtWarehouseLocation" />
+    <string name="txtWarehouseLocationHint">Location</string>
+    <string name="txtWarehouseAisle" />
+    <string name="txtWarehouseAisleHint">Aisle</string>
+    <string name="txtWarehouseShelf" />
+    <string name="txtWarehouseShelfHint">Shelf</string>
+    <string name="labelStorage">Storage</string>
+
+    <string-array name="spinnerWineType">
+        <item>Red</item>
+        <item>White</item>
+        <item>Rose</item>
+        <item>Sparkling</item>
+        <item>Dessert Wine</item>
+        <item>Orange Wine</item>
+    </string-array>
+    <string-array name="spinner_1_10">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="spinnerWarehouseLocation">
+        <item>Richmond</item>
+    </string-array>
+    <string-array name="spinnerAisle">
+        <item>A1</item>
+        <item>A2</item>
+        <item>A3</item>
+    </string-array>
+    <string-array name="spinnerShelf">
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
+    </string-array>
 
 </resources>

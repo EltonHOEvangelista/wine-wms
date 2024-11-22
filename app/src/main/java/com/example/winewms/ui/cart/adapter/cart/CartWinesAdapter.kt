@@ -12,6 +12,8 @@ import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.databinding.CartWineCardBinding
 import com.example.winewms.databinding.WineCardBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 
 class CartWinesAdapter(
@@ -27,7 +29,7 @@ class CartWinesAdapter(
 
             // Calculate discounted price and set discount information
             val discount = wine.discount
-            val discountedPrice = wine.price * (1 - discount)
+            val discountedPrice = wine.sale_price * (1 - discount)
 
             // Access views within wine_card.xml using wineCardBinding
             wineCardBinding.apply {
@@ -35,7 +37,18 @@ class CartWinesAdapter(
                 txtWineName.text = wine.name
                 txtWineProcuder.text = wine.producer
                 txtWineCountry.text = wine.country
-                Picasso.get().load(wine.image_path).into(imgBottle)
+
+                //Load image from Google Firebase
+                val storageRef = Firebase.storage.reference.child(wine.image_path)
+                // Fetch the image URL from Firebase Storage
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get()
+                        .load(uri.toString())
+                        .error(R.drawable.wine_bottle_t)
+                        .into(imgBottle)
+                }.addOnFailureListener {
+                    imgBottle.setImageResource(R.drawable.wine_bottle_t)
+                }
             }
 
             // Display discount if exists.
@@ -43,7 +56,7 @@ class CartWinesAdapter(
                 binding.txtDiscount.visibility = View.VISIBLE
                 binding.txtDiscount.text = "Save: ${(discount * 100).toInt()}%"
                 binding.txtOriginalPrice.visibility = View.VISIBLE
-                binding.txtOriginalPrice.text = String.format("$%.2f", wine.price)
+                binding.txtOriginalPrice.text = String.format("$%.2f", wine.sale_price)
                 binding.txtOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
 
@@ -79,11 +92,13 @@ class CartWinesAdapter(
                 "white" -> binding.imgType.setImageResource(R.drawable.glass_white_wine_24)
                 "sparkling" -> binding.imgType.setImageResource(R.drawable.glass_white_wine_24)
                 "rose" -> binding.imgType.setImageResource(R.drawable.glass_rose_wine_24)
+                "dessert wine" -> binding.imgType.setImageResource(R.drawable.glass_red_wine_24)
+                "orange wine" -> binding.imgType.setImageResource(R.drawable.glass_white_wine_24)
                 else -> binding.imgType.setImageResource((R.drawable.glass_red_wine_24))
             }
 
             // Set Wine Harvest
-            binding.txtHarvest.text = wine.harvest.toString()
+            binding.txtHarvest.text = wine.harvest_year.toString()
 
             // Set Wine Grapes
             binding.txtGrapes.text = wine.grapes.joinToString(", ")
@@ -104,11 +119,11 @@ class CartWinesAdapter(
                 setTasteCharacteristic(binding.linearLayoutLLightnessRate, lightness.toFloat())
                 setTasteCharacteristic(binding.linearLayoutLLightnessDiff, 10.0f - lightness.toFloat())
                 setTasteCharacteristic(binding.linearLayoutLTanninRate, tannin.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLTanninDiff, 10.0f - lightness.toFloat())
+                setTasteCharacteristic(binding.linearLayoutLTanninDiff, 10.0f - tannin.toFloat())
                 setTasteCharacteristic(binding.linearLayoutLDrynessRate, dryness.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLDrynessDiff, 10.0f - lightness.toFloat())
+                setTasteCharacteristic(binding.linearLayoutLDrynessDiff, 10.0f - dryness.toFloat())
                 setTasteCharacteristic(binding.linearLayoutLAcidityRate, acidity.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLAcidityDiff, 10.0f - lightness.toFloat())
+                setTasteCharacteristic(binding.linearLayoutLAcidityDiff, 10.0f - acidity.toFloat())
             }
 
             // Set Wine Food Pair

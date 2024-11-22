@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class AccountDataWrapper(
     var message: String,
-    @SerializedName("request_status") var requestStatus: Boolean,
+    @SerializedName("response_status") var responseStatus: Boolean,
     @SerializedName("_account") var accountModel: AccountModel
 ) : Parcelable
 

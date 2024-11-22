@@ -32,6 +32,17 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
 
+        //Setup click listeners
+        setClickListeners()
+
+        // Load featured wines
+        loadFeaturedWinesIntoRecyclerView()
+
+        return binding.root
+    }
+
+    private fun setClickListeners() {
+
         // Set up button click listeners for filtering
         binding.btnRedWine.setOnClickListener {
             navigateToSearchWithFilter("red")
@@ -53,11 +64,6 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
                 navigateToSearchWithText(searchText)
             }
         }
-
-        // Load featured wines
-        loadFeaturedWinesIntoRecyclerView()
-
-        return binding.root
     }
 
     private fun navigateToSearchWithFilter(wineType: String) {

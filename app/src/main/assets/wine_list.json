@@ -1,91 +1,87 @@
 {
   "wines": [
     {
-      "image_path": "https://storage.googleapis.com/csis-4280/chateau_rouge.png",
+      "image_path": "chateau_rouge.png",
       "name": "Château Rouge",
       "producer": "Domaine Du Rouge",
+      "country": "France",
+      "harvest_year": 2018,
       "type": "Red",
+      "rate": 4.5,
+      "description": "A full-bodied red wine with notes of blackberries, plums, and hints of oak.",
+      "reviews": [
+        "Fantastic wine, pairs beautifully with red meat.",
+        "Smooth and well-balanced with a great finish.",
+        "A bit pricey, but worth it for special occasions."
+      ],
       "grapes": [
         "Cabernet Sauvignon",
         "Merlot",
         "Cabernet Franc"
       ],
-      "country": "France",
-      "harvest": 2018,
-      "description": "A full-bodied red wine with notes of blackberries, plums, and hints of oak.",
-      "price": 45.99,
-      "discount": 0.10,
-      "stock": 320,
       "taste_characteristics": {
         "lightness": 6,
         "tannin": 4,
         "dryness": 5,
         "acidity": 3
       },
-      "rate": 4.5,
-      "food_pair": ["Steak", "Lamb Chops", "Mature Cheese"],
-      "reviews": [
-        "Fantastic wine, pairs beautifully with red meat.",
-        "Smooth and well-balanced with a great finish.",
-        "A bit pricey, but worth it for special occasions."
-      ]
+      "food_pair": ["Steak", "Lamb", "Aged Cheeses"],
+      "sale_price": 45.99,
+      "discount": 0.18
     },
     {
-      "image_path": "https://storage.googleapis.com/csis-4280/valley_reserve.png",
+      "image_path": "valley_reserve.png",
       "name": "White Valley Reserve",
       "producer": "Valley Wines Co.",
-      "type": "White",
-      "grapes": [
-        "Sauvignon Blanc",
-        "Sémillon"
-      ],
       "country": "United States",
-      "harvest": 2023,
+      "harvest_year": 2023,
+      "type": "White",
+      "rate": 4.2,
       "description": "Crisp and refreshing with citrus and green apple notes.",
-      "price": 22.49,
-      "discount": 0.50,
-      "stock": 412,
+      "reviews": [
+        "Perfectly light and fresh for a summer evening.",
+        "Loved the acidity, pairs well with seafood.",
+        "A bit too acidic for my taste, but refreshing nonetheless."
+      ],
+      "grapes": [
+        "Sauvignon Blanc"
+      ],
       "taste_characteristics": {
         "lightness": 5,
         "tannin": 1,
         "dryness": 4,
         "acidity": 5
       },
-      "rate": 4.2,
       "food_pair": ["Seafood", "Salad", "Pasta with Cream Sauce"],
-      "reviews": [
-        "Perfectly light and fresh for a summer evening.",
-        "Loved the acidity, pairs well with seafood.",
-        "A bit too acidic for my taste, but refreshing nonetheless."
-      ]
+      "sale_price": 22.49,
+      "discount": 0.15
     },
     {
-      "image_path": "https://storage.googleapis.com/csis-4280/sparkling_sun.png",
+      "image_path": "sparkling_sun.png",
       "name": "Sparkling Sun",
       "producer": "Bubbly Co.",
-      "type": "Sparkling",
-      "grapes": [
-        "Chardonnay"
-      ],
       "country": "Italy",
-      "harvest": 2021,
+      "harvest_year": 2021,
+      "type": "Sparkling",
+      "rate": 4.2,
       "description": "Elegant and bubbly with hints of pear, apple, and toasted almonds.",
-      "price": 30.00,
-      "discount": 0.15,
-      "stock": 225,
-      "taste_characteristics": {
-        "lightness": 3,
-        "tannin": 1,
-        "dryness": 3,
-        "acidity": 4
-      },
-      "rate": 4.7,
-      "food_pair": ["Oysters", "Brunch Dishes", "Light Desserts"],
       "reviews": [
         "Great for celebrations, light and refreshing.",
         "One of the best sparkling wines I've had in a long time.",
         "Good price for such high quality."
-      ]
+      ],
+      "grapes": [
+        "Chardonnay"
+      ],
+      "taste_characteristics": {
+        "lightness": 5,
+        "tannin": 1,
+        "dryness": 4,
+        "acidity": 5
+      },
+      "food_pair": ["Oysters", "Brunch Dishes", "Light Desserts"],
+      "sale_price": 30.00,
+      "discount": 0.16
     }
   ]
 }

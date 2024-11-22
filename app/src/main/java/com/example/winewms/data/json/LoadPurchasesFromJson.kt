@@ -1,16 +1,16 @@
 package com.example.winewms.data.json
 
 import android.content.Context
-import com.example.winewms.data.model.DataWrapper
-import com.example.winewms.data.model.WineModel
+import com.example.winewms.data.model.PurchaseDataWrapper
+import com.example.winewms.data.model.PurchaseModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class LoadJson {
+class LoadPurchasesFromJson {
 
-    fun readJsonFile(context: Context, fileName: String): List<WineModel> {
+    fun readJsonFile(context: Context, fileName: String): List<PurchaseModel> {
 
-        var wineList: List<WineModel> = emptyList()
+        var purchaseList: List<PurchaseModel> = emptyList()
         var jsonData: String? = null
 
         try {
@@ -27,11 +27,11 @@ class LoadJson {
 
         jsonData.let {
             val gson = Gson()
-            val dataWrapperType = object : TypeToken<DataWrapper>() {}.type
-            val dataWrapper: DataWrapper = gson.fromJson(it, dataWrapperType)
-            wineList = dataWrapper.wines
+            val dataWrapperType = object : TypeToken<PurchaseDataWrapper>() {}.type
+            val dataWrapper: PurchaseDataWrapper = gson.fromJson(it, dataWrapperType)
+            purchaseList = dataWrapper.purchases
         }
 
-        return wineList
+        return purchaseList
     }
 }

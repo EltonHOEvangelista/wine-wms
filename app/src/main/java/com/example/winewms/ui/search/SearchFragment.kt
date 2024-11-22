@@ -28,8 +28,6 @@ import android.widget.CheckBox
 import android.widget.Button
 import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import android.widget.TextView
 import androidx.fragment.app.setFragmentResultListener
 import com.example.winewms.R
@@ -43,7 +41,6 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var binding: FragmentSearchBinding
     private val searchWineViewModel: SearchWineViewModel by activityViewModels()
     private val wineApi: WineApiService by lazy { WineApi.retrofit.create(WineApiService::class.java) }
     private val cartWineViewModel: CartWineViewModel by activityViewModels()
@@ -61,9 +58,11 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        //binding = FragmentSearchBinding.inflate(inflater)
 
+        //Setup vertical recycler view to display searched wines
         setupRecyclerView()
+
+        //Observe list of wines from Search Wine View Model
         observeWineList()
 
         // Listen for filter or search text updates from HomeFragment
@@ -108,6 +107,7 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         return binding.root
     }
 
+    //Function to display vertical recycler view to display searched wines
     private fun setupRecyclerView() {
         binding.recyclerViewSearchedWines.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -115,6 +115,7 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         }
     }
 
+    //Function to observe list of wines from Search Wine View Model and display them on recycler view
     private fun observeWineList() {
         searchWineViewModel.wineList.observe(viewLifecycleOwner, Observer { listOfWines ->
             val adapter = SearchedWinesAdapter(listOfWines, this)
@@ -133,27 +134,22 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
                 Toast.makeText(requireContext(), "Failed to fetch data.", Toast.LENGTH_SHORT).show()
                 Log.e("API Service Failure", t.message.toString())
             }
-
             override fun onResponse(call: Call<WineModel>, response: Response<WineModel>) {
                 if (response.isSuccessful) {
                     // Initialize a mutable list
                     val wineList = mutableListOf<WineModel>()
-
                     // Create the WineModel object
                     val wine = response.body()
-
                     // Add the wine to the list
                     if (wine != null) {
                         wineList.add(wine)
                     }
-
                     // Update the ViewModel with the list
                     searchWineViewModel.setWineList(wineList)
                 } else {
                     Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
                 }
             }
-
         })
     }
 
@@ -173,7 +169,7 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         minPrice?.let { filters["min_price"] = it.toString() }
         maxPrice?.let { filters["max_price"] = it.toString() }
 
-        val apiCall = wineApi.getAllWines(filters = filters)
+        val apiCall = wineApi.getWines(filters = filters)
         apiCall.enqueue(object : Callback<DataWrapper> {
             override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
                 Toast.makeText(requireContext(), "Failed to fetch data.", Toast.LENGTH_SHORT).show()
@@ -200,12 +196,16 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         val whiteCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_white)
         val roseCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_rose)
         val sparklingCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_sparkling)
+        val dessertCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_dessert_wine)
+        val orangeCheckBox = popupView.findViewById<CheckBox>(R.id.filter_option_orange_wine)
 
         // Initialize the CheckBox states based on previously selected wine types
         redCheckBox.isChecked = selectedWineTypes.contains("red")
         whiteCheckBox.isChecked = selectedWineTypes.contains("white")
         roseCheckBox.isChecked = selectedWineTypes.contains("rose")
         sparklingCheckBox.isChecked = selectedWineTypes.contains("sparkling")
+        dessertCheckBox.isChecked = selectedWineTypes.contains("dessert")
+        orangeCheckBox.isChecked = selectedWineTypes.contains("orange")
 
         // Set up harvest year NumberPickers with previously selected values
         val startPicker = popupView.findViewById<NumberPicker>(R.id.numberPickerHarvestYearStart)
@@ -260,6 +260,8 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             if (whiteCheckBox.isChecked) selectedWineTypes.add("white")
             if (roseCheckBox.isChecked) selectedWineTypes.add("rose")
             if (sparklingCheckBox.isChecked) selectedWineTypes.add("sparkling")
+            if (dessertCheckBox.isChecked) selectedWineTypes.add("dessert")
+            if (orangeCheckBox.isChecked) selectedWineTypes.add("orange")
 
             // Save the harvest year range
             harvestYearStart = years.getOrNull(startPicker.value).takeIf { it != "Any" }
@@ -288,6 +290,8 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             whiteCheckBox.isChecked = false
             roseCheckBox.isChecked = false
             sparklingCheckBox.isChecked = false
+            dessertCheckBox.isChecked = false
+            orangeCheckBox.isChecked = false
 
             // Reset NumberPickers to "Any"
             startPicker.value = 0

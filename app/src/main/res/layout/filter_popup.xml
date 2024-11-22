@@ -38,13 +38,26 @@
             android:id="@+id/filter_option_rose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rosé Wine" />
+            android:text="Rose Wine" />
 
         <CheckBox
             android:id="@+id/filter_option_sparkling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sparkling Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_dessert_wine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dessert Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_orange_wine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orange Wine" />
+
     </GridLayout>
 
     <!-- Price Range -->
