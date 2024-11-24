@@ -153,8 +153,7 @@ class CheckoutFragment : Fragment() {
                     SalesAccount(
                         accountId = it.accountId,
                         email = it.email,
-                        phone = it.phone,
-                        address = address
+                        phone = it.phone
                     )
                 }
 
@@ -170,7 +169,8 @@ class CheckoutFragment : Fragment() {
                     SalesModel(
                         invoiceId = "0",
                         items =  items,
-                        account = it
+                        account = it,
+                        shippingAddress = address
                     )
                 }
 

@@ -9,7 +9,8 @@ import kotlinx.parcelize.Parcelize
 data class SalesModel(
     @SerializedName("_id") val invoiceId: String,
     val items: List<SalesItem>,
-    val account: SalesAccount
+    val account: SalesAccount,
+    @SerializedName("shipping_address") val shippingAddress: AccountAddressModel
 ) : Parcelable
 
 @Parcelize
@@ -23,5 +24,4 @@ data class SalesAccount(
     @SerializedName("account_id") val accountId: String,
     val email: String,
     val phone: String,
-    val address: AccountAddressModel
 ) : Parcelable

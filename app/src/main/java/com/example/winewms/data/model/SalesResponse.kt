@@ -9,7 +9,7 @@ import java.util.Date
 @Parcelize
 data class SalesDataWrapper(
     val invoice: WineInvoice,
-    @SerializedName("sale_refused") val saleRefused: List<SalesRefused>
+    //@SerializedName("sale_refused") val saleRefused: List<SalesRefused>
 ) : Parcelable
 
 @Parcelize
@@ -18,7 +18,7 @@ data class WineInvoice(
     @SerializedName("account_id") val accountId: String,
     val items: List<SoldItems>,
     @SerializedName("total_price") val totalPrice: Double,
-    @SerializedName("sales_date") val salesDate: Date,
+    @SerializedName("sales_date") val salesDate: String,
     @SerializedName("shipping_address") val shippingAddress: AccountAddressModel
 ) : Parcelable
 

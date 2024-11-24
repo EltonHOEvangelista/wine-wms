@@ -14,13 +14,10 @@ import com.example.winewms.api.WineApiService
 import com.example.winewms.data.json.LoadPurchasesFromJson
 import com.example.winewms.data.json.LoadStockFromJson
 import com.example.winewms.data.json.LoadWinesFromJson
-import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.PurchaseModel
 import com.example.winewms.data.model.ResponseModel
-import com.example.winewms.data.model.SearchWineViewModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
-import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.data.sql.DatabaseHelper
 import com.example.winewms.databinding.ActivityMainBinding
 import com.example.winewms.ui.account.AccountViewModel
@@ -38,10 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     //Variable to manage bottom navigation view
     lateinit var navView: BottomNavigationView
-
-    //variable used to transfer objects among activities and fragments
-    val wineViewModel: WineViewModel by viewModels()
-    private val searchWineViewModel: SearchWineViewModel by viewModels()
     private val accountViewModel: AccountViewModel by viewModels()
 
     //Instantiate Wine Api
@@ -56,54 +49,11 @@ class MainActivity : AppCompatActivity() {
         //Bottom Navigation View Setup
         setBottomNavigationView()
 
-        //Starts the app by fetching data from backend
-        fetchDataOnServer()
-
         //Load initial data from json file into MongoDB
         //loadInitialData()
 
         //Start opened account session
         startOpenedAccountSession()
-    }
-
-    //Function to fetch data from backend using Wine API
-    private fun fetchDataOnServer() {
-
-        //load featured wine to Home Fragment
-        getFeaturedWines()
-    }
-
-    //Function to fetch featured wine from Backend and load them in WineViewModel.
-    private fun getFeaturedWines() {
-
-        // Set up filter for discounts great of equal to 15%
-        val filters = mutableMapOf<String, String>()
-        filters["discount"] = "0.15"
-        // Fetch filtered data from api
-        val apiCall = wineApi.getWines(filters = filters)
-
-        //Asynchronous call to fetch data from Wine's Api
-        apiCall.enqueue(object: Callback<DataWrapper> {
-            override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
-                Toast.makeText(baseContext, "Failed to fetch data.", Toast.LENGTH_SHORT).show()
-                Log.e("API Service Failure", t.message.toString())
-            }
-            override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
-                if (response.isSuccessful) {
-                    //Successfully fetched data
-                    val dataWrapper = response.body()
-                    if (dataWrapper != null) {
-                        wineList = dataWrapper.wines
-                        //Loading Wine View Model. It's required to share the wineModel object among fragments
-                        wineViewModel.setWineList(wineList)
-                        searchWineViewModel.setWineList(wineList)  //????
-                    }
-                }
-                else {
-                    Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
-                }
-            }
-        })
     }
 
     private fun loadInitialData() {
