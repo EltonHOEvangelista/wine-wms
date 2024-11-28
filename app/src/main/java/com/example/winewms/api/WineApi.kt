@@ -8,7 +8,7 @@ object WineApi {
     //use this on local development; 10.0.2.2it the localhost
 
     //use this in dev. Add your backend IP address.
-    private const val BASE_URL = "http://0.0.0.0:8888/v1/api/"
+    private const val BASE_URL = "http://98.85.47.25:8888/v1/api/"
 
     //use this in production
     //private const val BASE_URL = "http://52.0.58.207:8888/v1/api/"
