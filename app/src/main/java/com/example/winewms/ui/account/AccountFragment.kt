@@ -13,6 +13,7 @@ import com.example.winewms.databinding.FragmentAccountBinding
 import androidx.lifecycle.Observer
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
+import com.example.winewms.data.model.SalesDataWrapper
 import com.example.winewms.data.sql.DatabaseHelper
 import com.example.winewms.ui.account.signin.SigninModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,7 +43,33 @@ class AccountFragment : Fragment() {
         // Load account details from Account View Model
         loadAccountDetails()
 
+        // Load list of orders on recycler view
+        loadOrders()
+
         return binding.root
+    }
+
+    // Function to load list of orders on recycler view
+    private fun loadOrders() {
+
+        accountViewModel.account.observe(viewLifecycleOwner, Observer { account ->
+            if (account != null) {
+
+                //set click listener on linear Layout Order Details
+                binding.linearLayoutOrders.setOnClickListener() {
+                    if (binding.recyclerViewOrders.visibility == View.GONE) {
+                        binding.recyclerViewOrders.visibility = View.VISIBLE
+                        binding.imgRightArrowOrders.visibility = View.GONE
+                        binding.imgDownArrowOrders.visibility = View.VISIBLE
+                    }
+                    else {
+                        binding.recyclerViewOrders.visibility = View.GONE
+                        binding.imgRightArrowOrders.visibility = View.VISIBLE
+                        binding.imgDownArrowOrders.visibility = View.GONE
+                    }
+                }
+            }
+        })
     }
 
     //Function to load account details
@@ -62,21 +89,23 @@ class AccountFragment : Fragment() {
                 binding.txtProvince.setText(account.address?.province ?: "")
                 binding.txtCountry.setText(account.address?.country ?: "")
 
-                //display signout and hide signin
-                binding.linearLayoutLogout.visibility = View.VISIBLE
-                binding.linearLayoutSignin.visibility = View.GONE
-
                 //set click listener on linear Layout Account Detail
                 binding.linearLayoutAccountDetail.setOnClickListener() {
                     if (binding.linearLayoutAccountForm.visibility == View.GONE) {
                         binding.linearLayoutAccountForm.visibility = View.VISIBLE
-                        binding.imgArrowAccountDetails.visibility = View.GONE
+                        binding.imgRightArrowAccountDetails.visibility = View.GONE
+                        binding.imgDownArrowAccountDetails.visibility = View.VISIBLE
                     }
                     else {
                         binding.linearLayoutAccountForm.visibility = View.GONE
-                        binding.imgArrowAccountDetails.visibility = View.VISIBLE
+                        binding.imgRightArrowAccountDetails.visibility = View.VISIBLE
+                        binding.imgDownArrowAccountDetails.visibility = View.GONE
                     }
                 }
+
+                //display signout and hide signin
+                binding.linearLayoutLogout.visibility = View.VISIBLE
+                binding.linearLayoutSignin.visibility = View.GONE
 
                 //set click listener on linear Layout Signoff
                 binding.linearLayoutSignoffAccount.setOnClickListener() {
@@ -85,6 +114,31 @@ class AccountFragment : Fragment() {
                     }
                     else {
                         binding.linearLayoutSignoffDetails.visibility = View.GONE
+                    }
+                }
+
+                // Get request to load customer's order
+                getCustomerOrders(account.accountId)
+            }
+        })
+    }
+
+    // Function to get customer's order from backend
+    private fun getCustomerOrders(accountId: String) {
+
+        //Fetch data from api
+        val apiCall = wineApi.getSalesOrdersByCustomerId(accountId)
+
+        //Asynchronous call to request sales orders by customer's id
+        apiCall.enqueue(object : Callback<SalesDataWrapper> {
+            override fun onFailure(call: Call<SalesDataWrapper>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+            override fun onResponse(call: Call<SalesDataWrapper>, response: Response<SalesDataWrapper>) {
+                if (response.isSuccessful) {
+                    val dataWrapper = response.body()
+                    if (dataWrapper != null) {
+
                     }
                 }
             }
@@ -128,8 +182,6 @@ class AccountFragment : Fragment() {
             accountViewModel.clearAccount()
 
             Toast.makeText(requireContext(), "Good bye!", Toast.LENGTH_SHORT).show()
-
-
 
             // Navigate to Homa Fragment
             findNavController().navigate(R.id.navigation_home)
