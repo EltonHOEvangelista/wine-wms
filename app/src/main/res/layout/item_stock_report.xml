@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvWineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wine Name"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stock: 0" />
+
+    <TextView
+        android:id="@+id/tvSalePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: $0.00" />
+
+    <TextView
+        android:id="@+id/tvLocations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Locations: None" />
+</LinearLayout>
