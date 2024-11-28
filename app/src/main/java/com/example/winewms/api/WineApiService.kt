@@ -88,7 +88,7 @@ interface WineApiService {
     fun placeSalesOrder(@Body salesModel: SalesModel): Call<SalesDataWrapper>
 
     @GET("sales/customer/{id}")
-    fun getSalesOrdersByCustomerId(@Path("id") wineId: String): Call<SalesDataWrapper>
+    fun getOrdersByCustomerId(@Path("id") wineId: String): Call<SalesDataWrapper>
 
     //---------------------------------------------------------------------------
     // Warehouse/Stock endpoints
