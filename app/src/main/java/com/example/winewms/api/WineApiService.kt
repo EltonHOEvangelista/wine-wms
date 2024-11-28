@@ -10,10 +10,15 @@ import com.example.winewms.data.model.WineModel
 import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.signin.SigninModel
+import com.example.winewms.ui.control.reports.ReportModel
+import com.example.winewms.ui.control.reports.sales.SalesComparison
+import com.example.winewms.ui.control.reports.sales.SalesReportModel
+import com.example.winewms.ui.control.reports.stock.StockItem
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -58,7 +63,7 @@ interface WineApiService {
     fun createWine(@Body wineModel: WineModel): Call<ResponseModel>
 
     //update an existing wine by ID
-    @PUT("wines/{id}")
+    @PATCH("wines/{id}")
     fun updateWine(@Path("id") wineId: String, @Body wineModel: WineModel): Call<String>
 
     //delete an existing wine by ID
@@ -71,6 +76,8 @@ interface WineApiService {
 
     @POST("wines/bulk")
     fun getBulkWines(@Body wineIds: List<String>): Call<List<WineModel>>
+
+
 
     //---------------------------------------------------------------------------
     // Purchases endpoints
@@ -90,9 +97,34 @@ interface WineApiService {
     //---------------------------------------------------------------------------
     // Warehouse/Stock endpoints
 
+    @GET("warehouses")
+    fun getWarehouses(): Call<List<WarehouseModel>>
+
     @POST("warehouse/all")
     fun create_initial_stock(@Body warehouseList: List<WarehouseModel>): Call<ResponseModel>
 
     @POST("warehouse")
     fun updateStock(@Body warehouseModel: WarehouseModel): Call<ResponseModel>
+
+    //---------------------------------------------------------------------------
+    // Reports endpoints
+
+     //Get Sales Report
+     @GET("sales/report")
+     fun getSalesReportWithFilters(
+         @Query("start_date") startDate: String,
+         @Query("end_date") endDate: String,
+         @Query("categories") categories: List<String>,
+         @Query("best_sellers") bestSellers: Boolean,
+     ): Call<SalesReportModel>
+
+    @GET("sales/comparison")
+    fun getSalesComparison(): Call<SalesComparison>
+
+    //Get Stock Report
+    @GET("stock/report")
+    fun getStockReport(
+        @Query("wineId") wineId: String? = null
+    ): Call<List<StockItem>>
+
 }

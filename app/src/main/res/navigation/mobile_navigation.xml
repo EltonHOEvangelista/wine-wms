@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
+    <!--    app:startDestination="@+id/navigation_control">-->
 
     <fragment
         android:id="@+id/navigation_home"
@@ -49,11 +50,19 @@
         android:label="@string/title_control"
         tools:layout="@layout/fragment_control" >
         <action
-            android:id="@+id/action_navigation_control_to_addWineFragment"
-            app:destination="@id/addWineFragment"
-            app:popUpTo="@id/addWineFragment"
+            android:id="@+id/action_navigation_control_to_adminFragment"
+            app:destination="@id/adminFragment"
+            app:popUpTo="@id/adminFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_navigation_control_to_reportsFragment"
+            app:destination="@id/reportsFragment"
+            app:popUpTo="@id/reportsFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+<!--    SignIn-->
 
     <fragment
         android:id="@+id/navigation_signin"
@@ -71,6 +80,8 @@
             app:popUpTo="@id/navigation_signin"
             app:popUpToInclusive="true" />
     </fragment>
+
+<!--    SignUp-->
 
     <fragment
         android:id="@+id/navigation_signup"
@@ -100,10 +111,85 @@
             android:id="@+id/action_navigation_checkout_to_navigation_cart"
             app:destination="@id/navigation_cart" />
     </fragment>
+
+
+
+<!--AdminFragment- Manage Wines-->
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.example.winewms.ui.control.manageWines.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin">
+
+        <action
+            android:id="@+id/action_adminFragment_to_editWineFragment"
+            app:destination="@id/editWineFragment" />
+
+        <action
+            android:id="@+id/action_adminFragment_to_addWineFragment"
+            app:destination="@id/addWineFragment"
+            app:popUpTo="@id/addWineFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+<!--Add wine-->
     <fragment
         android:id="@+id/addWineFragment"
         android:name="com.example.winewms.ui.control.addwine.AddWineFragment"
         android:label="fragment_add_wine"
         tools:layout="@layout/fragment_add_wine" />
+
+
+<!--Edit wine Fragment-->
+    <fragment
+        android:id="@+id/editWineFragment"
+        android:name="com.example.winewms.ui.control.manageWines.EditWineFragment"
+        android:label="fragment_edit_wine"
+        tools:layout="@layout/fragment_edit_wine">
+        <argument
+            android:name="wineId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+
+<!--Reports Fragment-->
+    <fragment
+        android:id="@+id/reportsFragment"
+        android:name="com.example.winewms.ui.control.reports.ReportsFragment"
+        android:label="fragment_reports" >
+
+        <action
+            android:id="@+id/action_reportsFragment_to_salesReportFragment"
+            app:destination="@id/salesReportFragment" />
+
+        <action
+            android:id="@+id/action_reportsFragment_to_stockReportFragment"
+            app:destination="@id/stockReportFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_reportsFragment_to_financialReportFragment"-->
+<!--            app:destination="@id/financialReportFragment" />-->
+    </fragment>
+
+<!--Sales Reports Fragment-->
+    <fragment
+        android:id="@+id/salesReportFragment"
+        android:name="com.example.winewms.ui.control.reports.sales.SalesReportFragment"
+        android:label="Sales Report Fragment" />
+
+<!--Stock Reports Fragment-->
+    <fragment
+        android:id="@+id/stockReportFragment"
+        android:name="com.example.winewms.ui.control.reports.stock.StockReportFragment"
+        android:label="Stock Report Fragment" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/financialReportFragment"-->
+<!--        android:name="com.example.winewms.ui.control.admin.reports.ReportsFragment admin.reports.financial.FinancialReportFragment"-->
+<!--        android:label="Financial Report Fragment" />-->
+
+
+
+
 
 </navigation>

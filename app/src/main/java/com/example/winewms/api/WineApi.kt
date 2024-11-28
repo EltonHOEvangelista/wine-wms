@@ -8,7 +8,8 @@ object WineApi {
     //private const val BASE_URL = "http://10.0.2.2:8888/v1/api/"
 
     //use this in production
-    private const val BASE_URL = "http://52.0.58.207:8888/v1/api/"
+    private const val BASE_URL = "http://192.168.1.206:8888/v1/api/"
+//    private const val BASE_URL = "http://52.0.58.207:8888/v1/api/"
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
