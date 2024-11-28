@@ -53,6 +53,9 @@
             app:destination="@id/addWineFragment"
             app:popUpTo="@id/addWineFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_control_to_editWineFragment"
+            app:destination="@id/editWineFragment" />
     </fragment>
 
     <fragment
@@ -105,5 +108,15 @@
         android:name="com.example.winewms.ui.control.addwine.AddWineFragment"
         android:label="fragment_add_wine"
         tools:layout="@layout/fragment_add_wine" />
+    <fragment
+        android:id="@+id/editWineFragment"
+        android:name="com.example.winewms.ui.control.EditWineFragment"
+        android:label="fragment_edit_wine"
+        tools:layout="@layout/fragment_edit_wine">
+        <argument
+            android:name="wineId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
 
 </navigation>

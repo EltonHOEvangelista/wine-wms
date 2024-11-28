@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -58,7 +59,7 @@ interface WineApiService {
     fun createWine(@Body wineModel: WineModel): Call<ResponseModel>
 
     //update an existing wine by ID
-    @PUT("wines/{id}")
+    @PATCH("wines/{id}")
     fun updateWine(@Path("id") wineId: String, @Body wineModel: WineModel): Call<String>
 
     //delete an existing wine by ID
@@ -89,6 +90,10 @@ interface WineApiService {
 
     //---------------------------------------------------------------------------
     // Warehouse/Stock endpoints
+
+    @GET("warehouses")
+    fun getWarehouses(): Call<List<WarehouseModel>>
+
 
     @POST("warehouse/all")
     fun create_initial_stock(@Body warehouseList: List<WarehouseModel>): Call<ResponseModel>

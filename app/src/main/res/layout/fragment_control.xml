@@ -3,173 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <ImageView
+        android:id="@+id/imgWineBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wine_background"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/rounded_corners_white_b"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right"
-            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imgFilter"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_filter_list" />
 
-            <ImageView
-                android:id="@+id/imgWineBackground"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/wine_background" />
+        <EditText
+            android:id="@+id/txtWineSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/txtWineSearchHint"
+            android:inputType="text"
+            android:textAlignment="textEnd"
+            android:textColor="@color/Dark"
+            android:textSize="16sp" />
 
-            <LinearLayout
-                android:id="@+id/linearLayoutSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/rounded_corners_white_b"
-                android:gravity="center"
-                android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/search_24" />
+    </LinearLayout>
 
-                <EditText
-                    android:id="@+id/txtWineSearch"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/txtWineSearchHint"
-                    android:inputType="text"
-                    android:text="@string/txtWineSearch"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/Dark"
-                    android:textSize="16sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewWines"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="360dp"
+        android:clipToPadding="false"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-                <ImageView
-                    android:id="@+id/imgSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/search_24" />
-            </LinearLayout>
+        tools:layout_editor_absoluteX="16dp" />
 
-            <LinearLayout
-                android:id="@+id/linearLayoutFeaturedWines"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/labelFeattuedWines"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Horizontal RecyclerView to display wines. When click over the wine card, it extends the card allowing admin to edit, set stock, etc.. It will be loaded based on search and filter criteria"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewFeaturedWines"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:background="@drawable/rounded_corners_light_red"
-                    android:orientation="horizontal"
-                    android:padding="4dp"
-                    android:scrollbars="horizontal" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/dividerWineType"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="16dp"
-                android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:id="@+id/labelShopByType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="Dashboards of sales, customers, stocks, ..."
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/linearLayoutShopByType"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/rounded_corners_rose_wine"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutWineTypeLine1"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/linearLayoutRedWine"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal" />
-
-                    <LinearLayout
-                        android:id="@+id/linearLayoutRoseWine"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal">
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutWineTypeLine2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/linearLayoutWhiteWine"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:src="@drawable/add_24" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"></LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
