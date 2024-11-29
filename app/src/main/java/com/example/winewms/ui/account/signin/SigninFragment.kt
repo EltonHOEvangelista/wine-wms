@@ -123,6 +123,7 @@ class SigninFragment : Fragment() {
                 val navView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
                 navView.menu.findItem(R.id.navigation_control)?.isVisible = true
                 navView.menu.findItem(R.id.navigation_control)?.isEnabled = true
+                navView.menu.findItem(R.id.navigation_cart)?.isVisible = false
             }
 
             // Navigate to the SignIn page

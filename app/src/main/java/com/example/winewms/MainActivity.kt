@@ -189,6 +189,7 @@ class MainActivity : AppCompatActivity() {
             if (accountModel.type == 1) {
                 navView.menu.findItem(R.id.navigation_control)?.isVisible = true
                 navView.menu.findItem(R.id.navigation_control)?.isEnabled = true
+                navView.menu.findItem(R.id.navigation_cart)?.isVisible = false
             }
 
             Toast.makeText(this, "Welcome to Wine Warehouse, ${accountModel.firstName}!", Toast.LENGTH_SHORT).show()
