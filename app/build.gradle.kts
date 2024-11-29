@@ -54,6 +54,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0") //Retrofit for making API calls
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") //Gson Converter for Retrofit
     implementation("com.google.code.gson:gson:2.8.8")
+    implementation("com.google.code.gson:gson:2.8.9")
 
     implementation("com.google.firebase:firebase-storage-ktx") // Firebase Storage dependency
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
@@ -71,4 +72,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }

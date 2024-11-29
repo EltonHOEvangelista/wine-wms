@@ -34,11 +34,9 @@ import java.util.Calendar
 
 class AdminFragment : Fragment() , OnAdminWineClickListener {
 
-    lateinit var binding: FragmentAdminBinding
-    private var wineApi = WineApi.retrofit.create(WineApiService::class.java)
+    private lateinit var binding: FragmentAdminBinding
+    private val wineApi = WineApi.retrofit.create(WineApiService::class.java)
     private lateinit var adminWineAdapter: AdminWineAdapter
-    private var wineList = listOf<WineModel>()
-    private lateinit var warehouses: List<WarehouseModel>
 
     private val selectedWineTypes = mutableListOf<String>()
     private var harvestYearStart: String? = null
@@ -49,15 +47,12 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         binding = FragmentAdminBinding.inflate(inflater, container, false)
-
         setupClickListeners()
         setupRecyclerView()
-        fetchWineAndWarehouseData()
+        fetchWineData()
         setupSearch()
-
         return binding.root
     }
 
@@ -69,17 +64,11 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
         }
     }
     private fun setupRecyclerView() {
-        adminWineAdapter = AdminWineAdapter(emptyList(), object : OnAdminWineClickListener {
-            override fun onDeleteClick(wine: WineModel) {
-                deleteWine(wine.id)
-            }
-
-            override fun onEditClick(wine: WineModel) {
-                navigateToEditWineFragment(wine)
-            }
-        })
-        binding.recyclerViewWines.layoutManager = LinearLayoutManager(context)
-        binding.recyclerViewWines.adapter = adminWineAdapter
+        adminWineAdapter = AdminWineAdapter(emptyList(), this)
+        binding.recyclerViewWines.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = adminWineAdapter
+        }
     }
 
     // search function
@@ -102,30 +91,46 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
     }
 
     private fun fetchDataWithFilters(query: String, minPrice: Int? = null, maxPrice: Int? = null) {
-        val filters = mutableMapOf<String, String>()
-        filters["name"] = query
-
-        if (selectedWineTypes.isNotEmpty()) {
-            filters["type"] = selectedWineTypes.joinToString(",")
+        val filters = mutableMapOf<String, String>().apply {
+            put("name", query)
+            selectedWineTypes.takeIf { it.isNotEmpty() }?.let { put("type", it.joinToString(",")) }
+            harvestYearStart?.let { put("min_harvest", it) }
+            harvestYearEnd?.let { put("max_harvest", it) }
+            minPrice?.let { put("min_price", it.toString()) }
+            maxPrice?.let { put("max_price", it.toString()) }
         }
-
-        harvestYearStart?.let { filters["min_harvest"] = it }
-        harvestYearEnd?.let { filters["max_harvest"] = it }
-
-        minPrice?.let { filters["min_price"] = it.toString() }
-        maxPrice?.let { filters["max_price"] = it.toString() }
 
         wineApi.getWines(filters = filters).enqueue(object : Callback<DataWrapper> {
             override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
                 if (response.isSuccessful) {
-                    response.body()?.let { wrapper ->
-                        fetchWarehouseData { warehouses ->
-                            val winesWithStock = aggregateWineStock(wrapper.wines, warehouses)
-                            adminWineAdapter.updateData(winesWithStock)
-                        }
-                    }
+                    response.body()?.wines?.let { adminWineAdapter.updateData(it) }
                 } else {
-                    Toast.makeText(context, "Failed to fetch wines", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Failed to fetch data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
+                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun fetchWineData(query: String = "", minPrice: Int? = null, maxPrice: Int? = null) {
+        val filters = mutableMapOf<String, String>().apply {
+            query.takeIf { it.isNotEmpty() }?.let { put("name", it) }
+            selectedWineTypes.takeIf { it.isNotEmpty() }?.let { put("type", it.joinToString(",")) }
+            harvestYearStart?.let { put("min_harvest", it) }
+            harvestYearEnd?.let { put("max_harvest", it) }
+            minPrice?.let { put("min_price", it.toString()) }
+            maxPrice?.let { put("max_price", it.toString()) }
+        }
+
+        wineApi.getWines(page = 1, limit = 10, filters = filters).enqueue(object : Callback<DataWrapper> {
+            override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
+                if (response.isSuccessful) {
+                    response.body()?.wines?.let { adminWineAdapter.updateData(it) }
+                } else {
+                    Toast.makeText(context, "Failed to fetch data", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -136,8 +141,6 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
     }
 
     private fun showFilterPopup(anchorView: View) {
-        // Copy the entire showFilterPopup function from SearchFragment
-        // It can be used as-is since it uses the same layout and logic
         val inflater = LayoutInflater.from(context)
         val popupView = inflater.inflate(R.layout.filter_popup, null)
         val popupWindow = PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true)
@@ -222,8 +225,7 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
                 binding.txtWineSearch.text.clear()
                 popupWindow.dismiss()
 
-                // Use fetchWineAndWarehouseData with filters
-                fetchWineAndWarehouseData(
+                fetchWineData(
                     query = binding.txtWineSearch.text.toString().trim(),
                     minPrice = minPrice,
                     maxPrice = maxPrice
@@ -251,7 +253,7 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
                 maxPriceTextView.text = "1000"
 
                 // Fetch without filters
-                fetchWineAndWarehouseData()
+                fetchWineData()
 
                 popupWindow.dismiss()
             }
@@ -263,67 +265,9 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.txtWineSearch.windowToken, 0)
     }
-    private fun fetchWineAndWarehouseData(
-        query: String = "",
-        minPrice: Int? = null,
-        maxPrice: Int? = null
-    ) {
-        // Create filters map
-        val filters = mutableMapOf<String, String>()
-
-        // Add search query if not empty
-        if (query.isNotEmpty()) {
-            filters["name"] = query
-        }
-
-        // Add wine type filters if any selected
-        if (selectedWineTypes.isNotEmpty()) {
-            filters["type"] = selectedWineTypes.joinToString(",")
-        }
-
-        // Add harvest year filters if set
-        harvestYearStart?.let { filters["min_harvest"] = it }
-        harvestYearEnd?.let { filters["max_harvest"] = it }
-
-        // Add price filters if provided
-        minPrice?.let { filters["min_price"] = it.toString() }
-        maxPrice?.let { filters["max_price"] = it.toString() }
-
-        // Fetch warehouse data
-        fetchWarehouseData { warehouseList ->
-            // Fetch wine data with filters
-            wineApi.getWines(page = 1, limit = 10, filters = filters).enqueue(object : Callback<DataWrapper> {
-                override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
-                    if (response.isSuccessful) {
-                        val wineList = response.body()?.wines ?: emptyList()
-                        // Aggregate stock and update UI
-                        val winesWithStock = aggregateWineStock(wineList, warehouseList)
-                        adminWineAdapter.updateData(winesWithStock)
-                    } else {
-                        Toast.makeText(context, "Failed to fetch wines", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
-                    Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
-        }
-    }
 
 
 
-    private fun updateStock(wineList: List<WineModel>, warehouses: List<WarehouseModel>): List<WineModel> {
-        return wineList.map { wine ->
-            wine.copy(stock = warehouses.sumOf { warehouse ->
-                warehouse.aisles.sumOf { aisle ->
-                    aisle.shelves.sumOf { shelf ->
-                        shelf.wines.filter { it.wine_id == wine.id }.sumOf { it.stock }
-                    }
-                }
-            })
-        }
-    }
 
     //function get warehouse
     private fun fetchWarehouseData(onComplete: (List<WarehouseModel>) -> Unit) {
@@ -344,26 +288,6 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
             }
         })
     }
-
-
-    //function to calculate stock for each wine
-    private fun aggregateWineStock(
-        wineList: List<WineModel>,
-        warehouses: List<WarehouseModel>
-    ): List<WineModel> {
-        return wineList.map { wine ->
-            // Calculate the total stock for this wine across all warehouses
-            val totalStock = warehouses.sumOf { warehouse ->
-                warehouse.aisles.sumOf { aisle ->
-                    aisle.shelves.sumOf { shelf ->
-                        shelf.wines.filter { it.wine_id == wine.id }.sumOf { it.stock }
-                    }
-                }
-            }
-            wine.copy(stock = totalStock)
-        }
-    }
-
 
 
 
@@ -387,12 +311,11 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Wine deleted successfully", Toast.LENGTH_SHORT).show()
-                    fetchWineAndWarehouseData() // Refresh the wine list
+                    fetchWineData()
                 } else {
                     Toast.makeText(context, "Failed to delete wine", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }

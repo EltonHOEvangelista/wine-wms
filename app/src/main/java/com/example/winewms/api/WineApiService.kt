@@ -64,7 +64,7 @@ interface WineApiService {
 
     //update an existing wine by ID
     @PATCH("wines/{id}")
-    fun updateWine(@Path("id") wineId: String, @Body wineModel: WineModel): Call<String>
+    fun updateWine(@Path("id") wineId: String, wine: WineModel): Call<ResponseModel>
 
     //delete an existing wine by ID
     @DELETE("wines/{id}")

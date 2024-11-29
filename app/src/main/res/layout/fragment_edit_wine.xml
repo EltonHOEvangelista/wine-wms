@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/labelAddWine"
+                android:id="@+id/labelEditWine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -791,7 +791,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnSaveWine"
+                android:id="@+id/btnEditWine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"

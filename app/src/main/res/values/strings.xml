@@ -168,6 +168,7 @@
     <string name="txtStock" />
     <string name="txtStockHint">Initial stock (units)</string>
     <string name="btnSaveWine">Add Wine</string>
+    <string name="btnEditWine">Edit Wine</string>
     <string name="labelSetPricesStock">Prices and Initial Stock</string>
     <string name="txtWarehouseLocation" />
     <string name="txtWarehouseLocationHint">Location</string>

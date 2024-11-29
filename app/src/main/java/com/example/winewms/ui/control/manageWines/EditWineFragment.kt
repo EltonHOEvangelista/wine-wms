@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
+import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.data.model.TasteCharacteristics
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.databinding.FragmentEditWineBinding
@@ -24,6 +25,8 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.google.gson.Gson
+
 
 class EditWineFragment : Fragment() {
     private var _binding: FragmentEditWineBinding? = null
@@ -33,6 +36,7 @@ class EditWineFragment : Fragment() {
     private var wineToEdit: WineModel? = null
     private val firebaseStorage = Firebase.storage.reference
     private val wineApi = WineApi.retrofit.create(WineApiService::class.java)
+    private val gson = Gson()
 
 
 
@@ -138,7 +142,7 @@ class EditWineFragment : Fragment() {
             }
 
             // Save button
-            btnSaveWine.setOnClickListener {
+            btnEditWine.setOnClickListener {
                 if (validateInputs()) {
                     saveWine()
                 }
@@ -398,22 +402,30 @@ class EditWineFragment : Fragment() {
     }
 
     private fun updateWineInBackend(wine: WineModel) {
-        wineApi.updateWine(wine.id, wine).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
+        val wineId = wine.id.toString()
+        Log.d("UpdateWine", "Attempting to update wine with ID: $wineId")
+        wineApi.updateWine(wineId, wine).enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Wine updated successfully", Toast.LENGTH_SHORT).show()
                     findNavController().navigateUp()
                 } else {
+                    val errorMsg = try {
+                        response.errorBody()?.string() ?: "Unknown error"
+                    } catch (e: Exception) {
+                        "Error parsing response"
+                    }
+                    Log.e("UpdateWine", "Failed to update wine: $errorMsg")
                     Toast.makeText(
                         context,
-                        "Failed to update wine: ${response.errorBody()?.string()}",
+                        "Failed to update wine: $errorMsg",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.e("UpdateWine", "Failed to update wine: ${response.errorBody()?.string()}")
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Log.e("UpdateWine", "Network failure: ${t.message}")
                 Toast.makeText(
                     context,
                     "Error updating wine: ${t.message}",
