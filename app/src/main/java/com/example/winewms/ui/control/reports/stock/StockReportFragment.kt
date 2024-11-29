@@ -1,27 +1,16 @@
 package com.example.winewms.ui.control.reports.stock
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.winewms.R
 import com.example.winewms.databinding.FragmentStockReportBinding
 import com.example.winewms.ui.control.reports.ReportsViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [StockReportFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StockReportFragment : Fragment() {
 
     private lateinit var binding: FragmentStockReportBinding
@@ -32,10 +21,10 @@ class StockReportFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentStockReportBinding.inflate(inflater, container, false)
-        setupObservers()
-        reportsViewModel.fetchStockReport()
 
-//        binding.tvStockReportPeriod.text = "Current Period: ${getCurrentMonth()}"
+        setupObservers()
+        reportsViewModel.fetchLowStockWines() // Chamar os vinhos com alerta
+        reportsViewModel.fetchStockReport()   // Chamar os vinhos para o relatório geral
 
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -44,31 +33,36 @@ class StockReportFragment : Fragment() {
     }
 
     private fun setupObservers() {
+        // Observa os vinhos com estoque baixo
+        reportsViewModel.lowStockWines.observe(viewLifecycleOwner) { lowStockList ->
+            if (lowStockList.isNotEmpty()) {
+                displayLowStockWines(lowStockList)
+            } else {
+                binding.tvLowStockHeader.visibility = View.GONE
+            }
+        }
+
+        // Observa o relatório completo
         reportsViewModel.stockReport.observe(viewLifecycleOwner) { stockList ->
             if (stockList.isNotEmpty()) {
-                val adapter = StockReportAdapter(stockList)
-                binding.rvStockReport.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvStockReport.adapter = adapter
+                updateRecyclerView(stockList)
             } else {
-                Toast.makeText(requireContext(), "No stock data available", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "No stock data available", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
-
-        reportsViewModel.stockReport.observe(viewLifecycleOwner) { stockItems ->
-            if (stockItems != null && stockItems.isNotEmpty()) {
-                updateRecyclerView(stockItems)
-            } else {
-                Toast.makeText(requireContext(), "No stock data available", Toast.LENGTH_SHORT).show()
-            }
-
-        }
-
     }
 
-    private fun updateRecyclerView(stockItems: List<StockItem>) {
-        val adapter = StockReportAdapter(stockItems)
-        binding.rvStockReport.adapter = adapter
+    private fun displayLowStockWines(lowStockList: List<StockItem>) {
+        binding.tvLowStockHeader.visibility = View.VISIBLE
+        val alertText =
+            lowStockList.joinToString("\n") { "${it.wineName} - Only ${it.totalStock} left!" }
+        binding.tvLowStockHeader.text = alertText
+    }
+
+    private fun updateRecyclerView(stockList: List<StockItem>) {
+        val adapter = StockReportAdapter(stockList)
         binding.rvStockReport.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvStockReport.adapter = adapter
     }
-
 }

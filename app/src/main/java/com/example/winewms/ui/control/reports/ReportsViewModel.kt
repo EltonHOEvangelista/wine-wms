@@ -34,6 +34,9 @@ class ReportsViewModel : ViewModel() {
     private val _financeReport = MutableLiveData<FinanceReportModel?>()
     val financeReport: LiveData<FinanceReportModel?> = _financeReport
 
+    private val _lowStockWines = MutableLiveData<List<StockItem>>()
+    val lowStockWines: LiveData<List<StockItem>> = _lowStockWines
+
 
     private val apiService: WineApiService by lazy {
         WineApi.retrofit.create(WineApiService::class.java)
@@ -89,24 +92,6 @@ class ReportsViewModel : ViewModel() {
         }
     }
 
-    fun fetchStockReport(wineId: String? = null) {
-        _loading.postValue(true)
-        viewModelScope.launch {
-            try {
-                val response = apiService.getStockReport(wineId).execute()
-                if (response.isSuccessful) {
-                    _stockReport.postValue(response.body())
-                } else {
-                    _stockReport.postValue(emptyList())
-                }
-            } catch (e: Exception) {
-                _stockReport.postValue(emptyList())
-            } finally {
-                _loading.postValue(false)
-            }
-        }
-    }
-
     fun fetchCurrentMonthFinanceReport() {
         viewModelScope.launch {
             try {
@@ -140,6 +125,58 @@ class ReportsViewModel : ViewModel() {
             }
         }
     }
+
+
+
+    fun fetchStockReport(wineId: String? = null) {
+        _loading.postValue(true) // Mostrar estado de carregamento
+        viewModelScope.launch {
+            try {
+                // Executa a chamada de forma síncrona
+                val response = apiService.getStockReport(wineId).execute()
+
+                if (response.isSuccessful) {
+                    // Atualiza LiveData com os dados recebidos
+                    _stockReport.postValue(response.body() ?: emptyList())
+                } else {
+                    // Atualiza com uma lista vazia em caso de erro
+                    _stockReport.postValue(emptyList())
+                    Log.e("StockReportVM", "Error code: ${response.code()}, message: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                // Atualiza com uma lista vazia em caso de exceção
+                _stockReport.postValue(emptyList())
+                Log.e("StockReportVM", "Exception occurred: ${e.message}")
+            } finally {
+                _loading.postValue(false) // Esconde estado de carregamento
+            }
+        }
+    }
+
+    fun fetchLowStockWines() {
+        viewModelScope.launch {
+            _loading.postValue(true)
+            try {
+                val response = apiService.getLowStockWines().execute()
+                if (response.isSuccessful) {
+                    _lowStockWines.postValue(response.body())
+                } else {
+                    _lowStockWines.postValue(emptyList())
+                    Log.e("LowStockWines", "Error code: ${response.code()}, message: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                _lowStockWines.postValue(emptyList())
+                Log.e("LowStockWines", "Exception occurred: ${e.message}")
+            } finally {
+                _loading.postValue(false)
+            }
+        }
+    }
+
+
+
+
+
 }
 
 

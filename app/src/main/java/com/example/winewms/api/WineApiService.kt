@@ -128,6 +128,8 @@ interface WineApiService {
         @Query("wineId") wineId: String? = null
     ): Call<List<StockItem>>
 
+    @GET("stock/low-stock")
+    fun getLowStockWines(): Call<List<StockItem>>
 
     //Get Finance Reports
     @GET("financeReport/currentMonth")
@@ -138,6 +140,8 @@ interface WineApiService {
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String
     ): Call<FinanceReportModel>
+
+
 
 
 }
