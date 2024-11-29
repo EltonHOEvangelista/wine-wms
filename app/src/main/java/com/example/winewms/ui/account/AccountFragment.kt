@@ -171,12 +171,15 @@ class AccountFragment : Fragment() {
         val success = dbHelper.signout(accountViewModel.account.value?.accountId ?: "0")
         if (success) {
 
+            val navView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
             //Deactivate UI admin features. Type = 1 (administrator)
             if (accountViewModel.account.value?.type == 1) {
-                val navView = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+
                 navView.menu.findItem(R.id.navigation_control)?.isVisible = false
                 navView.menu.findItem(R.id.navigation_control)?.isEnabled = false
             }
+
+            navView.menu.findItem(R.id.navigation_cart)?.isVisible = true
 
             // Clean data in the ViewModel
             accountViewModel.clearAccount()
