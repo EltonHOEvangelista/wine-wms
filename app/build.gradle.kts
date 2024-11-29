@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    implementation("com.google.android.material:material:1.5.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0") //Retrofit for making API calls
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") //Gson Converter for Retrofit
     implementation("com.google.code.gson:gson:2.8.8")
@@ -67,7 +68,7 @@ dependencies {
     implementation(libs.firebase.common.ktx)
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

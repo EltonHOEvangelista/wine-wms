@@ -23,4 +23,6 @@
     <color name="ChardonnayWine">#F0E68C</color>
     <color name="Gold">#FFD700</color>
     <color name="GoldRod">#DAA520</color>
+    <color name="Primary">#8B0000</color>
+
 </resources>

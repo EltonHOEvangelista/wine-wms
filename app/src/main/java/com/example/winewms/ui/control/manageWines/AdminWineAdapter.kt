@@ -20,9 +20,7 @@ class AdminWineAdapter(
 
     inner class ViewHolder(val binding: AdminWineCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         init {
-            // Set click listener for expanding/collapsing details
             binding.headerLayout.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -32,7 +30,6 @@ class AdminWineAdapter(
                 }
             }
 
-            // Set click listeners for admin actions
             binding.btnEdit.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -48,15 +45,11 @@ class AdminWineAdapter(
             }
         }
 
-
         fun bind(wine: WineModel) {
-            // Bind header information
             binding.txtWineName.text = wine.name
             binding.txtStock.text = "Stock: ${wine.stock}"
 
-            // Bind wine card details (when expanded)
             binding.wineCard.apply {
-                // Load wine image from Firebase
                 val storageRef = Firebase.storage.reference.child(wine.image_path)
                 storageRef.downloadUrl.addOnSuccessListener { uri ->
                     Picasso.get()
@@ -67,7 +60,6 @@ class AdminWineAdapter(
                     imgBottle.setImageResource(R.drawable.wine_bottle_t)
                 }
 
-                // Set wine card details
                 txtWineName.text = wine.name
                 txtWineProcuder.text = wine.producer
                 txtWineCountry.text = wine.country
@@ -90,10 +82,15 @@ class AdminWineAdapter(
     }
 
     override fun getItemCount() = wineList.size
+
     fun updateData(newWineList: List<WineModel>) {
         wineList = newWineList
         notifyDataSetChanged()
     }
 
-
+    fun addData(newWines: List<WineModel>) {
+        val oldSize = wineList.size
+        wineList = wineList + newWines
+        notifyItemRangeInserted(oldSize, newWines.size)
+    }
 }

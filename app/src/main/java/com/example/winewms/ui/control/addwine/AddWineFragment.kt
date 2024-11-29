@@ -254,8 +254,8 @@ class AddWineFragment : Fragment() {
         if (listOf(name, producer, country, type, description, lightness, tannin, dryness, acidity,
                 warehouse_location, warehouse_aisle, warehouse_shelf).any { it.isEmpty() } ||
             harvest_year == null || rate == null || sale_price == null || discount == null || cost_price == 0.0f ||
-            grapes.isEmpty() || food_pair.isEmpty() ||
-            !::image_path.isInitialized) {
+            grapes.isEmpty() || food_pair.isEmpty() || !::image_path.isInitialized
+            ) {
             Toast.makeText(requireContext(), "Please fill out all required fields, including wine image.", Toast.LENGTH_SHORT).show()
         }
         else if ((cost_price == 0.0f || stock == 0) ||
@@ -444,7 +444,7 @@ class AddWineFragment : Fragment() {
                 if (nameIndex >= 0) {
                     fileName = it.getString(nameIndex)
                 }
-            }
+           }
         }
         return fileName
     }

@@ -258,12 +258,24 @@ class EditWineFragment : Fragment() {
     }
 
     private fun saveWine() {
-        val updatedWine = createUpdatedWineModel() ?: return
+        try {
 
-        if (imageUri != null) {
-            uploadImageAndUpdateWine(updatedWine)
-        } else {
-            updateWineInBackend(updatedWine)
+            val updatedWine = createUpdatedWineModel()
+            if (updatedWine == null) {
+                Log.e("SaveWine", "Updated wine model is null")
+                return
+            }
+
+            if (imageUri != null) {
+
+                uploadImageAndUpdateWine(updatedWine)
+            } else {
+
+                updateWineInBackend(updatedWine)
+            }
+        } catch (e: Exception) {
+
+            Toast.makeText(context, "Error saving wine: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -403,7 +415,6 @@ class EditWineFragment : Fragment() {
 
     private fun updateWineInBackend(wine: WineModel) {
         val wineId = wine.id.toString()
-        Log.d("UpdateWine", "Attempting to update wine with ID: $wineId")
         wineApi.updateWine(wineId, wine).enqueue(object : Callback<ResponseModel> {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 if (response.isSuccessful) {
