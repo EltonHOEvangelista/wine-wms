@@ -176,6 +176,9 @@
     <string name="txtWarehouseShelf" />
     <string name="txtWarehouseShelfHint">Shelf</string>
     <string name="labelStorage">Storage</string>
+    <string name="total_sales">Total Sales: $%s</string>
+    <string name="total_purchases">Total Purchases: $%s</string>
+    <string name="total_balance">Balance: $%s</string>
 
     <string-array name="spinnerWineType">
         <item>Red</item>

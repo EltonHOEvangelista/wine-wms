@@ -11,6 +11,7 @@ import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.signin.SigninModel
 import com.example.winewms.ui.control.reports.ReportModel
+import com.example.winewms.ui.control.reports.financial.FinanceReportModel
 import com.example.winewms.ui.control.reports.sales.SalesComparison
 import com.example.winewms.ui.control.reports.sales.SalesReportModel
 import com.example.winewms.ui.control.reports.stock.StockItem
@@ -109,7 +110,7 @@ interface WineApiService {
     //---------------------------------------------------------------------------
     // Reports endpoints
 
-     //Get Sales Report
+     //Get Sales Reports
      @GET("sales/report")
      fun getSalesReportWithFilters(
          @Query("start_date") startDate: String,
@@ -121,10 +122,22 @@ interface WineApiService {
     @GET("sales/comparison")
     fun getSalesComparison(): Call<SalesComparison>
 
-    //Get Stock Report
+    //Get Stock Reports
     @GET("stock/report")
     fun getStockReport(
         @Query("wineId") wineId: String? = null
     ): Call<List<StockItem>>
+
+
+    //Get Finance Reports
+    @GET("financeReport/currentMonth")
+    fun getFinanceReportForCurrentMonth(): Call<FinanceReportModel>
+
+    @GET("financeReport")
+    fun getFinanceReport(
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String
+    ): Call<FinanceReportModel>
+
 
 }

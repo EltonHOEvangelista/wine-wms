@@ -11,39 +11,67 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <!-- Background Image -->
-    <ImageView
-        android:id="@+id/imgBackground_Search"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:scaleType="centerCrop"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Background Image for Header -->
+        <ImageView
+            android:id="@+id/imgHeaderBackground"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/stock_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/tvStockReportTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stock Report"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Title below the Background Image -->
+        <TextView
+            android:id="@+id/tvStockReportTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Stock Report"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgHeaderBackground" />
 
-    <!-- RecyclerView for Stock Data -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvStockReport"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvStockReportTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Subtitle for Current Stock Period -->
+        <TextView
+            android:id="@+id/tvStockReportPeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Current Period: December"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStockReportTitle" />
+
+        <!-- RecyclerView for Stock Data -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStockReport"
+            android:layout_width="354dp"
+            android:layout_height="322dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStockReportPeriod" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/DarkRedWine"
+            android:text="Back"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.089"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvStockReport" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

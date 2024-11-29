@@ -45,7 +45,7 @@ class ReportsFragment : Fragment() {
 
         //navigate to financial report
         binding.btnFinancialReport.setOnClickListener {
-           // findNavController().navigate(R.id.action_reportsFragment_to_financialReportFragment)
+            findNavController().navigate(R.id.action_reportsFragment_to_financialReportFragment)
         }
     }
 }

@@ -166,9 +166,9 @@
         <action
             android:id="@+id/action_reportsFragment_to_stockReportFragment"
             app:destination="@id/stockReportFragment" />
-<!--        <action-->
-<!--            android:id="@+id/action_reportsFragment_to_financialReportFragment"-->
-<!--            app:destination="@id/financialReportFragment" />-->
+        <action
+            android:id="@+id/action_reportsFragment_to_financialReportFragment"
+            app:destination="@id/financialReportFragment" />
     </fragment>
 
 <!--Sales Reports Fragment-->
@@ -183,10 +183,10 @@
         android:name="com.example.winewms.ui.control.reports.stock.StockReportFragment"
         android:label="Stock Report Fragment" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/financialReportFragment"-->
-<!--        android:name="com.example.winewms.ui.control.admin.reports.ReportsFragment admin.reports.financial.FinancialReportFragment"-->
-<!--        android:label="Financial Report Fragment" />-->
+    <fragment
+        android:id="@+id/financialReportFragment"
+        android:name="com.example.winewms.ui.control.reports.financial.FinanceReportFragment"
+        android:label="Financial Report Fragment" />
 
 
 

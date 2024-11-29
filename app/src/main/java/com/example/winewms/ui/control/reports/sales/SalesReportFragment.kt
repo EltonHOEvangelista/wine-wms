@@ -84,19 +84,16 @@ class SalesReportFragment : Fragment() {
         val categories = getSelectedCategories()
         val bestSellers = binding.filterOptionBestSellers.isChecked
 
-        // Validate dates
         if (startDate.isEmpty() || endDate.isEmpty()) {
             Toast.makeText(requireContext(), "Please select both start and end dates.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Trigger fetching of the sales report with filters
         reportsViewModel.fetchSalesReportWithFilters(
             startDate = startDate,
             endDate = endDate,
             categories = categories,
             bestSellers = bestSellers,
-
         )
     }
 

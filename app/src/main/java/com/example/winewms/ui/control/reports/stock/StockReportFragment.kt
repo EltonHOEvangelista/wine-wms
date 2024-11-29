@@ -34,6 +34,12 @@ class StockReportFragment : Fragment() {
         binding = FragmentStockReportBinding.inflate(inflater, container, false)
         setupObservers()
         reportsViewModel.fetchStockReport()
+
+//        binding.tvStockReportPeriod.text = "Current Period: ${getCurrentMonth()}"
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
         return binding.root
     }
 

@@ -49,7 +49,7 @@ class ControlFragment : Fragment() {
     private fun setupClickListeners() {
 
 
-         //Configure click on "Manage Wines" button
+        //Configure click on "Manage Wines" button
         binding.btnManageWines.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_control_to_adminFragment)
         }
@@ -63,122 +63,76 @@ class ControlFragment : Fragment() {
     private fun setupObservers() {
         reportsViewModel.salesComparison.observe(viewLifecycleOwner) { salesComparison ->
             if (salesComparison != null) {
-                updateLineChartTests(salesComparison)
+                updateLineChart(salesComparison)
             } else {
-                Toast.makeText(requireContext(), "Failed to load sales data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to load sales data", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
 
-//for mockdata use this code
-    private fun updateLineChartTests(salesComparison: SalesComparison) {
-        // Simular entradas para o mês anterior
+    private fun updateLineChart(salesComparison: SalesComparison) {
+
         val previousMonthEntries = listOf(
-            Entry(0f, salesComparison.previousMonthSales * 0.8f), // Exemplo de valor inicial
-            Entry(1f, salesComparison.previousMonthSales)        // Valor real do mês anterior
+            Entry(0f, salesComparison.previousMonthSales * 0.8f),
+            Entry(1f, salesComparison.previousMonthSales)
         )
-        val previousMonthDataSet = LineDataSet(previousMonthEntries, "Previous Month")
-        previousMonthDataSet.color = ContextCompat.getColor(requireContext(), R.color.LightRedWine) // Cor da linha
-        previousMonthDataSet.valueTextColor = ContextCompat.getColor(requireContext(), R.color.black)
-        previousMonthDataSet.lineWidth = 2f
-        previousMonthDataSet.setCircleColor(ContextCompat.getColor(requireContext(), R.color.LightRedWine)) // Cor dos pontos
+        val previousMonthDataSet = LineDataSet(previousMonthEntries, "Previous Month").apply {
+            color = ContextCompat.getColor(requireContext(), R.color.LightRedWine)
+            valueTextColor = ContextCompat.getColor(requireContext(), R.color.black)
+            lineWidth = 2f
+            setCircleColor(ContextCompat.getColor(requireContext(), R.color.LightRedWine))
+        }
 
-        // Simular entradas para o mês atual
         val currentMonthEntries = listOf(
-            Entry(0f, salesComparison.currentMonthSales * 0.9f), // Exemplo de valor inicial
-            Entry(2f, salesComparison.currentMonthSales)        // Valor real do mês atual
+            Entry(0f, salesComparison.currentMonthSales * 0.9f),
+            Entry(2f, salesComparison.currentMonthSales)
         )
-        val currentMonthDataSet = LineDataSet(currentMonthEntries, "Current Month")
-        currentMonthDataSet.color = ContextCompat.getColor(requireContext(), R.color.DarkRedWine) // Cor da linha
-        currentMonthDataSet.valueTextColor = ContextCompat.getColor(requireContext(), R.color.black)
-        currentMonthDataSet.lineWidth = 2f
-        currentMonthDataSet.setCircleColor(ContextCompat.getColor(requireContext(), R.color.DarkRedWine)) // Cor dos pontos
+        val currentMonthDataSet = LineDataSet(currentMonthEntries, "Current Month").apply {
+            color = ContextCompat.getColor(requireContext(), R.color.DarkRedWine)
+            valueTextColor = ContextCompat.getColor(requireContext(), R.color.black)
+            lineWidth = 2f
+            setCircleColor(ContextCompat.getColor(requireContext(), R.color.DarkRedWine))
+        }
 
-        // Configurando o gráfico com os dois conjuntos de dados
         val lineData = LineData(previousMonthDataSet, currentMonthDataSet)
         binding.lineChart.data = lineData
 
-        // Configuração do gráfico
-        val xAxis = binding.lineChart.xAxis
-        xAxis.valueFormatter = IndexAxisValueFormatter(listOf("Previous Month", "Current Month"))
-        xAxis.granularity = 1f
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.textColor = ContextCompat.getColor(requireContext(), R.color.black)
+        val xAxis = binding.lineChart.xAxis.apply {
+            valueFormatter = IndexAxisValueFormatter(listOf("Previous Month", "Current Month"))
+            granularity = 1f
+            position = XAxis.XAxisPosition.BOTTOM
+            textColor = ContextCompat.getColor(requireContext(), R.color.black)
+        }
 
-        binding.lineChart.description.text = "Monthly Sales Comparison"
-        binding.lineChart.description.textColor = ContextCompat.getColor(requireContext(), R.color.black)
-        binding.lineChart.animateY(1000)
-        binding.lineChart.invalidate() // Atualiza o gráfico
+        val maxSales = maxOf(salesComparison.previousMonthSales, salesComparison.currentMonthSales)
+        val quartile = maxSales / 4f
+
+        binding.lineChart.axisLeft.apply {
+            axisMinimum = 0f
+            axisMaximum = maxSales * 1.2f
+            granularity = quartile
+            textColor = ContextCompat.getColor(requireContext(), R.color.black)
+        }
+        binding.lineChart.axisRight.isEnabled = false
+
+        binding.lineChart.description.apply {
+            text = "Monthly Sales Comparison: Previous vs Current Month"
+            textColor = ContextCompat.getColor(requireContext(), R.color.black)
+            textSize = 12f
+        }
+
+        binding.lineChart.apply {
+            setDrawGridBackground(false)
+            legend.isEnabled = true
+            legend.textColor = ContextCompat.getColor(requireContext(), R.color.black)
+            animateY(1000)
+            invalidate()
+        }
     }
-
-//for Real data from backend use this code
-//private fun updateLineChart(salesComparison: SalesComparison) {
-//    // Retrieve the actual sales data from the ViewModel
-//    val currentMonthSales = salesComparison.currentMonthSales
-//    val previousMonthSales = salesComparison.previousMonthSales
-//
-//    // Create data entries for the previous month
-//    val previousMonthEntries = listOf(
-//        Entry(0f, previousMonthSales * 0.9f), // Simulates an intermediate value
-//        Entry(1f, previousMonthSales)        // Actual value for the previous month
-//    )
-//
-//    // Create data entries for the current month
-//    val currentMonthEntries = listOf(
-//        Entry(1f, previousMonthSales),       // Starts where the previous month ended
-//        Entry(2f, currentMonthSales)         // Actual value for the current month
-//    )
-//
-//    // Configure the dataset for the previous month
-//    val previousMonthDataSet = LineDataSet(previousMonthEntries, "Previous Month").apply {
-//        color = ContextCompat.getColor(requireContext(), R.color.lightRed) // Line color
-//        valueTextColor = ContextCompat.getColor(requireContext(), R.color.primaryText) // Text color for values
-//        lineWidth = 2f // Line thickness
-//        setCircleColor(ContextCompat.getColor(requireContext(), R.color.lightRed)) // Circle color
-//    }
-//
-//    // Configure the dataset for the current month
-//    val currentMonthDataSet = LineDataSet(currentMonthEntries, "Current Month").apply {
-//        color = ContextCompat.getColor(requireContext(), R.color.primaryDark) // Line color
-//        valueTextColor = ContextCompat.getColor(requireContext(), R.color.primaryText) // Text color for values
-//        lineWidth = 2f // Line thickness
-//        setCircleColor(ContextCompat.getColor(requireContext(), R.color.primaryDark)) // Circle color
-//    }
-//
-//    // Add both datasets to the chart data
-//    val lineData = LineData(previousMonthDataSet, currentMonthDataSet)
-//    binding.lineChart.data = lineData
-//
-//    // Additional chart configurations
-//    binding.lineChart.apply {
-//        description.text = "Monthly Sales Comparison" // Chart description
-//        description.textColor = ContextCompat.getColor(requireContext(), R.color.primaryText) // Description text color
-//
-//        // Configure the X-axis
-//        xAxis.apply {
-//            valueFormatter = IndexAxisValueFormatter(listOf("Previous Month", "Current Month")) // X-axis labels
-//            granularity = 1f // Distance between values
-//            position = XAxis.XAxisPosition.BOTTOM // Position at the bottom of the chart
-//            textColor = ContextCompat.getColor(requireContext(), R.color.primaryText) // X-axis text color
-//        }
-//
-//        // Configure the Y-axis (left axis)
-//        axisLeft.apply {
-//            val maxSales = maxOf(currentMonthSales, previousMonthSales) // Determine the highest sales value
-//            axisMinimum = 0f // Start Y-axis from 0
-//            axisMaximum = maxSales * 1.2f // Extend Y-axis 20% beyond the highest value
-//            textColor = ContextCompat.getColor(requireContext(), R.color.primaryText) // Y-axis text color
-//        }
-//
-//        // Disable the right Y-axis (optional)
-//        axisRight.isEnabled = false
-//
-//        // Add animation for better visualization
-//        animateY(1000) // Animate Y-axis over 1 second
-//        invalidate() // Redraw the chart
-//    }
-//}
-
-
 }
+
+
+
+
 
