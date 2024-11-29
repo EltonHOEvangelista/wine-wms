@@ -127,7 +127,7 @@ class AccountFragment : Fragment() {
     private fun getCustomerOrders(accountId: String) {
 
         //Fetch data from api
-        val apiCall = wineApi.getSalesOrdersByCustomerId(accountId)
+        val apiCall = wineApi.getOrdersByCustomerId(accountId)
 
         //Asynchronous call to request sales orders by customer's id
         apiCall.enqueue(object : Callback<SalesDataWrapper> {
