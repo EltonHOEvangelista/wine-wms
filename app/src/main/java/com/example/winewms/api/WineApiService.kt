@@ -14,6 +14,7 @@ import com.example.winewms.ui.control.reports.ReportModel
 import com.example.winewms.ui.control.reports.financial.FinanceReportModel
 import com.example.winewms.ui.control.reports.sales.SalesComparison
 import com.example.winewms.ui.control.reports.sales.SalesReportModel
+import com.example.winewms.ui.control.reports.sales.SoldWine
 import com.example.winewms.ui.control.reports.stock.StockItem
 import retrofit2.Call
 import retrofit2.http.Body
@@ -110,17 +111,21 @@ interface WineApiService {
     //---------------------------------------------------------------------------
     // Reports endpoints
 
-     //Get Sales Reports
-     @GET("sales/report")
-     fun getSalesReportWithFilters(
-         @Query("start_date") startDate: String,
-         @Query("end_date") endDate: String,
-         @Query("categories") categories: List<String>,
-         @Query("best_sellers") bestSellers: Boolean,
-     ): Call<SalesReportModel>
+    //Get Sales Reports
+    @GET("sales/report")
+    fun getSalesReportWithFilters(
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String,
+        @Query("categories") categories: List<String>,
+        @Query("best_sellers") bestSellers: Boolean,
+    ): Call<SalesReportModel>
 
     @GET("sales/comparison")
     fun getSalesComparison(): Call<SalesComparison>
+
+    @GET("sales/wines")
+    suspend fun getSoldWines(): List<SoldWine>
+
 
     //Get Stock Reports
     @GET("stock/report")

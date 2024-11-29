@@ -13,6 +13,7 @@ import com.example.winewms.ui.control.reports.financial.FinanceReportModel
 import com.example.winewms.ui.control.reports.sales.BestSellingProduct
 import com.example.winewms.ui.control.reports.sales.SalesComparison
 import com.example.winewms.ui.control.reports.sales.SalesReportModel
+import com.example.winewms.ui.control.reports.sales.SoldWine
 import com.example.winewms.ui.control.reports.stock.StockItem
 
 import kotlinx.coroutines.launch
@@ -36,6 +37,12 @@ class ReportsViewModel : ViewModel() {
 
     private val _lowStockWines = MutableLiveData<List<StockItem>>()
     val lowStockWines: LiveData<List<StockItem>> = _lowStockWines
+
+    private val _soldWines = MutableLiveData<List<SoldWine>>()
+    val soldWines: LiveData<List<SoldWine>> = _soldWines
+
+
+
 
 
     private val apiService: WineApiService by lazy {
@@ -66,12 +73,12 @@ class ReportsViewModel : ViewModel() {
         startDate: String,
         endDate: String,
         categories: List<String>,
-        bestSellers: Boolean,
+        bestSellers: Boolean
     ) {
-        _loading.postValue(true) // Show loading state
-
+        _loading.postValue(true) // Show loading indicator
         viewModelScope.launch {
             try {
+                // Fetch the sales report using the provided filters
                 val response = apiService.getSalesReportWithFilters(
                     startDate = startDate,
                     endDate = endDate,
@@ -82,12 +89,15 @@ class ReportsViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _salesReport.postValue(response.body())
                 } else {
+                    Log.e("ReportsViewModel", "Failed to fetch sales report: ${response.errorBody()}")
                     _salesReport.postValue(null)
                 }
             } catch (e: Exception) {
+                // Log any error encountered during the fetch
+                Log.e("ReportsViewModel", "Error during sales report fetch: ${e.message}", e)
                 _salesReport.postValue(null)
             } finally {
-                _loading.postValue(false) // Hide loading state
+                _loading.postValue(false) // Hide loading indicator
             }
         }
     }
@@ -172,6 +182,39 @@ class ReportsViewModel : ViewModel() {
             }
         }
     }
+
+    fun fetchSoldWines() {
+        // Set the loading state to true
+        _loading.postValue(true)
+        viewModelScope.launch {
+            try {
+                // Fetch sold wines using Retrofit suspend function
+                val response = apiService.getSoldWines()
+
+                if (!response.isNullOrEmpty()) {
+                    // Update LiveData with the list of sold wines
+                    _soldWines.postValue(response)
+                } else {
+                    // Post an empty list if the response is null or empty
+                    Log.e("SalesReportVM", "No sold wines found.")
+                    _soldWines.postValue(emptyList())
+                }
+            } catch (e: Exception) {
+                // Handle any exceptions during the API call
+                Log.e("SalesReportVM", "Exception occurred: ${e.message}", e)
+                _soldWines.postValue(emptyList())
+            } finally {
+                // Set the loading state to false
+                _loading.postValue(false)
+            }
+        }
+    }
+
+    fun searchWine(query: String) {
+        val filteredWines = _soldWines.value?.filter { it.wineName.contains(query, ignoreCase = true) }
+        _soldWines.postValue(filteredWines ?: emptyList())
+    }
+
 
 
 

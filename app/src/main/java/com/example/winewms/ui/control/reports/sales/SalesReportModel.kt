@@ -23,3 +23,9 @@ data class MonthlySales(
     val totalSales: Float,
     val unitsSold: Int
 )
+
+data class SoldWine(
+    val wineId: String,
+    val wineName: String,
+    val quantitySold: Int
+)
