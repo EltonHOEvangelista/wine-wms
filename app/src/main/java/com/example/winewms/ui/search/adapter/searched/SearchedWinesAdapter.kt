@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso
 class SearchedWinesAdapter(
     private val wineList: List<WineModel>,
     private val listener: OnSearchedWinesClickListener,
+    private val isAdmin: Boolean // Add this parameter to determine user type
 ) : RecyclerView.Adapter<SearchedWinesAdapter.SearchedWineViewHolder>() {
 
     // ViewHolder class for searched wine items
@@ -28,6 +29,22 @@ class SearchedWinesAdapter(
         fun bind(wine: WineModel) {
             // Create a local binding variable for wine_card.xml
             val wineCardBinding = WineCardBinding.bind(binding.wineCard.root)
+
+            // Toggle button visibility based on user type
+            binding.btnAddToCart.visibility = if (isAdmin) View.GONE else View.VISIBLE
+            binding.btnEditWine.visibility = if (isAdmin) View.VISIBLE else View.GONE
+
+            // Set click listener for Add to Cart button
+            binding.btnAddToCart.setOnClickListener {
+                listener.onBuyClick(wine)
+                Toast.makeText(binding.root.context, "Added ${wine.name} to cart", Toast.LENGTH_SHORT).show()
+            }
+
+            // Set click listener for Edit button
+            binding.btnEditWine.setOnClickListener {
+                listener.onEditClick(wine)
+                Toast.makeText(binding.root.context, "Editing ${wine.name}", Toast.LENGTH_SHORT).show()
+            }
 
             // Calculate discounted price and set discount information
             val discount = wine.discount
@@ -40,9 +57,8 @@ class SearchedWinesAdapter(
                 txtWineProcuder.text = wine.producer
                 txtWineCountry.text = wine.country
 
-                //Load image from Google Firebase
+                // Load image from Firebase
                 val storageRef = Firebase.storage.reference.child(wine.image_path)
-                // Fetch the image URL from Firebase Storage
                 storageRef.downloadUrl.addOnSuccessListener { uri ->
                     Picasso.get()
                         .load(uri.toString())
@@ -53,7 +69,7 @@ class SearchedWinesAdapter(
                 }
             }
 
-            // Set discount and discounted price in searched_wine_card.xml
+            // Set discount information
             if (discount > 0.00) {
                 binding.txtDiscount.visibility = View.VISIBLE
                 binding.txtDiscount.text = "Save: ${(discount * 100).toInt()}%"
@@ -62,13 +78,7 @@ class SearchedWinesAdapter(
                 binding.txtOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
 
-            // Set click listeners for the buttons in searched_wine_card.xml
-            binding.btnAddToCart.setOnClickListener {
-                listener.onBuyClick(wine)
-                Toast.makeText(binding.root.context, "Buying ${wine.name}", Toast.LENGTH_SHORT).show()
-            }
-
-            // Set Ranting Bar
+            // Set Rating Bar
             binding.ratingBarWine.rating = wine.rate
 
             // Set Wine Description
@@ -83,7 +93,7 @@ class SearchedWinesAdapter(
                 "rose" -> binding.imgType.setImageResource(R.drawable.glass_rose_wine_24)
                 "dessert wine" -> binding.imgType.setImageResource(R.drawable.glass_red_wine_24)
                 "orange wine" -> binding.imgType.setImageResource(R.drawable.glass_white_wine_24)
-                else -> binding.imgType.setImageResource((R.drawable.glass_red_wine_24))
+                else -> binding.imgType.setImageResource(R.drawable.glass_red_wine_24)
             }
 
             // Set Wine Harvest
@@ -92,54 +102,11 @@ class SearchedWinesAdapter(
             // Set Wine Grapes
             binding.txtGrapes.text = wine.grapes.joinToString(", ")
 
-            // Function to set LayoutParams based on taste characteristic
-            fun setTasteCharacteristic(layout: LinearLayout, weight: Float) {
-                val params = LinearLayout.LayoutParams(
-                    0,
-                    LinearLayout.LayoutParams.MATCH_PARENT
-                ).apply {
-                    this.weight = weight / 10f
-                }
-                layout.layoutParams = params
-            }
-
-            // Set Taste Characteristics
-            with(wine.taste_characteristics) {
-                setTasteCharacteristic(binding.linearLayoutLLightnessRate, lightness.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLLightnessDiff, 10.0f - lightness.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLTanninRate, tannin.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLTanninDiff, 10.0f - tannin.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLDrynessRate, dryness.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLDrynessDiff, 10.0f - dryness.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLAcidityRate, acidity.toFloat())
-                setTasteCharacteristic(binding.linearLayoutLAcidityDiff, 10.0f - acidity.toFloat())
-            }
-
-            // Set Wine Food Pair
-            binding.txtFoodPair.text = wine.food_pair.joinToString(", ")
-
-            // Set Wine's Review
-            fun createReviewTextView(context: Context, reviewText: String): TextView {
-                return TextView(context).apply {
-                    text = "\" $reviewText \""
-                    textSize = 14f
-                    setTypeface(typeface, android.graphics.Typeface.ITALIC)
-                    setPadding(8, 8, 8, 8)
-                }
-            }
-
-            // Add reviews
-            wine.reviews.forEach { review ->
-                val textView = createReviewTextView(itemView.context, review)
-                binding.linearLayoutTextReviews.addView(textView)
-            }
-
-            //Expand Wine Details
+            // Expand Wine Details
             binding.linearLayoutWineCard.setOnClickListener {
                 if (binding.linearLayoutWineDetails.visibility == View.GONE) {
                     binding.linearLayoutWineDetails.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     binding.linearLayoutWineDetails.visibility = View.GONE
                 }
             }
@@ -157,3 +124,4 @@ class SearchedWinesAdapter(
 
     override fun getItemCount() = wineList.size
 }
+

@@ -77,6 +77,16 @@
                 android:text="@string/btnAddToCart"
                 android:textSize="11sp" />
 
+            <Button
+                android:id="@+id/btnEditWine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/rounded_corners_light_red"
+                android:padding="8dp"
+                android:text="Edit"
+                android:visibility="gone" />
+
             <RatingBar
                 android:id="@+id/ratingBarWine"
                 style="@style/CustomRatingBar"
