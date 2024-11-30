@@ -30,6 +30,8 @@ class SearchedWinesAdapter(
             // Set visibility based on isAdmin
             binding.btnAddToCart.visibility = if (isAdmin) View.GONE else View.VISIBLE
             binding.btnEditWine.visibility = if (isAdmin) View.VISIBLE else View.GONE
+            binding.btnDeleteWine.visibility = if (isAdmin) View.VISIBLE else View.GONE
+
 
             // Create a local binding variable for wine_card.xml
             val wineCardBinding = WineCardBinding.bind(binding.wineCard.root)
@@ -78,6 +80,13 @@ class SearchedWinesAdapter(
             binding.btnEditWine.setOnClickListener {
                 if (isAdmin) { // Only admins can use this button
                     Toast.makeText(binding.root.context, "Editing ${wine.name}", Toast.LENGTH_SHORT).show()
+                    // Add navigation to edit fragment or dialog here
+                }
+            }
+
+            binding.btnEditWine.setOnClickListener {
+                if (isAdmin) { // Only admins can use this button
+                    Toast.makeText(binding.root.context, "Deleting ${wine.name}", Toast.LENGTH_SHORT).show()
                     // Add navigation to edit fragment or dialog here
                 }
             }

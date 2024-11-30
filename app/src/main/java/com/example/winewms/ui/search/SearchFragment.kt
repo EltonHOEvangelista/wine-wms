@@ -355,6 +355,14 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         }
     }
 
+    override fun onEditClick(wineModel: WineModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDeleteClick(wineModel: WineModel) {
+        TODO("Not yet implemented")
+    }
+
     private fun updateCardBadge() {
 
         // Find your BottomNavigationView
