@@ -67,8 +67,12 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         parentFragmentManager.setFragmentResultListener("addWineResult", this) { _, bundle ->
             val wineAdded = bundle.getBoolean("wineAdded", false)
             if (wineAdded) {
-                // Refresh the RecyclerView
-                fetchDataWithFilters("") // Assuming this refreshes the data
+                // Trigger filter to refresh the list
+                fetchDataWithFilters(
+                    query = binding.txtWineSearch.text.toString(),
+                    minPrice = minPrice,
+                    maxPrice = maxPrice
+                )
             }
         }
 
@@ -214,7 +218,10 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
             override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
                 if (response.isSuccessful) {
-                    response.body()?.wines?.let { searchWineViewModel.setWineList(it) }
+                    response.body()?.wines?.let {
+                        Log.d("fetchDataWithFilters", "New wines fetched: $it")
+                        searchWineViewModel.setWineList(it)
+                    }
                 } else {
                     Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
                 }
