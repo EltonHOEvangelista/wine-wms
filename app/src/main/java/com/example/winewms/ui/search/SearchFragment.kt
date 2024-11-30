@@ -61,6 +61,14 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
+        // Observe account data and set visibility for admin-specific features
+        accountViewModel.account.observe(viewLifecycleOwner) { accountModel ->
+            val isAdmin = accountModel?.type == 1 // Default to false if accountModel is null
+
+            // Set FAB visibility based on admin status
+            binding.fabAddWine.visibility = if (isAdmin) View.VISIBLE else View.GONE
+        }
+
         //Setup vertical recycler view to display searched wines
         setupRecyclerView()
 
@@ -104,6 +112,12 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         // Filter button click listener
         binding.imgFilter.setOnClickListener {
             showFilterPopup(it)
+        }
+
+        // Set FAB click listener
+        binding.fabAddWine.setOnClickListener {
+            Toast.makeText(requireContext(), "Add new wine clicked!", Toast.LENGTH_SHORT).show()
+            // Handle navigation to AddWineFragment or show a dialog for adding new wines
         }
 
         return binding.root
@@ -360,6 +374,10 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     }
 
     override fun onDeleteClick(wineModel: WineModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onAddClick(wineModel: WineModel) {
         TODO("Not yet implemented")
     }
 

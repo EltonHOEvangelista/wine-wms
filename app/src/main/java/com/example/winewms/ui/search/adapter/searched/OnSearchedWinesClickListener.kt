@@ -7,5 +7,6 @@ interface OnSearchedWinesClickListener {
     fun onBuyClick(wineModel: WineModel)
     fun onEditClick(wineModel: WineModel)
     fun onDeleteClick(wineModel: WineModel)
+    fun onAddClick(wineModel: WineModel)
     fun onDetailsClick(wineModel: WineModel)
 }
