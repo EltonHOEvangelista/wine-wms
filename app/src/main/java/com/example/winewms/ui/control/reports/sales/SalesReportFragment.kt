@@ -34,13 +34,14 @@ class SalesReportFragment : Fragment() {
         setupFilters()
         setupSearch()
 
+
         binding.btnBack.setOnClickListener {
             // Chama o método para voltar à tela anterior
             handleBackButton()
         }
 
         // Fetch the initial list of sold wines
-        reportsViewModel.fetchSoldWines()
+        reportsViewModel.fetchSoldWines(requireContext())
 
         return binding.root
     }
@@ -121,6 +122,7 @@ class SalesReportFragment : Fragment() {
 
         // Fetch the sales report with the specified filters
         reportsViewModel.fetchSalesReportWithFilters(
+            context = requireContext(),
             startDate = startDate,
             endDate = endDate,
             categories = categories,

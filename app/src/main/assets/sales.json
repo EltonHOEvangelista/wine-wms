@@ -1,0 +1,202 @@
+[
+  {
+    "wineId": "1",
+    "wineName": "Cabernet Sauvignon",
+    "quantitySold": 15,
+    "saleDate": "2024-09-15",
+    "salePrice": 25.99,
+    "rate": 4.5
+  },
+  {
+    "wineId": "1",
+    "wineName": "Cabernet Sauvignon",
+    "quantitySold": 10,
+    "saleDate": "2024-10-10",
+    "salePrice": 24.99,
+    "rate": 4.5
+  },
+  {
+    "wineId": "2",
+    "wineName": "Chardonnay",
+    "quantitySold": 5,
+    "saleDate": "2024-09-20",
+    "salePrice": 35.00,
+    "rate": 4.0
+  },
+  {
+    "wineId": "2",
+    "wineName": "Chardonnay",
+    "quantitySold": 8,
+    "saleDate": "2024-10-25",
+    "salePrice": 34.50,
+    "rate": 4.0
+  },
+  {
+    "wineId": "3",
+    "wineName": "Prosecco",
+    "quantitySold": 12,
+    "saleDate": "2024-11-05",
+    "salePrice": 46.50,
+    "rate": 4.8
+  },
+  {
+    "wineId": "4",
+    "wineName": "Pinot Noir",
+    "quantitySold": 18,
+    "saleDate": "2024-09-12",
+    "salePrice": 29.50,
+    "rate": 4.5
+  },
+  {
+    "wineId": "4",
+    "wineName": "Pinot Noir",
+    "quantitySold": 22,
+    "saleDate": "2024-10-05",
+    "salePrice": 30.00,
+    "rate": 4.5
+  },
+  {
+    "wineId": "5",
+    "wineName": "Sauvignon Blanc",
+    "quantitySold": 7,
+    "saleDate": "2024-09-18",
+    "salePrice": 27.99,
+    "rate": 4.3
+  },
+  {
+    "wineId": "5",
+    "wineName": "Sauvignon Blanc",
+    "quantitySold": 10,
+    "saleDate": "2024-10-14",
+    "salePrice": 28.00,
+    "rate": 4.3
+  },
+  {
+    "wineId": "6",
+    "wineName": "Merlot",
+    "quantitySold": 5,
+    "saleDate": "2024-09-25",
+    "salePrice": 49.99,
+    "rate": 4.9
+  },
+  {
+    "wineId": "6",
+    "wineName": "Merlot",
+    "quantitySold": 8,
+    "saleDate": "2024-10-17",
+    "salePrice": 50.00,
+    "rate": 4.9
+  },
+  {
+    "wineId": "7",
+    "wineName": "Riesling",
+    "quantitySold": 6,
+    "saleDate": "2024-09-30",
+    "salePrice": 37.00,
+    "rate": 4.7
+  },
+  {
+    "wineId": "7",
+    "wineName": "Riesling",
+    "quantitySold": 9,
+    "saleDate": "2024-10-22",
+    "salePrice": 38.00,
+    "rate": 4.7
+  },
+  {
+    "wineId": "8",
+    "wineName": "Champagne Brut",
+    "quantitySold": 11,
+    "saleDate": "2024-09-10",
+    "salePrice": 54.00,
+    "rate": 4.6
+  },
+  {
+    "wineId": "8",
+    "wineName": "Champagne Brut",
+    "quantitySold": 7,
+    "saleDate": "2024-10-30",
+    "salePrice": 55.00,
+    "rate": 4.6
+  },
+  {
+    "wineId": "9",
+    "wineName": "Sancerre",
+    "quantitySold": 13,
+    "saleDate": "2024-09-23",
+    "salePrice": 43.50,
+    "rate": 4.4
+  },
+  {
+    "wineId": "9",
+    "wineName": "Sancerre",
+    "quantitySold": 6,
+    "saleDate": "2024-10-12",
+    "salePrice": 42.00,
+    "rate": 4.4
+  },
+  {
+    "wineId": "10",
+    "wineName": "Zinfandel",
+    "quantitySold": 20,
+    "saleDate": "2024-09-05",
+    "salePrice": 34.00,
+    "rate": 4.2
+  },
+  {
+    "wineId": "10",
+    "wineName": "Zinfandel",
+    "quantitySold": 18,
+    "saleDate": "2024-10-18",
+    "salePrice": 35.00,
+    "rate": 4.2
+  },
+  {
+    "wineId": "11",
+    "wineName": "Porto",
+    "quantitySold": 6,
+    "saleDate": "2024-09-09",
+    "salePrice": 59.00,
+    "rate": 4.8
+  },
+  {
+    "wineId": "11",
+    "wineName": "Porto",
+    "quantitySold": 8,
+    "saleDate": "2024-10-14",
+    "salePrice": 60.00,
+    "rate": 4.8
+  },
+  {
+    "wineId": "12",
+    "wineName": "Shiraz",
+    "quantitySold": 9,
+    "saleDate": "2024-09-28",
+    "salePrice": 31.00,
+    "rate": 4.7
+  },
+  {
+    "wineId": "12",
+    "wineName": "Shiraz",
+    "quantitySold": 6,
+    "saleDate": "2024-10-20",
+    "salePrice": 32.00,
+    "rate": 4.7
+  },
+  {
+    "wineId": "13",
+    "wineName": "Gewürztraminer",
+    "quantitySold": 5,
+    "saleDate": "2024-09-12",
+    "salePrice": 39.00,
+    "rate": 4.5
+  },
+  {
+    "wineId": "13",
+    "wineName": "Gewürztraminer",
+    "quantitySold": 7,
+    "saleDate": "2024-10-25",
+    "salePrice": 40.00,
+    "rate": 4.5
+  }
+]

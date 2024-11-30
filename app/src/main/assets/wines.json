@@ -1,0 +1,172 @@
+[
+  {
+    "wineId": "1",
+    "name": "Castle Rose",
+    "category": "Red",
+    "stock": 100,
+    "salePrice": 24.50,
+    "rate": 4.5,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "2",
+    "name": "Valley Breeze",
+    "category": "White",
+    "stock": 50,
+    "salePrice": 35.99,
+    "rate": 4.0,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "3",
+    "name": "Moonlit Vineyard",
+    "category": "Sparkling",
+    "stock": 75,
+    "salePrice": 45.00,
+    "rate": 4.8,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "4",
+    "name": "Enchanted Harvest",
+    "category": "Red",
+    "stock": 120,
+    "salePrice": 30.00,
+    "rate": 4.5,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "5",
+    "name": "Valley Breeze",
+    "category": "White",
+    "stock": 90,
+    "salePrice": 28.00,
+    "rate": 4.3,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "6",
+    "name": "Shadow of the Oak",
+    "category": "Red",
+    "stock": 55,
+    "salePrice": 50.00,
+    "rate": 4.9,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "7",
+    "name": "Castle Rose",
+    "category": "Rosé",
+    "stock": 60,
+    "salePrice": 38.00,
+    "rate": 4.7,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "8",
+    "name": "Spring Night",
+    "category": "Sparkling",
+    "stock": 80,
+    "salePrice": 55.00,
+    "rate": 4.6,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "9",
+    "name": "Serenity Hills",
+    "category": "White",
+    "stock": 65,
+    "salePrice": 42.00,
+    "rate": 4.4,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "10",
+    "name": "Sunset Reserve",
+    "category": "Red",
+    "stock": 150,
+    "salePrice": 35.00,
+    "rate": 4.2,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "11",
+    "name": "Port Wine Haven",
+    "category": "Port",
+    "stock": 40,
+    "salePrice": 60.00,
+    "rate": 4.8,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "12",
+    "name": "Whispering Pines",
+    "category": "Red",
+    "stock": 110,
+    "salePrice": 32.00,
+    "rate": 4.7,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "13",
+    "name": "Heart of the Vine",
+    "category": "White",
+    "stock": 75,
+    "salePrice": 40.00,
+    "rate": 4.5,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S2"
+    }
+  }
+]
+

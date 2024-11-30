@@ -1,0 +1,158 @@
+[
+  {
+    "wineId": "1",
+    "name": "Cabernet Sauvignon",
+    "stock": 80,
+    "salePrice": 24.50,
+    "rate": 4.5,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "2",
+    "name": "Chardonnay",
+    "stock": 9,
+    "salePrice": 35.99,
+    "rate": 4.0,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "3",
+    "name": "Prosecco",
+    "stock": 63,
+    "salePrice": 45.00,
+    "rate": 4.8,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "4",
+    "name": "Pinot Noir",
+    "stock": 120,
+    "salePrice": 30.00,
+    "rate": 4.5,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "5",
+    "name": "Sauvignon Blanc",
+    "stock": 90,
+    "salePrice": 28.00,
+    "rate": 4.3,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "6",
+    "name": "Merlot",
+    "stock": 55,
+    "salePrice": 50.00,
+    "rate": 4.9,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "7",
+    "name": "Riesling",
+    "stock": 60,
+    "salePrice": 38.00,
+    "rate": 4.7,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "8",
+    "name": "Champagne Brut",
+    "stock": 80,
+    "salePrice": 55.00,
+    "rate": 4.6,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "9",
+    "name": "Sancerre",
+    "stock": 65,
+    "salePrice": 42.00,
+    "rate": 4.4,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "10",
+    "name": "Zinfandel",
+    "stock": 150,
+    "salePrice": 35.00,
+    "rate": 4.2,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S3"
+    }
+  },
+  {
+    "wineId": "11",
+    "name": "Porto",
+    "stock": 40,
+    "salePrice": 60.00,
+    "rate": 4.8,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A2",
+      "shelf": "S1"
+    }
+  },
+  {
+    "wineId": "12",
+    "name": "Shiraz",
+    "stock": 110,
+    "salePrice": 32.00,
+    "rate": 4.7,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A3",
+      "shelf": "S2"
+    }
+  },
+  {
+    "wineId": "13",
+    "name": "Gewürztraminer",
+    "stock": 75,
+    "salePrice": 40.00,
+    "rate": 4.5,
+    "warehouse": {
+      "location": "Richmond",
+      "aisle": "A1",
+      "shelf": "S2"
+    }
+  }
+]

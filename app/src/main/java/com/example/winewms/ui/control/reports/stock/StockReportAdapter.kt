@@ -8,19 +8,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.winewms.R
 
 class StockReportAdapter(
-    private val stockItems: List<StockItem>
+    private var stockItems: List<StockItem>
 ) : RecyclerView.Adapter<StockReportAdapter.StockViewHolder>() {
+
 
     class StockViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val wineName: TextView = view.findViewById(R.id.tvWineName)
         private val totalStock: TextView = view.findViewById(R.id.tvStock)
+        private val salePrice: TextView = view.findViewById(R.id.tvSalePrice)
         private val locations: TextView = view.findViewById(R.id.tvLocations)
 
+
         fun bind(stockItem: StockItem) {
-            wineName.text = stockItem.wineName
-            totalStock.text = "Total Stock: ${stockItem.totalStock}"
-            locations.text = stockItem.locations.joinToString("\n") {
-                "Warehouse: ${it.warehouseId}, Aisle: ${it.aisle}, Shelf: ${it.shelf}, Stock: ${it.stock}"
+            wineName.text = stockItem.name
+            totalStock.text = "Stock: ${stockItem.stock}"
+            salePrice.text = "Price: $${String.format("%.2f", stockItem.salePrice)}"
+            locations.text = stockItem.warehouse.let {
+                "Location: ${it.location}, Aisle: ${it.aisle}, Shelf: ${it.shelf}"
             }
         }
     }
@@ -35,4 +39,10 @@ class StockReportAdapter(
     }
 
     override fun getItemCount(): Int = stockItems.size
+
+
+    fun updateData(newStockItems: List<StockItem>) {
+        stockItems = newStockItems
+        notifyDataSetChanged()
+    }
 }

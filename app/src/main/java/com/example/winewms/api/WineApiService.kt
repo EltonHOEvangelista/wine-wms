@@ -116,8 +116,8 @@ interface WineApiService {
     fun getSalesReportWithFilters(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
-        @Query("categories") categories: List<String>,
-        @Query("best_sellers") bestSellers: Boolean,
+        @Query("categories") categories: String,
+        @Query("best_sellers") bestSellers: Boolean
     ): Call<SalesReportModel>
 
     @GET("sales/comparison")

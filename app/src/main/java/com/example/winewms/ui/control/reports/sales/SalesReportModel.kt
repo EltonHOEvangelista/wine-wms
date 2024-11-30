@@ -27,5 +27,9 @@ data class MonthlySales(
 data class SoldWine(
     val wineId: String,
     val wineName: String,
-    val quantitySold: Int
+    val quantitySold: Int,
+    val saleDate: String,
+    val salePrice: Double? = null,
+    val rate: Double? = null
 )
+

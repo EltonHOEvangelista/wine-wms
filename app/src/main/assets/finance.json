@@ -1,0 +1,45 @@
+[
+  {
+    "startDate": "2024-07-01",
+    "endDate": "2024-07-31",
+    "totalSales": 9500.0,
+    "totalPurchases": 6500.0,
+    "totalBalance": 3000.0
+  },
+  {
+    "startDate": "2024-08-01",
+    "endDate": "2024-08-31",
+    "totalSales": 11000.0,
+    "totalPurchases": 7400.0,
+    "totalBalance": 3600.0
+  },
+  {
+    "startDate": "2024-09-01",
+    "endDate": "2024-09-30",
+    "totalSales": 9000.0,
+    "totalPurchases": 6000.0,
+    "totalBalance": 3000.0
+  },
+  {
+    "startDate": "2024-10-01",
+    "endDate": "2024-10-31",
+    "totalSales": 12000.0,
+    "totalPurchases": 8500.0,
+    "totalBalance": 3500.0
+  },
+  {
+    "startDate": "2024-11-01",
+    "endDate": "2024-11-30",
+    "totalSales": 10000.0,
+    "totalPurchases": 7000.0,
+    "totalBalance": 3000.0
+  },
+  {
+    "startDate": "2024-12-01",
+    "endDate": "2024-12-31",
+    "totalSales": 3000.0,
+    "totalPurchases": 2500.0,
+    "totalBalance": 500.0
+  }
+]
+

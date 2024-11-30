@@ -50,22 +50,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvStockReportTitle" />
 
-        <!-- Low Stock Alert -->
-        <TextView
-            android:id="@+id/tvLowStockHeader"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/LightRedWine"
-            android:padding="8dp"
-            android:text="Low Stock Wines"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvStockReportPeriod" />
-
         <!-- Search Section -->
         <LinearLayout
             android:id="@+id/linearLayoutSearch"
@@ -77,36 +61,47 @@
             android:background="@drawable/rounded_corners_white_b"
             android:orientation="horizontal"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/tvLowStockHeader"
+            app:layout_constraintTop_toBottomOf="@id/tvStockReportPeriod"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <EditText
-                android:id="@+id/txtWineSearch"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchViewWine"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Search wines"
+                android:queryHint="Search wines"
+                android:iconifiedByDefault="false"
                 android:background="@android:color/transparent"
+                android:layout_margin="8dp"
                 android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/imgSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:src="@drawable/search_24" />
         </LinearLayout>
+
+        <!-- Low Stock Alert -->
+        <TextView
+            android:id="@+id/tvLowStockHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/GoldRod"
+            android:padding="8dp"
+            android:text="Alert: Low Stock Wines:"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutSearch" /> <!-- Agora entre SearchView e RecyclerView -->
 
         <!-- RecyclerView for Stock Data -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvStockReport"
-            android:layout_width="360dp"
-            android:layout_height="166dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutSearch" />
+            app:layout_constraintTop_toBottomOf="@id/tvLowStockHeader" /> <!-- Posicionado abaixo do alerta de low stock -->
 
         <!-- Back Button -->
         <Button
@@ -120,7 +115,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.077"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvStockReport" />
+            app:layout_constraintTop_toBottomOf="@id/rvStockReport" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -54,7 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:queryHint="Search wine..."
-            android:iconifiedByDefault="false" />
+            android:iconifiedByDefault="false"
+            android:focusable="true"
+            android:clickable="true"/>
 
         <!-- Filter Icon -->
         <ImageView

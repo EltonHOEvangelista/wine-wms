@@ -25,6 +25,7 @@ class FinanceReportFragment : Fragment() {
     private lateinit var binding: FragmentFinanceReportBinding
     private val reportsViewModel: ReportsViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,43 +41,18 @@ class FinanceReportFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+
+
         return binding.root
     }
 
     private fun setupObservers() {
-        reportsViewModel.financeReport.observe(viewLifecycleOwner) { report: FinanceReportModel? ->
+        reportsViewModel.financeReport.observe(viewLifecycleOwner) { report ->
             if (report == null) {
                 Snackbar.make(binding.root, "Failed to load report. Please try again.", Snackbar.LENGTH_LONG).show()
-
-                binding.tvTotalSales.text = getString(R.string.total_sales, "0.00")
-                binding.tvTotalPurchases.text = getString(R.string.total_purchases, "0.00")
-                binding.tvTotalBalance.text = getString(R.string.total_balance, "0.00")
-                binding.tvTotalBalance.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.black
-                    )
-                )
+                clearUI()
             } else {
-                val totalSales = report.totalSales
-                val totalPurchases = report.totalPurchases
-                val totalBalance = report.totalBalance
-
-                binding.tvTotalSales.text =
-                    getString(R.string.total_sales, String.format("%.2f", totalSales))
-                binding.tvTotalPurchases.text =
-                    getString(R.string.total_purchases, String.format("%.2f", totalPurchases))
-                binding.tvTotalBalance.text =
-                    getString(R.string.total_balance, String.format("%.2f", totalBalance))
-
-                val balanceColor =
-                    if (totalBalance < 0) R.color.DarkRedWine else R.color.black
-                binding.tvTotalBalance.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        balanceColor
-                    )
-                )
+                updateUIWithFinanceData(report)
             }
         }
     }
@@ -88,11 +64,11 @@ class FinanceReportFragment : Fragment() {
     }
 
     private fun showFilterDialog() {
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_date_filter, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_date_filter, null)
         val startDateInput = dialogView.findViewById<EditText>(R.id.etStartDate)
         val endDateInput = dialogView.findViewById<EditText>(R.id.etEndDate)
 
-        // Set click listeners to open MaterialDatePicker
         startDateInput.setOnClickListener {
             showDatePicker { date -> startDateInput.setText(date) }
         }
@@ -107,8 +83,9 @@ class FinanceReportFragment : Fragment() {
             .setPositiveButton("Apply") { _, _ ->
                 val startDate = startDateInput.text.toString()
                 val endDate = endDateInput.text.toString()
+
                 if (startDate.isNotBlank() && endDate.isNotBlank()) {
-                    reportsViewModel.fetchFinanceReport(startDate, endDate)
+                    applyFilters(startDate, endDate)
                 } else {
                     Toast.makeText(requireContext(), "Invalid dates", Toast.LENGTH_SHORT).show()
                 }
@@ -131,7 +108,18 @@ class FinanceReportFragment : Fragment() {
     }
 
     private fun fetchCurrentMonthData() {
-        reportsViewModel.fetchCurrentMonthFinanceReport()
+        val calendar = Calendar.getInstance()
+
+        // Defina o primeiro dia do mês
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+        val startDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
+
+        // Defina o último dia do mês
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+        val endDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
+
+        // Chame fetchFinanceReport com os valores calculados
+        reportsViewModel.fetchFinanceReport(requireContext(), startDate, endDate)
     }
 
     private fun getCurrentMonth(): String {
@@ -139,5 +127,30 @@ class FinanceReportFragment : Fragment() {
         val monthFormat = SimpleDateFormat("MMMM", Locale.getDefault())
         return monthFormat.format(calendar.time)
     }
+
+    private fun applyFilters(startDate: String, endDate: String) {
+        if (startDate.isEmpty() || endDate.isEmpty()) {
+            Toast.makeText(requireContext(), "Please select both start and end dates.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        reportsViewModel.fetchFinanceReport(requireContext(), startDate, endDate)
+    }
+
+    private fun updateUIWithFinanceData(report: FinanceReportModel) {
+        binding.tvTotalSales.text = getString(R.string.total_sales, String.format("%.2f", report.totalSales))
+        binding.tvTotalPurchases.text = getString(R.string.total_purchases, String.format("%.2f", report.totalPurchases))
+        binding.tvTotalBalance.text = getString(R.string.total_balance, String.format("%.2f", report.totalBalance))
+
+        val balanceColor = if (report.totalBalance < 0) R.color.DarkRedWine else R.color.black
+        binding.tvTotalBalance.setTextColor(ContextCompat.getColor(requireContext(), balanceColor))
+    }
+
+    private fun clearUI() {
+        binding.tvTotalSales.text = getString(R.string.total_sales, "0.00")
+        binding.tvTotalPurchases.text = getString(R.string.total_purchases, "0.00")
+        binding.tvTotalBalance.text = getString(R.string.total_balance, "0.00")
+        binding.tvTotalBalance.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+    }
+
 }
 
