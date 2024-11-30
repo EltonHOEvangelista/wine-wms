@@ -30,6 +30,7 @@ import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
 import android.widget.TextView
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.data.model.CartWineViewModel
@@ -121,10 +122,9 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
             showFilterPopup(it)
         }
 
-        // Set FAB click listener
+        // Set Floating Button click listener
         binding.fabAddWine.setOnClickListener {
-            Toast.makeText(requireContext(), "Add new wine clicked!", Toast.LENGTH_SHORT).show()
-            // Handle navigation to AddWineFragment or show a dialog for adding new wines
+            findNavController().navigate(R.id.action_searchFragment_to_addWineFragment)
         }
 
         return binding.root
@@ -371,7 +371,9 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     }
 
     override fun onAddClick(wineModel: WineModel) {
-        TODO("Not yet implemented")
+        binding.fabAddWine.setOnClickListener {
+            findNavController().navigate(R.id.action_adminFragment_to_addWineFragment)
+        }
     }
 
     private fun updateCardBadge() {
