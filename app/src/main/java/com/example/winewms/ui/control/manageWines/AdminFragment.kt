@@ -22,6 +22,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
@@ -29,6 +32,7 @@ import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
+import com.example.winewms.data.model.WineStockResponse
 import com.example.winewms.data.model.WineViewModel
 import com.example.winewms.databinding.FragmentAdminBinding
 import com.example.winewms.ui.control.manageWines.AdminWineAdapter
@@ -43,6 +47,7 @@ class AdminFragment : Fragment(), OnAdminWineClickListener {
     private var _binding: FragmentAdminBinding? = null
     private val binding get() = _binding!!
 
+    // ViewModel & API
     private val wineViewModel: WineViewModel by activityViewModels()
     private val wineApi: WineApiService by lazy { WineApi.retrofit.create(WineApiService::class.java) }
 
@@ -67,6 +72,39 @@ class AdminFragment : Fragment(), OnAdminWineClickListener {
         observeWineList()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Add navigation callback
+        val navController = findNavController()
+        val navListener = NavController.OnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.adminFragment) {
+                // Refresh data when returning to AdminFragment
+                fetchDataWithFilters(binding.txtWineSearch.text.toString().trim())
+            }
+        }
+
+        navController.addOnDestinationChangedListener(navListener)
+
+        // Remove the listener when the view is destroyed
+        viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) {
+                navController.removeOnDestinationChangedListener(navListener)
+            }
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun observeWineList() {
+        wineViewModel.wineList.observe(viewLifecycleOwner) { wines ->
+            (binding.recyclerViewWines.adapter as AdminWineAdapter).updateData(wines)
+        }
     }
 
     private fun setupFloatingActionButton() {
@@ -124,11 +162,7 @@ class AdminFragment : Fragment(), OnAdminWineClickListener {
         }
     }
 
-    private fun observeWineList() {
-        wineViewModel.wineList.observe(viewLifecycleOwner) { wines ->
-            (binding.recyclerViewWines.adapter as AdminWineAdapter).updateData(wines)
-        }
-    }
+
 
     private fun fetchDataWithWineId(query: String) {
         val apiCall = wineApi.getWineById(query)
@@ -150,6 +184,7 @@ class AdminFragment : Fragment(), OnAdminWineClickListener {
     }
 
     private fun fetchDataWithFilters(query: String) {
+
         val filters = mutableMapOf<String, String>()
         filters["name"] = query
 
@@ -166,18 +201,49 @@ class AdminFragment : Fragment(), OnAdminWineClickListener {
         apiCall.enqueue(object : Callback<DataWrapper> {
             override fun onFailure(call: Call<DataWrapper>, t: Throwable) {
                 Toast.makeText(requireContext(), "Failed to fetch data.", Toast.LENGTH_SHORT).show()
-                Log.e("API Service Failure", t.message.toString())
+                Log.d("API Service Failure", t.message.toString())
             }
 
             override fun onResponse(call: Call<DataWrapper>, response: Response<DataWrapper>) {
                 if (response.isSuccessful) {
-                    response.body()?.wines?.let { wineViewModel.setWineList(it) }
+                    response.body()?.wines?.let { wines ->
+                        // For each wine, fetch its stock
+                        wines.forEach { wine ->
+                            fetchWineStock(wine)
+                        }
+                        wineViewModel.setWineList(wines)
+                    }
                 } else {
-                    Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
+                    Log.d("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
                 }
             }
         })
     }
+
+    private fun fetchWineStock(wine: WineModel) {
+        wineApi.getWineStock(wine.id).enqueue(object : Callback<WineStockResponse> {
+            override fun onResponse(
+                call: Call<WineStockResponse>,
+                response: Response<WineStockResponse>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let { stockResponse ->
+                        // Update the wine's stock
+                        wine.stock = stockResponse.total_stock
+                        // Update the wine list in view model to trigger UI update
+                        wineViewModel.updateWineStock(wine)
+                    }
+                } else {
+                    Log.e("WineStock", "Failed to fetch stock: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<WineStockResponse>, t: Throwable) {
+                Log.e("WineStock", "Error fetching stock", t)
+            }
+        })
+    }
+
 
     override fun onEditClick(wine: WineModel) {
         val bundle = Bundle().apply {
@@ -201,26 +267,26 @@ class AdminFragment : Fragment(), OnAdminWineClickListener {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Wine deleted successfully", Toast.LENGTH_SHORT).show()
                     fetchDataWithFilters(binding.txtWineSearch.text.toString().trim())
+
                 } else {
                     Toast.makeText(context, "Failed to delete wine", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+
                 Toast.makeText(context, "Error during deletion", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
+
+    //filter
     private fun hideKeyboard() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.txtWineSearch.windowToken, 0)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     private fun showFilterPopup(anchorView: View) {
         val inflater = LayoutInflater.from(context)

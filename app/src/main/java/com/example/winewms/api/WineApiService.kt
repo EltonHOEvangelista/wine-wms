@@ -7,6 +7,7 @@ import com.example.winewms.data.model.SalesDataWrapper
 import com.example.winewms.data.model.SalesModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
+import com.example.winewms.data.model.WineStockResponse
 import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.signin.SigninModel
@@ -15,6 +16,7 @@ import com.example.winewms.ui.control.reports.sales.SalesComparison
 import com.example.winewms.ui.control.reports.sales.SalesReportModel
 import com.example.winewms.ui.control.reports.stock.StockItem
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -129,5 +131,9 @@ interface WineApiService {
     fun getStockReport(
         @Query("wineId") wineId: String? = null
     ): Call<List<StockItem>>
+
+    //Get total stock
+    @GET("wines/stock/{wine_id}")
+    fun getWineStock(@Path("wine_id") wineId: String): Call<WineStockResponse>
 
 }

@@ -20,6 +20,7 @@ import com.example.winewms.data.model.TasteCharacteristics
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.databinding.FragmentEditWineBinding
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import retrofit2.Call
@@ -34,10 +35,10 @@ class EditWineFragment : Fragment() {
 
     private var imageUri: Uri? = null
     private var wineToEdit: WineModel? = null
-    private val firebaseStorage = Firebase.storage.reference
-    private val wineApi = WineApi.retrofit.create(WineApiService::class.java)
-    private val gson = Gson()
 
+    private val wineApi = WineApi.retrofit.create(WineApiService::class.java)
+    private val firebaseStorage = FirebaseStorage.getInstance().reference
+    private lateinit var image_path: String
 
 
     override fun onCreateView(
@@ -68,14 +69,8 @@ class EditWineFragment : Fragment() {
         setupSpinners()
         setupClickListeners()
     }
-    private val pickImageLauncher = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
-        uri?.let {
-            imageUri = it
-            binding.imgWineBottle.setImageURI(it)
-        }
-    }
+
+
 
     private fun setupSpinners() {
         context?.let { ctx ->
@@ -165,7 +160,8 @@ class EditWineFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<WineModel>, t: Throwable) {
-                Toast.makeText(context, "Error loading wine: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Error loading wine: ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
                 findNavController().navigateUp()
             }
         })
@@ -250,7 +246,8 @@ class EditWineFragment : Fragment() {
                 txtSaleDiscont.text.isNullOrBlank() ||
                 txtStock.text.isNullOrBlank()
             ) {
-                Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT)
+                    .show()
                 return false
             }
         }
@@ -262,7 +259,7 @@ class EditWineFragment : Fragment() {
 
             val updatedWine = createUpdatedWineModel()
             if (updatedWine == null) {
-                Log.e("SaveWine", "Updated wine model is null")
+                Log.d("SaveWine", "Updated wine model is null")
                 return
             }
 
@@ -278,6 +275,9 @@ class EditWineFragment : Fragment() {
             Toast.makeText(context, "Error saving wine: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
 
     private fun createUpdatedWineModel(): WineModel? {
         binding.apply {
@@ -393,25 +393,6 @@ class EditWineFragment : Fragment() {
         }
     }
 
-    private fun uploadImageAndUpdateWine(wine: WineModel) {
-        val imageName = "wine_${System.currentTimeMillis()}.jpg"
-        val imageRef = firebaseStorage.child(imageName)
-
-        imageUri?.let { uri ->
-            imageRef.putFile(uri)
-                .addOnSuccessListener {
-                    val updatedWine = wine.copy(image_path = imageName)
-                    updateWineInBackend(updatedWine)
-                }
-                .addOnFailureListener { exception ->
-                    Toast.makeText(
-                        context,
-                        "Failed to upload image: ${exception.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-        }
-    }
 
     private fun updateWineInBackend(wine: WineModel) {
         val wineId = wine.id.toString()
@@ -445,6 +426,74 @@ class EditWineFragment : Fragment() {
             }
         })
     }
+
+    private val pickImageLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            imageUri = it
+            binding.imgWineBottle.setImageURI(it)
+
+            image_path = getFileNameFromUri(it)
+        }
+    }
+
+    private fun getFileNameFromUri(uri: Uri): String {
+        var fileName = "unknown"
+        val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val nameIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (nameIndex >= 0) {
+                    fileName = it.getString(nameIndex)
+                }
+            }
+        }
+        return fileName
+    }
+    //image
+    private fun uploadImageAndUpdateWine(wine: WineModel) {
+        try {
+            imageUri?.let { uri ->
+                // Create file reference exactly like AddWineFragment
+                val fileReference = firebaseStorage.child(wine.image_path)
+
+                // Start upload
+                val uploadTask = fileReference.putFile(uri)
+
+                uploadTask.addOnSuccessListener {
+                    Log.d("Upload", "Upload successful")
+                    // Get download URL and update wine
+                    fileReference.downloadUrl.addOnSuccessListener { downloadUrl ->
+                        Log.d("Upload", "Image uploaded successfully: $downloadUrl")
+                        val wineWithNewImage = wine.copy(image_path = wine.image_path)
+                        updateWineInBackend(wineWithNewImage)
+                    }.addOnFailureListener { urlException ->
+                        Log.e("Upload", "Failed to get download URL", urlException)
+                        binding.btnEditWine.isEnabled = true
+                        Toast.makeText(context, "Failed to complete upload: ${urlException.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }.addOnFailureListener { exception ->
+                    Log.e("Upload", "Upload failed", exception)
+                    binding.btnEditWine.isEnabled = true
+                    Toast.makeText(context, "Failed to upload image: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }.addOnProgressListener { taskSnapshot ->
+                    val bytesTransferred = taskSnapshot.bytesTransferred
+                    val totalBytes = taskSnapshot.totalByteCount
+                    Log.d("Upload", "Progress - Bytes: $bytesTransferred / $totalBytes")
+                    if (totalBytes > 0) {
+                        val progress = (100.0 * bytesTransferred) / totalBytes
+                        Log.d("Upload", "Upload progress: $progress%")
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Upload", "Error during upload", e)
+            binding.btnEditWine.isEnabled = true
+            Toast.makeText(context, "Error during upload: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

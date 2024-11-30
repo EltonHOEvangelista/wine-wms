@@ -12,7 +12,6 @@ import com.example.winewms.ui.control.manageWines.OnAdminWineClickListener
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
 import com.squareup.picasso.Picasso
-
 class AdminWineAdapter(
     private var wineList: List<WineModel>,
     private val listener: OnAdminWineClickListener
@@ -46,24 +45,38 @@ class AdminWineAdapter(
         }
 
         fun bind(wine: WineModel) {
-            binding.txtWineName.text = wine.name
-            binding.txtStock.text = "Stock: ${wine.stock}"
+            binding.apply {
+                // Reset views to initial state
+                expandableLayout.visibility = View.GONE
+                imgBottle.setImageResource(R.drawable.wine_bottle_t)
 
-            binding.wineCard.apply {
-                val storageRef = Firebase.storage.reference.child(wine.image_path)
-                storageRef.downloadUrl.addOnSuccessListener { uri ->
-                    Picasso.get()
-                        .load(uri.toString())
-                        .error(R.drawable.wine_bottle_t)
-                        .into(imgBottle)
-                }.addOnFailureListener {
-                    imgBottle.setImageResource(R.drawable.wine_bottle_t)
-                }
-
+                // Update text data
                 txtWineName.text = wine.name
-                txtWineProcuder.text = wine.producer
-                txtWineCountry.text = wine.country
+                txtProducerCountry.text = "${wine.producer} | ${wine.country}"
                 txtPrice.text = String.format("$%.2f", wine.sale_price)
+                txtStock.text = "Stock: ${wine.stock}"
+                txtWineDescription.text = wine.description
+
+                // Load image from Firebase
+                val storageRef = Firebase.storage.reference
+                val imageRef = storageRef.child(wine.image_path)
+
+                // Get download URL and load with Picasso
+                imageRef.downloadUrl
+                    .addOnSuccessListener { uri ->
+                        Picasso.get()
+                            .load(uri)
+                            .placeholder(R.drawable.wine_bottle_t)
+                            .error(R.drawable.wine_bottle_t)
+                            .into(imgBottle)
+                    }
+                    .addOnFailureListener {
+                        imgBottle.setImageResource(R.drawable.wine_bottle_t)
+                    }
+
+
+
+
             }
         }
     }
@@ -88,9 +101,5 @@ class AdminWineAdapter(
         notifyDataSetChanged()
     }
 
-    fun addData(newWines: List<WineModel>) {
-        val oldSize = wineList.size
-        wineList = wineList + newWines
-        notifyItemRangeInserted(oldSize, newWines.size)
-    }
+
 }

@@ -14,4 +14,10 @@ class WineViewModel : ViewModel() {
     fun setWineList(list: List<WineModel>) {
         _wineList.value = list
     }
+    fun updateWineStock(updatedWine: WineModel) {
+        _wineList.value = _wineList.value?.map { wine ->
+            if (wine.id == updatedWine.id) updatedWine else wine
+        }
+    }
+
 }

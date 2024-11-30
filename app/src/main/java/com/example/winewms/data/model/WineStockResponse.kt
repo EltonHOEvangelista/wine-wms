@@ -4,8 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CartItemModel(
-    val wine: WineModel,
-    var quantity: Int = 1,
-    var stockNotification: String? = null
+data class WineStockResponse(
+    val wine_id: String,
+    val total_stock: Int
 ) : Parcelable

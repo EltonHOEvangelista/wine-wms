@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.api.WineApi
@@ -254,8 +256,8 @@ class AddWineFragment : Fragment() {
         if (listOf(name, producer, country, type, description, lightness, tannin, dryness, acidity,
                 warehouse_location, warehouse_aisle, warehouse_shelf).any { it.isEmpty() } ||
             harvest_year == null || rate == null || sale_price == null || discount == null || cost_price == 0.0f ||
-            grapes.isEmpty() || food_pair.isEmpty() || !::image_path.isInitialized
-            ) {
+            grapes.isEmpty() || food_pair.isEmpty() ||
+            !::image_path.isInitialized) {
             Toast.makeText(requireContext(), "Please fill out all required fields, including wine image.", Toast.LENGTH_SHORT).show()
         }
         else if ((cost_price == 0.0f || stock == 0) ||
@@ -322,8 +324,8 @@ class AddWineFragment : Fragment() {
                         if (stock != 0) {
                             placePurchaseOrder()
                         } else {
-                            //Navigate back to Fragment Control
-                            findNavController().navigate(R.id.navigation_control)
+                            setFragmentResult("wine_added", bundleOf("refresh" to true))
+                            findNavController().navigateUp()
                         }
                     }
                 } else {
@@ -444,7 +446,7 @@ class AddWineFragment : Fragment() {
                 if (nameIndex >= 0) {
                     fileName = it.getString(nameIndex)
                 }
-           }
+            }
         }
         return fileName
     }

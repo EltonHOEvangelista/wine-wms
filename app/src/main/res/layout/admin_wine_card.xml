@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@drawable/rounded_corners_white"
-   >
+    android:background="@drawable/rounded_corners_white">
 
     <!-- Header section -->
     <LinearLayout
@@ -16,10 +15,18 @@
         android:padding="8dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Wine name and stock -->
+        <!-- Image of wine bottle -->
+        <ImageView
+            android:id="@+id/imgBottle"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop" />
+
+        <!-- Smaller wine details layout -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -28,8 +35,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Wine Name"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtProducerCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Producer | Country"
+                android:textColor="@color/DarkGray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="$19.99"
+                android:textColor="@color/DarkGray"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/txtStock"
@@ -38,10 +63,33 @@
                 android:layout_marginTop="4dp"
                 android:text="Stock: 0"
                 android:textColor="@color/DarkGray"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Price -->
+        <!-- Edit and Delete buttons in one row, centered -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/rounded_corners_gold"
+                android:gravity="center_vertical"
+                android:src="@drawable/edit_24" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_corners_light_red"
+                android:gravity="center_vertical"
+                android:src="@drawable/delete_24" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Expandable wine details -->
@@ -53,36 +101,25 @@
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/headerLayout">
 
-        <!-- Include original wine card -->
-        <include
-            android:id="@+id/wineCard"
-            layout="@layout/wine_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <!-- Admin actions -->
-        <LinearLayout
+        <TextView
+            android:id="@+id/txtSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_marginBottom="8dp"
+            android:gravity="start"
+            android:text="@string/txtSummary"
+            android:textColor="@color/DarkGray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/rounded_corners_gold"
-                android:src="@drawable/edit_24" />
-
-            <ImageButton
-                android:id="@+id/btnDelete"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/rounded_corners_light_red"
-                android:src="@drawable/delete_24" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/txtWineDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/txtWineDescription"
+            android:textColor="@color/DarkGray"
+            android:textSize="16sp"
+            android:textStyle="italic" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
