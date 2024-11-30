@@ -100,6 +100,7 @@ class EditWineFragment : Fragment() {
                 }
             }
 
+            /*
             // Setup Warehouse Location Spinners
             ArrayAdapter.createFromResource(
                 ctx,
@@ -127,6 +128,7 @@ class EditWineFragment : Fragment() {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerWarehouseShelf.adapter = adapter
             }
+             */
         }
     }
 
@@ -227,7 +229,7 @@ class EditWineFragment : Fragment() {
             // Price and stock
             txtSalePrice.setText(wine.sale_price.toString())
             txtSaleDiscont.setText((wine.discount * 100).toString())
-            txtStock.setText(wine.stock.toString())
+            //txtStock.setText(wine.stock.toString())
 
             // Reviews
             txtAddWineReviews.setText(wine.reviews.joinToString("\n"))
@@ -243,8 +245,8 @@ class EditWineFragment : Fragment() {
                 txtAddWineRate.text.isNullOrBlank() ||
                 txtAddWineDescription.text.isNullOrBlank() ||
                 txtSalePrice.text.isNullOrBlank() ||
-                txtSaleDiscont.text.isNullOrBlank() ||
-                txtStock.text.isNullOrBlank()
+                txtSaleDiscont.text.isNullOrBlank() //||
+                //txtStock.text.isNullOrBlank()
             ) {
                 Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT).show()
                 return false
@@ -274,7 +276,7 @@ class EditWineFragment : Fragment() {
                 val rate = txtAddWineRate.text.toString().toFloatOrNull()
                 val salePrice = txtSalePrice.text.toString().toFloatOrNull()
                 val discount = txtSaleDiscont.text.toString().toFloatOrNull()
-                val stock = txtStock.text.toString().toIntOrNull()
+                //val stock = txtStock.text.toString().toIntOrNull()
 
                 if (name.isBlank() || producer.isBlank() || country.isBlank()) {
                     Toast.makeText(context, "Name, Producer, and Country are required", Toast.LENGTH_SHORT).show()
@@ -301,10 +303,12 @@ class EditWineFragment : Fragment() {
                     return null
                 }
 
+                /*
                 if (stock == null || stock < 0) {
                     Toast.makeText(context, "Please enter a valid Stock value", Toast.LENGTH_SHORT).show()
                     return null
                 }
+                 */
 
                 // Create and return the updated WineModel
                 return WineModel(
@@ -328,7 +332,8 @@ class EditWineFragment : Fragment() {
                     food_pair = getSelectedFoodPairs(),
                     sale_price = salePrice,
                     discount = discount / 100, // Convert percentage to decimal
-                    stock = stock
+                    //stock = stock
+                    stock = 0
                 )
 
             } catch (e: NumberFormatException) {

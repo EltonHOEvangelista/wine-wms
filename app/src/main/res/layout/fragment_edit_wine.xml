@@ -207,15 +207,6 @@
                 android:text="@string/txtAddWineReviews"
                 android:textSize="16sp" />
 
-            <View
-                android:id="@+id/divider9"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider" />
-
             <LinearLayout
                 android:id="@+id/linearLayoutGrapes"
                 android:layout_width="match_parent"
@@ -663,140 +654,29 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:id="@+id/divider11"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider" />
-
             <LinearLayout
-                android:id="@+id/linearLayoutPurchase"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/labelPurchase"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/labelPurchase"
-                    android:textSize="16dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/txtCostPrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:layout_weight="1"
-                        android:hint="@string/txtCostPriceHint"
-                        android:inputType="numberDecimal"
-                        android:text="@string/txtCostPrice"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/txtStock"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/txtStockHint"
-                        android:inputType="number"
-                        android:text="@string/txtStock"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider12"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/labelStorage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/labelStorage"
-                    android:textSize="16sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/txtWarehouseLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txtWarehouseLocationHint"
-                        android:textSize="14sp" />
-
-                    <Spinner
-                        android:id="@+id/spinnerWarehouseLocation"
-                        style="@android:style/Widget.Holo.Light.Spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/txtWarehouseAisle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txtWarehouseAisleHint"
-                        android:textSize="14sp" />
-
-                    <Spinner
-                        android:id="@+id/spinnerWarehouseAisle"
-                        style="@android:style/Widget.Holo.Light.Spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/txtWarehouseShelf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txtWarehouseShelfHint"
-                        android:textSize="14sp" />
-
-                    <Spinner
-                        android:id="@+id/spinnerWarehouseShelf"
-                        style="@android:style/Widget.Holo.Light.Spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-            </LinearLayout>
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            android:enabled="false">
             <Button
                 android:id="@+id/btnSaveWine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="32dp"
-                android:text="@string/btnSaveWine" />
+                android:text="Update Wine" />
+
+            <Button
+                android:id="@+id/btnReplenishStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:text="Replenish Stock" />
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
