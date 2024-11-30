@@ -34,6 +34,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.data.model.CartWineViewModel
+import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.ui.account.AccountViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Calendar
@@ -376,7 +377,34 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     }
 
     override fun onDeleteClick(wineModel: WineModel) {
-        TODO("Not yet implemented")
+        wineApi.deleteWine(wineModel.id).enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        if (it.responseStatus) {
+                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+
+                            // Refresh the list by performing the current filter again
+                            fetchDataWithFilters(
+                                query = binding.txtWineSearch.text.toString(),
+                                minPrice = minPrice,
+                                maxPrice = maxPrice
+                            )
+                        } else {
+                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, "Failed to delete wine", Toast.LENGTH_SHORT).show()
+                    Log.e("deleteWine", "Error: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Toast.makeText(context, "Error during deletion: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("deleteWine", "API call failed: ${t.message}")
+            }
+        })
     }
 
     override fun onAddClick(wineModel: WineModel) {

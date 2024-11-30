@@ -1,6 +1,7 @@
 package com.example.winewms.ui.control.manageWines
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
 import com.example.winewms.data.model.DataWrapper
+import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.databinding.FragmentAdminBinding
@@ -161,21 +163,31 @@ class AdminFragment : Fragment() , OnAdminWineClickListener {
     }
 
     private fun deleteWine(wineId: String) {
-        wineApi.deleteWine(wineId).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
+        wineApi.deleteWine(wineId).enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(context, "Wine deleted successfully", Toast.LENGTH_SHORT).show()
-                    fetchWineAndWarehouseData() // Refresh the wine list
+                    response.body()?.let {
+                        if (it.responseStatus) { // Assuming this indicates success
+                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                            fetchWineAndWarehouseData() // Refresh the wine list
+                        } else {
+                            Toast.makeText(context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 } else {
                     Toast.makeText(context, "Failed to delete wine", Toast.LENGTH_SHORT).show()
+                    Log.e("deleteWine", "Error: ${response.errorBody()?.string()}")
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
                 Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("deleteWine", "API call failed: ${t.message}")
             }
         })
     }
+
+
     private fun navigateToEditWineFragment(wine: WineModel?) {
         val bundle = Bundle().apply {
             putString("wineId", wine?.id)

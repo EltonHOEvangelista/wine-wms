@@ -68,7 +68,7 @@ interface WineApiService {
 
     //delete an existing wine by ID
     @DELETE("wines/{id}")
-    fun deleteWine(@Path("id") wineId: String): Call<String>
+    fun deleteWine(@Path("id") wineId: String): Call<ResponseModel>
 
     //remove current wines and create new ones (initial list)
     @POST("wines/all")

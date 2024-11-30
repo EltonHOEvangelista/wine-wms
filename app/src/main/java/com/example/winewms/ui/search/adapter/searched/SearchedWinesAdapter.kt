@@ -1,5 +1,6 @@
 package com.example.winewms.ui.search.adapter.searched
 
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -69,6 +70,9 @@ class SearchedWinesAdapter(
                 binding.txtOriginalPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
 
+            // Initialize the details layout to be hidden by default
+            binding.linearLayoutWineDetails.visibility = View.GONE
+
             // Set click listeners for the buttons in searched_wine_card.xml
             binding.btnAddToCart.setOnClickListener {
                 if (!isAdmin) { // Ensure this button is usable only by non-admin users
@@ -84,10 +88,16 @@ class SearchedWinesAdapter(
                 }
             }
 
-            binding.btnEditWine.setOnClickListener {
+            binding.btnDeleteWine.setOnClickListener {
                 if (isAdmin) { // Only admins can use this button
-                    Toast.makeText(binding.root.context, "Deleting ${wine.name}", Toast.LENGTH_SHORT).show()
-                    // Add navigation to edit fragment or dialog here
+                    AlertDialog.Builder(binding.root.context)
+                        .setTitle("Delete Wine")
+                        .setMessage("Are you sure you want to delete ${wine.name}?")
+                        .setPositiveButton("Delete") { _, _ ->
+                            listener.onDeleteClick(wine) // Notify the fragment
+                        }
+                        .setNegativeButton("Cancel", null)
+                        .show()
                 }
             }
 
