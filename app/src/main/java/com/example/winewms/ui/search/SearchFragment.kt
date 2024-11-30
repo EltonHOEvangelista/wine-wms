@@ -380,7 +380,10 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     }
 
     override fun onEditClick(wineModel: WineModel) {
-        TODO("Not yet implemented")
+        val bundle = Bundle().apply {
+            putString("wineId", wineModel.id) // Pass the wineId
+        }
+        findNavController().navigate(R.id.editWineFragment, bundle)
     }
 
     override fun onDeleteClick(wineModel: WineModel) {

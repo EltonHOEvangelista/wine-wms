@@ -2,6 +2,8 @@ package com.example.winewms.api
 
 import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.PurchaseModel
+import com.example.winewms.data.model.ReplenishStockRequest
+import com.example.winewms.data.model.ReplenishStockResponse
 import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.data.model.SalesDataWrapper
 import com.example.winewms.data.model.SalesModel
@@ -129,5 +131,11 @@ interface WineApiService {
     fun getStockReport(
         @Query("wineId") wineId: String? = null
     ): Call<List<StockItem>>
+
+    @POST("wines/{id}/replenish")
+    fun replenishStock(
+        @Path("id") id: String,
+        @Body replenishRequest: ReplenishStockRequest
+    ): Call<ReplenishStockResponse>
 
 }

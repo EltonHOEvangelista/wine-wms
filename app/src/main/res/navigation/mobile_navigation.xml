@@ -105,6 +105,9 @@
             app:destination="@id/addWineFragment"
             app:popUpTo="@id/addWineFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_searchFragment_to_editWineFragment"
+            app:destination="@id/editWineFragment" />
     </fragment>
 
     <fragment

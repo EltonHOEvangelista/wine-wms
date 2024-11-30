@@ -1,5 +1,6 @@
 package com.example.winewms.ui.control.manageWines
 
+import ReplenishStockDialogFragment
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -15,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
+import com.example.winewms.data.model.ReplenishStockRequest
+import com.example.winewms.data.model.ReplenishStockResponse
 import com.example.winewms.data.model.TasteCharacteristics
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.databinding.FragmentEditWineBinding
@@ -58,7 +61,6 @@ class EditWineFragment : Fragment() {
         loadWineData(wineId)
 
     }
-
 
     private fun setupUI() {
         setupSpinners()
@@ -144,6 +146,14 @@ class EditWineFragment : Fragment() {
                 if (validateInputs()) {
                     saveWine()
                 }
+            }
+
+            // Replenish stock button
+            btnReplenishStock.setOnClickListener {
+                val dialog = ReplenishStockDialogFragment { costPrice, stockQuantity ->
+                    replenishStock(costPrice, stockQuantity) // Correctly invoking replenishStock
+                }
+                dialog.show(parentFragmentManager, "ReplenishStockDialog")
             }
         }
     }
@@ -432,4 +442,48 @@ class EditWineFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    fun replenishStock(costPrice: Double, stockQuantity: Int) {
+        wineToEdit?.let { wine ->
+            val replenishRequest = ReplenishStockRequest(cost_price = costPrice, stock_quantity = stockQuantity)
+
+            wineApi.replenishStock(wine.id, replenishRequest).enqueue(object : Callback<ReplenishStockResponse> {
+                override fun onResponse(
+                    call: Call<ReplenishStockResponse>,
+                    response: Response<ReplenishStockResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { replenishResponse ->
+                            Toast.makeText(
+                                context,
+                                replenishResponse.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Log.i(
+                                "ReplenishStock",
+                                "Stock replenished successfully for wineId: ${wine.id}, New Stock: ${replenishResponse.new_stock_quantity}, Purchase ID: ${replenishResponse.purchase_id}"
+                            )
+                            // Optionally update local stock
+                            wine.stock += stockQuantity
+                        }
+                    } else {
+                        val errorMessage =
+                            "Failed to replenish stock: ${response.errorBody()?.string() ?: "Unknown error"}"
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                        Log.e("ReplenishStock", errorMessage)
+                    }
+                }
+
+                override fun onFailure(call: Call<ReplenishStockResponse>, t: Throwable) {
+                    val errorMessage = "Network error during stock replenishment: ${t.message}"
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                    Log.e("ReplenishStock", errorMessage, t)
+                }
+            })
+        } ?: run {
+            Toast.makeText(context, "Wine details not loaded", Toast.LENGTH_SHORT).show()
+            Log.e("ReplenishStock", "Wine details not loaded")
+        }
+    }
+
 }

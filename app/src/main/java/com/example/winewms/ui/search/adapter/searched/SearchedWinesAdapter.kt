@@ -83,8 +83,7 @@ class SearchedWinesAdapter(
 
             binding.btnEditWine.setOnClickListener {
                 if (isAdmin) { // Only admins can use this button
-                    Toast.makeText(binding.root.context, "Editing ${wine.name}", Toast.LENGTH_SHORT).show()
-                    // Add navigation to edit fragment or dialog here
+                    listener.onEditClick(wine)
                 }
             }
 
