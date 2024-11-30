@@ -61,12 +61,19 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
+        // Initialize RecyclerView with an empty adapter
+        binding.recyclerViewSearchedWines.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = SearchedWinesAdapter(emptyList(), this@SearchFragment, false)
+        }
+
+        // Hide FAB initially
+        binding.fabAddWine.visibility = View.GONE
+
         // Observe account data and set visibility for admin-specific features
         accountViewModel.account.observe(viewLifecycleOwner) { accountModel ->
             val isAdmin = accountModel?.type == 1 // Default to false if accountModel is null
-
-            // Set FAB visibility based on admin status
-            binding.fabAddWine.visibility = if (isAdmin) View.VISIBLE else View.GONE
+            binding.fabAddWine.visibility = if (accountModel != null && isAdmin) View.VISIBLE else View.GONE
         }
 
         //Setup vertical recycler view to display searched wines
@@ -135,29 +142,15 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
         }
     }
 
-
     //Function to observe list of wines from Search Wine View Model and display them on recycler view
     private fun observeWineList() {
-        // Observe both account data and wine list
-        accountViewModel.account.observe(viewLifecycleOwner) { accountModel ->
-            val isAdmin = accountModel?.type == 1 // Default to false if accountModel is null
-
-            searchWineViewModel.wineList.observe(viewLifecycleOwner) { listOfWines ->
-                Log.d("SearchFragment", "Wine list: $listOfWines")
-                Log.d("SearchFragment", "Account model: $accountModel, isAdmin: $isAdmin")
-
-                // Update the RecyclerView adapter with the wine list and isAdmin flag
-                binding.recyclerViewSearchedWines.apply {
-                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                    adapter = SearchedWinesAdapter(listOfWines, this@SearchFragment, isAdmin)
-                }
-
-                // Show or hide the "No results" message based on the list size
-                binding.txtNoResults.visibility = if (listOfWines.isEmpty()) View.VISIBLE else View.GONE
-            }
+        searchWineViewModel.wineList.observe(viewLifecycleOwner) { listOfWines ->
+            val isAdmin = accountViewModel.account.value?.type == 1 // Check admin status
+            Log.d("SearchFragment", "Wine list updated: $listOfWines")
+            binding.recyclerViewSearchedWines.adapter = SearchedWinesAdapter(listOfWines, this@SearchFragment, isAdmin)
+            binding.txtNoResults.visibility = if (listOfWines.isEmpty()) View.VISIBLE else View.GONE
         }
     }
-
 
     private fun fetchDataWithWineId(query: String) {
 
