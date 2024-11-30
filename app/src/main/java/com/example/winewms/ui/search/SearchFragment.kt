@@ -33,6 +33,7 @@ import androidx.fragment.app.setFragmentResultListener
 import com.example.winewms.R
 import com.example.winewms.data.model.CartItemModel
 import com.example.winewms.data.model.CartWineViewModel
+import com.example.winewms.ui.account.AccountViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Calendar
 
@@ -44,6 +45,7 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     private val searchWineViewModel: SearchWineViewModel by activityViewModels()
     private val wineApi: WineApiService by lazy { WineApi.retrofit.create(WineApiService::class.java) }
     private val cartWineViewModel: CartWineViewModel by activityViewModels()
+    private val accountViewModel: AccountViewModel by activityViewModels()
 
     // Filters
     private val selectedWineTypes = mutableListOf<String>()
@@ -109,22 +111,39 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
 
     //Function to display vertical recycler view to display searched wines
     private fun setupRecyclerView() {
-        binding.recyclerViewSearchedWines.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = SearchedWinesAdapter(emptyList(), this@SearchFragment)
+        accountViewModel.account.observe(viewLifecycleOwner) { accountModel ->
+            val isAdmin = accountModel?.type == 1 // Default to false if accountModel is null
+
+            binding.recyclerViewSearchedWines.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                adapter = SearchedWinesAdapter(emptyList(), this@SearchFragment, isAdmin)
+            }
         }
     }
 
+
     //Function to observe list of wines from Search Wine View Model and display them on recycler view
     private fun observeWineList() {
-        searchWineViewModel.wineList.observe(viewLifecycleOwner, Observer { listOfWines ->
-            val adapter = SearchedWinesAdapter(listOfWines, this)
-            binding.recyclerViewSearchedWines.adapter = adapter
+        // Observe both account data and wine list
+        accountViewModel.account.observe(viewLifecycleOwner) { accountModel ->
+            val isAdmin = accountModel?.type == 1 // Default to false if accountModel is null
 
-            // Show or hide the "No results" message based on the list size
-            binding.txtNoResults.visibility = if (listOfWines.isEmpty()) View.VISIBLE else View.GONE
-        })
+            searchWineViewModel.wineList.observe(viewLifecycleOwner) { listOfWines ->
+                Log.d("SearchFragment", "Wine list: $listOfWines")
+                Log.d("SearchFragment", "Account model: $accountModel, isAdmin: $isAdmin")
+
+                // Update the RecyclerView adapter with the wine list and isAdmin flag
+                binding.recyclerViewSearchedWines.apply {
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    adapter = SearchedWinesAdapter(listOfWines, this@SearchFragment, isAdmin)
+                }
+
+                // Show or hide the "No results" message based on the list size
+                binding.txtNoResults.visibility = if (listOfWines.isEmpty()) View.VISIBLE else View.GONE
+            }
+        }
     }
+
 
     private fun fetchDataWithWineId(query: String) {
 

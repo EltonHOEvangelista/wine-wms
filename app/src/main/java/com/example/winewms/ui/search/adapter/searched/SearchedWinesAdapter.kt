@@ -20,12 +20,17 @@ import com.squareup.picasso.Picasso
 class SearchedWinesAdapter(
     private val wineList: List<WineModel>,
     private val listener: OnSearchedWinesClickListener,
+    private val isAdmin: Boolean
 ) : RecyclerView.Adapter<SearchedWinesAdapter.SearchedWineViewHolder>() {
 
     // ViewHolder class for searched wine items
     inner class SearchedWineViewHolder(private val binding: SearchedWineCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(wine: WineModel) {
+            // Set visibility based on isAdmin
+            binding.btnAddToCart.visibility = if (isAdmin) View.GONE else View.VISIBLE
+            binding.btnEditWine.visibility = if (isAdmin) View.VISIBLE else View.GONE
+
             // Create a local binding variable for wine_card.xml
             val wineCardBinding = WineCardBinding.bind(binding.wineCard.root)
 
@@ -64,8 +69,17 @@ class SearchedWinesAdapter(
 
             // Set click listeners for the buttons in searched_wine_card.xml
             binding.btnAddToCart.setOnClickListener {
-                listener.onBuyClick(wine)
-                Toast.makeText(binding.root.context, "Buying ${wine.name}", Toast.LENGTH_SHORT).show()
+                if (!isAdmin) { // Ensure this button is usable only by non-admin users
+                    listener.onBuyClick(wine)
+                    Toast.makeText(binding.root.context, "Buying ${wine.name}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            binding.btnEditWine.setOnClickListener {
+                if (isAdmin) { // Only admins can use this button
+                    Toast.makeText(binding.root.context, "Editing ${wine.name}", Toast.LENGTH_SHORT).show()
+                    // Add navigation to edit fragment or dialog here
+                }
             }
 
             // Set Ranting Bar
