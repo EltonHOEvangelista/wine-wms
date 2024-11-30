@@ -322,8 +322,12 @@ class AddWineFragment : Fragment() {
                         if (stock != 0) {
                             placePurchaseOrder()
                         } else {
-                            //Navigate back to Fragment Control
-                            findNavController().navigate(R.id.navigation_control)
+                            val bundle = Bundle().apply {
+                                putBoolean("wineAdded", true)
+                            }
+                            parentFragmentManager.setFragmentResult("addWineResult", bundle)
+                            //Navigate back
+                            findNavController().popBackStack()
                         }
                     }
                 } else {
@@ -364,7 +368,7 @@ class AddWineFragment : Fragment() {
                 } else {
                     Toast.makeText(requireContext(), "Purchase order failed: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                     //Navigate back to Fragment Control
-                    findNavController().navigate(R.id.navigation_control)
+                    findNavController().popBackStack()
                 }
             }
         })
@@ -414,12 +418,12 @@ class AddWineFragment : Fragment() {
                     if (data != null) {
                         Toast.makeText(requireContext(), "Stock updated successfully", Toast.LENGTH_SHORT).show()
                         //Navigate back to Fragment Control
-                        findNavController().navigate(R.id.navigation_control)
+                        findNavController().popBackStack()
                     }
                 } else {
                     Toast.makeText(requireContext(), "Update stock failed: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                     //Navigate back to Fragment Control
-                    findNavController().navigate(R.id.navigation_control)
+                    findNavController().popBackStack()
                 }
             }
         })

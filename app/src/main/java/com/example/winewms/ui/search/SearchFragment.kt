@@ -62,6 +62,15 @@ class SearchFragment : Fragment(), OnSearchedWinesClickListener {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
+        // Listen for the result from AddWineFragment
+        parentFragmentManager.setFragmentResultListener("addWineResult", this) { _, bundle ->
+            val wineAdded = bundle.getBoolean("wineAdded", false)
+            if (wineAdded) {
+                // Refresh the RecyclerView
+                fetchDataWithFilters("") // Assuming this refreshes the data
+            }
+        }
+
         // Initialize RecyclerView with an empty adapter
         binding.recyclerViewSearchedWines.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
