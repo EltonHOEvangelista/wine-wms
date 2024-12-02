@@ -183,7 +183,7 @@
 
             <Button
                 android:id="@+id/btn_clear_filters"
-                style="@style/GoldButton"
+                style="@style/OrangeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"

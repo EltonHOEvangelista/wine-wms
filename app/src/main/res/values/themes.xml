@@ -43,9 +43,9 @@
         <item name="android:elevation">4dp</item>
     </style>
 
-    <style name="YellowButton" parent="Widget.AppCompat.Button">
+    <style name="WhiteWineButton" parent="Widget.AppCompat.Button">
         <!-- Background color -->
-        <item name="backgroundTint">@color/ChardonnayWine</item>
+        <item name="backgroundTint">@color/WhiteWine</item>
         <!-- Text color -->
         <item name="android:textColor">@color/DarkRedWine</item>
         <!-- Corner radius for rounded edges -->
@@ -54,7 +54,29 @@
         <item name="android:elevation">4dp</item>
     </style>
 
-    <style name="GoldButton" parent="Widget.AppCompat.Button">
+    <style name="DessertWineButton" parent="Widget.AppCompat.Button">
+        <!-- Background color -->
+        <item name="backgroundTint">@color/DessertWine</item>
+        <!-- Text color -->
+        <item name="android:textColor">@color/WhiteWine</item>
+        <!-- Corner radius for rounded edges -->
+        <item name="shapeAppearanceOverlay">@style/CustomButtonShape</item>
+        <!-- Elevation and padding -->
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="SparklingButton" parent="Widget.AppCompat.Button">
+        <!-- Background color -->
+        <item name="backgroundTint">@color/ChardonnayWine</item>
+        <!-- Text color -->
+        <item name="android:textColor">@color/DarkGray</item>
+        <!-- Corner radius for rounded edges -->
+        <item name="shapeAppearanceOverlay">@style/CustomButtonShape</item>
+        <!-- Elevation and padding -->
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="OrangeButton" parent="Widget.AppCompat.Button">
         <!-- Background color -->
         <item name="backgroundTint">@color/GoldRod</item>
         <!-- Text color -->

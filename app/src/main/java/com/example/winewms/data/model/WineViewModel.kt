@@ -14,4 +14,15 @@ class WineViewModel : ViewModel() {
     fun setWineList(list: List<WineModel>) {
         _wineList.value = list
     }
+
+    // Function to add a wine to the list
+    fun addWineOnList(wineModel: WineModel) {
+        val currentList = _wineList.value.orEmpty()
+        _wineList.value = currentList + wineModel
+    }
+
+    // Function to clean or reset the SearchWineViewModel data
+    fun clearWineViewModel() {
+        _wineList.value = emptyList()
+    }
 }

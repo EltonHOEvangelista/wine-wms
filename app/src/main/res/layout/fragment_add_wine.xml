@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.control.addwine.AddWineFragment">
+    tools:context=".ui.control.product.addwine.AddWineFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -657,7 +657,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/txtSaleDiscontHint"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:text="@string/txtSaleDiscont"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -682,7 +682,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/labelPurchase"
+                    android:id="@+id/labelCurrentStock"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"

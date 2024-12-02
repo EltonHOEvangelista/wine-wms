@@ -102,7 +102,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/labelShopByType"
+                android:id="@+id/labelManagementSuite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -225,7 +225,7 @@
 
                         <Button
                             android:id="@+id/btnWhiteWine"
-                            style="@style/YellowButton"
+                            style="@style/WhiteWineButton"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
                             android:layout_weight="0.8"
@@ -257,13 +257,84 @@
 
                         <Button
                             android:id="@+id/btnSparklingWine"
-                            style="@style/GoldButton"
+                            style="@style/SparklingButton"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
                             android:layout_weight="0.8"
                             android:text="@string/btnSparklingWine" />
                     </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineTypeLine3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:id="@+id/linearLayoutDessertWine"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardDessertWine"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="8dp"
+                            android:layout_marginVertical="4dp"
+                            android:layout_weight="0.2" >
+
+                            <ImageView
+                                android:id="@+id/imgDessertWine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/glass_dessert_wine" />
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnFinantialManagement"
+                            style="@style/DessertWineButton"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="0.8"
+                            android:text="@string/btnDessertWine" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutOrangeWine"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardOrangeWine"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="8dp"
+                            android:layout_marginVertical="4dp"
+                            android:layout_weight="0.2" >
+
+                            <ImageView
+                                android:id="@+id/imgOrangeWine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/glass_orange_wine" />
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnOrangeWine"
+                            style="@style/OrangeButton"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="0.8"
+                            android:text="@string/btnOrangeWine" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

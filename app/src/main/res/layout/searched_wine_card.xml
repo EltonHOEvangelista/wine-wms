@@ -10,7 +10,7 @@
 
     <!-- Reference to the existing wine card layout -->
     <View
-        android:id="@+id/divider3"
+        android:id="@+id/dividerWarehouseCard"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="?android:attr/listDivider"
@@ -26,7 +26,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3">
+        app:layout_constraintTop_toBottomOf="@+id/dividerWarehouseCard">
 
         <include
             android:id="@+id/wineCard"
@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutWineCard">

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/wine_bg_cork"
+        android:src="@drawable/wine_bg_glass"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -34,98 +34,193 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Título -->
             <TextView
-                android:id="@+id/tvWelcome"
-                android:layout_width="wrap_content"
+                android:id="@+id/labelManagementSuite"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
-                android:text="Welcome, Admin"
-                android:textColor="@color/Dark"
-                android:textSize="28sp"
+                android:text="@string/labelManagementSuite"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Texto de subtítulo -->
-            <TextView
-                android:id="@+id/tvSubtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="24dp"
-                android:text="Here is an overview of your business"
-                android:textColor="@color/Dark"
-                android:textSize="16sp" />
-
-            <!-- LineChart -->
-
-            <!-- GridLayout para os botões -->
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChart"
+            <LinearLayout
+                android:id="@+id/linearLayoutShopByType"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp" />
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_corners_white"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            <GridLayout
-                android:id="@+id/gridLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <!-- Botão 1: Manage Wines -->
                 <LinearLayout
-                    android:id="@+id/btnManageWines"
-                    android:layout_width="0dp"
-                    android:layout_height="130dp"
-                    android:layout_columnWeight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/rounded_corners_light_red">
+                    android:id="@+id/linearLayoutWineTypeLine1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Manage Wines"
-                        android:textSize="18sp"
-                        android:textColor="@color/Dark"
-                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:id="@+id/linearLayoutRedWine"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardRedWine"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="4dp"
+                            android:layout_weight="0.2"
+                            app:cardCornerRadius="8dp">
+
+                            <ImageView
+                                android:id="@+id/imgRedWine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/wine_bottles" />
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnProductManagement"
+                            style="@style/RedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:text="@string/btnProductManagement" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <!-- Botão 2: Reports -->
                 <LinearLayout
-                    android:id="@+id/btnReports"
-                    android:layout_width="0dp"
-                    android:layout_height="130dp"
-                    android:layout_columnWeight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/rounded_corners_light_red">
+                    android:id="@+id/linearLayoutWineTypeLine2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reports"
-                        android:textSize="18sp"
-                        android:textColor="@color/Dark"
-                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:id="@+id/linearLayoutWhiteWine"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardWhiteWine"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="4dp"
+                            android:layout_weight="0.2"
+                            app:cardCornerRadius="8dp">
+
+                            <ImageView
+                                android:id="@+id/imgWhiteWine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/wine_warehouse" />
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnWarehouseManagement"
+                            style="@style/WhiteWineButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:text="@string/btnWarehouseManagement" />
+                    </LinearLayout>
+
                 </LinearLayout>
-            </GridLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineTypeLine3"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutDessertWine"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardDessertWine"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="4dp"
+                            android:layout_weight="0.2"
+                            app:cardCornerRadius="8dp">
+
+                            <ImageView
+                                android:id="@+id/imgDessertWine"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/wine_bg_business" />
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnFinancialManagement"
+                            style="@style/DessertWineButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:text="@string/btnFinancialManagement" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineTypeLine4"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutSales"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardSales"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="4dp"
+                            android:layout_weight="0.2"
+                            app:cardCornerRadius="8dp">
+
+                            <ImageView
+                                android:id="@+id/imgSales"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/sales" />
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnSalesManagement"
+                            style="@style/SparklingButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:text="@string/btnSalesManagement" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
     <!-- FloatingActionButton -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/add_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

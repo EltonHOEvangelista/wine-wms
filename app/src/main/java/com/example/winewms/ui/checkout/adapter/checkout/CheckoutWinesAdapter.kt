@@ -27,7 +27,7 @@ class CheckoutWinesAdapter(
                 txtQuantity.text = "Quantity: ${cartItem.quantity}"
                 txtOriginalTotalPrice.text = String.format("Original: $%.2f", wine.sale_price * cartItem.quantity)
                 txtDiscount.text = String.format("Discount: %d%%", (discount * 100).toInt())
-                txtDiscountedTotal.text = String.format("Discounted Total: $%.2f", totalDiscountedPrice)
+                txtDiscountedTotal.text = String.format("Final Price: $%.2f +tax", totalDiscountedPrice)
 
                 //Load image from Google Firebase
                 val storageRef = Firebase.storage.reference.child(wine.image_path)

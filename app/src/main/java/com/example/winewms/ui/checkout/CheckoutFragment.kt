@@ -87,7 +87,7 @@ class CheckoutFragment : Fragment() {
         val totalPrice = cartItems.sumOf {
             it.wine.sale_price.toDouble() * (1 - it.wine.discount.toDouble()) * it.quantity
         }
-        binding.txtTotalPrice.text = String.format("Total: $%.2f", totalPrice)
+        binding.txtTotalPrice.text = String.format("Total: $%.2f +tax", totalPrice)
     }
 
     private fun setupAddressCheckbox() {
@@ -179,25 +179,33 @@ class CheckoutFragment : Fragment() {
                     wineApiService.placeSalesOrder(salesRequest).enqueue(object : Callback<SalesDataWrapper> {
                         override fun onResponse(call: Call<SalesDataWrapper>, response: Response<SalesDataWrapper>) {
                             if (response.isSuccessful) {
-                                Toast.makeText(context, "Order placed successfully!", Toast.LENGTH_LONG).show()
-
                                 // Clear the cart in the ViewModel
                                 cartWineViewModel.updateCartItems(emptyList())
 
-                                //load invoice in View Model
                                 val salesDataWrapper = response.body()
-                                if (salesDataWrapper != null) {
-                                    val invoice = salesDataWrapper.invoice
-                                    invoiceList.add(invoice)
-                                    salesResponseViewModel.setWineInvoiceList(invoiceList)
+                                salesDataWrapper?.let {
+                                    when {
+                                        it.invoices.isNotEmpty() && it.saleRefused.isEmpty() -> {
+                                            Toast.makeText(
+                                                context,
+                                                "Thank you for shopping at Wine Warehouse. Your order has been placed successfully!",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+                                        it.invoices.isNotEmpty() && it.saleRefused.isNotEmpty() -> {
+                                            Toast.makeText(
+                                                context,
+                                                "Thank you for shopping at Wine Warehouse. Your order has been partially placed",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                            // List wines out of stock
+                                        }
+                                    }
+                                    it.invoices?.let { invoices ->
+                                        salesResponseViewModel.setWineInvoiceList(invoices)
+                                        displayInvoice()
+                                    }
                                 }
-
-
-                                //manage refused wine sales!!!!
-                                //val refused = salesDataWrapper.saleRefused
-
-
-
 
                                 // Navigate back to the cart screen
                                 findNavController().navigate(R.id.action_navigation_checkout_to_navigation_cart)
@@ -230,7 +238,9 @@ class CheckoutFragment : Fragment() {
         }
     }
 
+    private fun displayInvoice() {
 
+    }
 
     private fun handleInsufficientStockError(errorBody: String) {
         try {
@@ -262,5 +272,4 @@ class CheckoutFragment : Fragment() {
             Log.e("CheckoutFragment", "Failed to parse insufficient stock error response", e)
         }
     }
-
 }

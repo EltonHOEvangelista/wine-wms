@@ -4,12 +4,11 @@ import android.os.Parcelable
 import com.example.winewms.ui.account.AccountAddressModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import java.util.Date
 
 @Parcelize
 data class SalesDataWrapper(
-    val invoice: WineInvoice,
-    //@SerializedName("sale_refused") val saleRefused: List<SalesRefused>
+    val invoices: List<WineInvoice>,
+    @SerializedName("sale_refused") val saleRefused: List<SalesRefused>
 ) : Parcelable
 
 @Parcelize

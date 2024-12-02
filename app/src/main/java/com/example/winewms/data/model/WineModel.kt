@@ -14,6 +14,11 @@ data class DataWrapper(
 ) : Parcelable
 
 @Parcelize
+data class WinesWrapper(
+    var wines: List<WineModel>
+) : Parcelable
+
+@Parcelize
 data class WineModel(
     @SerializedName("_id") var id: String,
     var image_path: String,
@@ -30,7 +35,8 @@ data class WineModel(
     var food_pair: List<String>,
     var sale_price: Float,
     var discount: Float,
-    var stock: Int
+    var stock: Int,
+    @SerializedName("stock_location") var stockLocation: List<WineLocation>
 ) : Parcelable
 
 @Parcelize
@@ -39,4 +45,12 @@ data class TasteCharacteristics(
     var tannin: Int,
     var dryness: Int,
     var acidity: Int
+) : Parcelable
+
+@Parcelize
+data class WineLocation(
+    @SerializedName("_id") var id: String,
+    var aisle: String,
+    var shelf: String,
+    var stock: Int
 ) : Parcelable

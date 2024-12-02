@@ -1,19 +1,18 @@
 package com.example.winewms.api
 
+import com.example.winewms.data.model.CumulativeCostRevenue
 import com.example.winewms.data.model.DataWrapper
+import com.example.winewms.data.model.FinancialDataWrapper
 import com.example.winewms.data.model.PurchaseModel
 import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.data.model.SalesDataWrapper
 import com.example.winewms.data.model.SalesModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
+import com.example.winewms.data.model.WinesWrapper
 import com.example.winewms.ui.account.AccountDataWrapper
 import com.example.winewms.ui.account.AccountModel
 import com.example.winewms.ui.account.signin.SigninModel
-import com.example.winewms.ui.control.reports.ReportModel
-import com.example.winewms.ui.control.reports.sales.SalesComparison
-import com.example.winewms.ui.control.reports.sales.SalesReportModel
-import com.example.winewms.ui.control.reports.stock.StockItem
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -53,6 +52,11 @@ interface WineApiService {
         @QueryMap filters: Map<String, String>? = emptyMap()
     ): Call<DataWrapper>
 
+    @GET("wines/low")
+    fun getLowStockWines(
+        @QueryMap filters: Map<String, String>? = emptyMap()
+    ): Call<WinesWrapper>
+
     //get a single wine by ID
     @GET("wines/{id}")
     fun getWineById(@Path("id") wineId: String): Call<WineModel>
@@ -64,7 +68,7 @@ interface WineApiService {
 
     //update an existing wine by ID
     @PATCH("wines/{id}")
-    fun updateWine(@Path("id") wineId: String, @Body wineModel: WineModel): Call<String>
+    fun updateWine(@Path("id") wineId: String, @Body wineModel: WineModel): Call<ResponseModel>
 
     //delete an existing wine by ID
     @DELETE("wines/{id}")
@@ -76,8 +80,6 @@ interface WineApiService {
 
     @POST("wines/bulk")
     fun getBulkWines(@Body wineIds: List<String>): Call<List<WineModel>>
-
-
 
     //---------------------------------------------------------------------------
     // Purchases endpoints
@@ -97,6 +99,8 @@ interface WineApiService {
     @GET("sales/customer/{id}")
     fun getOrdersByCustomerId(@Path("id") wineId: String): Call<SalesDataWrapper>
 
+    @GET("sales/customer/dispatch/{dispatch_status}")
+    fun getOrdersNotDispatched(@Path("dispatch_status") dispatchStatus: String): Call<SalesDataWrapper>
     //---------------------------------------------------------------------------
     // Warehouse/Stock endpoints
 
@@ -110,24 +114,13 @@ interface WineApiService {
     fun updateStock(@Body warehouseModel: WarehouseModel): Call<ResponseModel>
 
     //---------------------------------------------------------------------------
-    // Reports endpoints
+    // Financial endpoints
+    //Get cumulative cost and revenue by range date
+    @GET("financial")
+    fun getCumulativeCostRevenueByDate(
+        @QueryMap filters: Map<String, String>? = emptyMap()
+    ): Call<List<CumulativeCostRevenue>>
 
-     //Get Sales Report
-     @GET("sales/report")
-     fun getSalesReportWithFilters(
-         @Query("start_date") startDate: String,
-         @Query("end_date") endDate: String,
-         @Query("categories") categories: List<String>,
-         @Query("best_sellers") bestSellers: Boolean,
-     ): Call<SalesReportModel>
 
-    @GET("sales/comparison")
-    fun getSalesComparison(): Call<SalesComparison>
-
-    //Get Stock Report
-    @GET("stock/report")
-    fun getStockReport(
-        @Query("wineId") wineId: String? = null
-    ): Call<List<StockItem>>
 
 }

@@ -11,22 +11,27 @@ import androidx.navigation.fragment.findNavController
 import com.example.winewms.R
 import com.example.winewms.databinding.FragmentAccountBinding
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
 import com.example.winewms.data.model.SalesDataWrapper
+import com.example.winewms.data.model.WineInvoice
 import com.example.winewms.data.sql.DatabaseHelper
-import com.example.winewms.ui.account.signin.SigninModel
+import com.example.winewms.ui.account.invoices.InvoicesAdapter
+import com.example.winewms.ui.account.invoices.onInvoicesClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AccountFragment : Fragment() {
+class AccountFragment : Fragment(), onInvoicesClickListener {
 
     private lateinit var binding: FragmentAccountBinding
 
     //variable used to transfer objects among activities and fragments
     private val accountViewModel: AccountViewModel by activityViewModels()
+
+    lateinit var invoiceList: List<WineInvoice>
 
     //Instantiate Wine Api
     var wineApi = WineApi.retrofit.create(WineApiService::class.java)
@@ -43,33 +48,7 @@ class AccountFragment : Fragment() {
         // Load account details from Account View Model
         loadAccountDetails()
 
-        // Load list of orders on recycler view
-        loadOrders()
-
         return binding.root
-    }
-
-    // Function to load list of orders on recycler view
-    private fun loadOrders() {
-
-        accountViewModel.account.observe(viewLifecycleOwner, Observer { account ->
-            if (account != null) {
-
-                //set click listener on linear Layout Order Details
-                binding.linearLayoutOrders.setOnClickListener() {
-                    if (binding.recyclerViewOrders.visibility == View.GONE) {
-                        binding.recyclerViewOrders.visibility = View.VISIBLE
-                        binding.imgRightArrowOrders.visibility = View.GONE
-                        binding.imgDownArrowOrders.visibility = View.VISIBLE
-                    }
-                    else {
-                        binding.recyclerViewOrders.visibility = View.GONE
-                        binding.imgRightArrowOrders.visibility = View.VISIBLE
-                        binding.imgDownArrowOrders.visibility = View.GONE
-                    }
-                }
-            }
-        })
     }
 
     //Function to load account details
@@ -138,11 +117,40 @@ class AccountFragment : Fragment() {
                 if (response.isSuccessful) {
                     val dataWrapper = response.body()
                     if (dataWrapper != null) {
+                        invoiceList = dataWrapper.invoices
 
+                        //load list of orders on recycler view
+                        loadOrders()
                     }
                 }
             }
         })
+    }
+
+    // Function to load list of orders on recycler view
+    private fun loadOrders() {
+
+        //set click listener on linear Layout Order Details
+        binding.linearLayoutOrders.setOnClickListener() {
+            if (binding.recyclerViewOrders.visibility == View.GONE) {
+                binding.recyclerViewOrders.visibility = View.VISIBLE
+                binding.imgRightArrowOrders.visibility = View.GONE
+                binding.imgDownArrowOrders.visibility = View.VISIBLE
+            }
+            else {
+                binding.recyclerViewOrders.visibility = View.GONE
+                binding.imgRightArrowOrders.visibility = View.VISIBLE
+                binding.imgDownArrowOrders.visibility = View.GONE
+            }
+        }
+
+        //load recycler view
+        val adapter = InvoicesAdapter(invoiceList, this, context,
+            accountViewModel.account.value?.firstName ?: "FirstName",
+            accountViewModel.account.value?.lastName ?: "LastName"
+        )
+        binding.recyclerViewOrders.adapter = adapter
+        binding.recyclerViewOrders.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun setupClickListeners() {
@@ -226,5 +234,9 @@ class AccountFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Please, enter your email and password", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onInvoicesClickListener(wineInvoice: WineInvoice) {
+
     }
 }

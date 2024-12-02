@@ -63,7 +63,7 @@
 
             <!-- Address section title -->
             <TextView
-                android:id="@+id/labelShippingAddress"
+                android:id="@+id/labelShipTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -155,7 +155,7 @@
         <!-- Place Order Button -->
         <Button
             android:id="@+id/btnPlaceOrder"
-            style="@style/GoldButton"
+            style="@style/OrangeButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

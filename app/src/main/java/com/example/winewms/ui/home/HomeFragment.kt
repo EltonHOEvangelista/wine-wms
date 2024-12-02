@@ -62,7 +62,7 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
     private fun setClickListeners() {
 
         // Set up button click listeners for filtering
-        binding.btnRedWine.setOnClickListener {
+        binding. btnRedWine.setOnClickListener {
             navigateToSearchWithFilter("red")
         }
         binding.btnRoseWine.setOnClickListener {
@@ -73,6 +73,12 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
         }
         binding.btnSparklingWine.setOnClickListener {
             navigateToSearchWithFilter("sparkling")
+        }
+        binding.btnSparklingWine.setOnClickListener {
+            navigateToSearchWithFilter("dessert")
+        }
+        binding.btnSparklingWine.setOnClickListener {
+            navigateToSearchWithFilter("orange")
         }
 
         // Set up text search functionality
