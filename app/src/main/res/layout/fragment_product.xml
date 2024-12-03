@@ -56,7 +56,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/labelProductManagement"
+        android:id="@+id/labelSalesManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -75,7 +75,7 @@
         android:clipToPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelProductManagement" />
+        app:layout_constraintTop_toBottomOf="@+id/labelSalesManagement" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddWine"

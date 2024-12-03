@@ -56,6 +56,7 @@
     <string name="txtWineCountry">Country/Region</string>
     <string name="txtWineSearch" />
     <string name="txtWineSearchHint">Search any wine</string>
+    <string name="txtSalesSearchHint">Search sales by wine</string>
     <string name="labelFeattuedWines">Featured wines</string>
     <string name="txtDiscount">Save %</string>
     <string name="txtOginalPrice">$ .00</string>
@@ -230,9 +231,13 @@
     <string name="labelCurrentStock">Current Stock (Bottle Units)</string>
     <string name="labelNewPurchase">New Purchase (update stock)</string>
     <string name="labelCost">Cost</string>
+    <string name="labelSalesUnit">Unit(s)</string>
+    <string name="labelSalesAmount">Amount ($)</string>
     <string name="labelRevenue">Revenue</string>
     <string name="labelTotalCost">Cost</string>
     <string name="txtTotalCost">0.00</string>
+    <string name="txtTotalSalesUnit">0</string>
+    <string name="txtTotalSalesAmount">0.00</string>
     <string name="labelTotalRevenue">Revenue</string>
     <string name="txtTotalRevenue">0.00</string>
     <string name="labelPeriod">Time Period:</string>
@@ -250,6 +255,8 @@
     <string name="labelGPM">Efficiency of production and sales processes.</string>
     <string name="labelRGA">Revenue growth over time (compared to previous period).</string>
     <string name="labelRevenueGrowthRate">Revenue Growth Rate</string>
+    <string name="labelSalesManagement">Sales Management</string>
+    <string name="labelTotalSales">Sales Summary</string>
 
     <string-array name="spinnerWineType">
         <item>Red</item>

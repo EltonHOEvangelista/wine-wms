@@ -41,9 +41,9 @@ class ControlFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_control_to_financialFragment)
         }
 
-        // Configure click on "Reports" button
+        // Configure click on "Sales" button
         binding.btnSalesManagement.setOnClickListener {
-
+            findNavController().navigate(R.id.action_navigation_control_to_salesFragment)
         }
     }
 }

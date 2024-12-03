@@ -42,6 +42,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/linearLayoutDateFilter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
@@ -135,7 +136,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/labelProductCashFlow"
+                android:id="@+id/labelTotalSales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

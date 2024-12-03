@@ -1,0 +1,88 @@
+<!-- res/layout/filter_popup.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/rounded_corners_white_b">
+
+    <!-- Wine Type Filters in Two Columns -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wine Type"
+        android:paddingBottom="8dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_marginBottom="8dp">
+
+        <CheckBox
+            android:id="@+id/filter_option_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_rose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rose Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_sparkling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sparkling Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_dessert_wine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dessert Wine" />
+
+        <CheckBox
+            android:id="@+id/filter_option_orange_wine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orange Wine" />
+
+    </GridLayout>
+    <!-- Apply Button Aligned to Bottom Right -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingTop="16dp"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btn_clear_filters"
+            style="@style/OrangeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/btn_clear_filters"
+            android:textColor="@color/DarkGray" />
+
+        <Button
+            android:id="@+id/btn_apply_filters"
+            style="@style/RedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/btn_apply_filters" />
+    </LinearLayout>
+</LinearLayout>

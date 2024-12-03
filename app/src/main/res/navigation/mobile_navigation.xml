@@ -58,6 +58,11 @@
             app:destination="@id/financialFragment"
             app:popUpTo="@id/navigation_control"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_control_to_salesFragment"
+            app:destination="@id/salesFragment"
+            app:popUpTo="@id/navigation_control"
+            app:popUpToInclusive="true" />
     </fragment>
 
 <!--    SignIn-->
@@ -157,5 +162,9 @@
         android:name="com.example.winewms.ui.control.financial.FinancialFragment"
         android:label="fragment_financial"
         tools:layout="@layout/fragment_financial" />
+    <fragment
+        android:id="@+id/salesFragment"
+        android:name="com.example.winewms.ui.control.sales.SalesFragment"
+        android:label="SalesFragment" />
 
 </navigation>

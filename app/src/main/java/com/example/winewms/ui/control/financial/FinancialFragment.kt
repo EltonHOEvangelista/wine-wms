@@ -185,14 +185,11 @@ class FinancialFragment : Fragment() {
                 if (cashFlowDate >= startDateTime) {
                     totalCost += dailyCashFlow.cumulativeCost.toFloat()
                     totalRevenue += dailyCashFlow.cumulativeSales.toFloat()
-                    Log.e("Cash Flow Date", "Date: ${cashFlowDate} Cost:${dailyCashFlow.cumulativeCost} Revenue: ${dailyCashFlow.cumulativeSales}")
                 } else {
                     totalCostPrevious += dailyCashFlow.cumulativeCost.toFloat()
                     totalRevenuePrevious += dailyCashFlow.cumulativeSales.toFloat()
-                    Log.e("Cash Flow Date", "Previous Date: ${cashFlowDate} Cost:${dailyCashFlow.cumulativeCost} Revenue: ${dailyCashFlow.cumulativeSales}")
                 }
             }
-            Log.e("Cash Flow Date", "---------------")
         } ?: run {
             Log.e("List of Cost and Revenue", "The list of cost and revenue is null.")
         }
@@ -222,8 +219,6 @@ class FinancialFragment : Fragment() {
 
         binding.txtTotalCost.text = String.format("$ %.2f", totalCost)
         binding.txtTotalRevenue.text = String.format("$ %.2f", totalRevenue)
-        binding.txtStartDate.setText(startDateTime.toString())
-        binding.txtEndDate.setText(endDateTime.toString())
         binding.txtStartPeriod.setText(startDateTime.toString().take(10))
         binding.txtEndPeriod.setText(endDateTime.toString().take(10))
     }
@@ -306,7 +301,6 @@ class FinancialFragment : Fragment() {
                     listOfCostRevenue = response.body()!!
                     // Update the ViewModel with the list
                     response.body()?.let { financialViewModel.setListOfCostRevenue(it) }
-                    //financialViewModel.setListOfCostRevenue(response.body()!!)
                 } else {
                     Log.e("API Service Response", "Failed to fetch data. Error: ${response.errorBody()?.string()}")
                 }

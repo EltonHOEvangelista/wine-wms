@@ -344,8 +344,8 @@ class EditWineFragment : Fragment() {
         val sale_price = binding.txtSalePrice.text.toString().toFloat()
         val discount = binding.txtSaleDiscont.text.toString().toFloat() / 100.00
 
-        cost_price = binding.txtNewCostPrice.text.toString().toFloat()
-        stock = binding.txtAdditionalStock.text.toString().trim().toInt()
+        cost_price = binding.txtNewCostPrice.text.toString().takeIf { it.isNotBlank() }?.toFloat() ?: 0.0f
+        stock = binding.txtAdditionalStock.text.toString().takeIf { it.isNotBlank() }?.toInt() ?: 0
 
         warehouse_location = binding.spinnerNewWarehouseLocation.selectedItem.toString()
         warehouse_aisle = binding.spinnerNewWarehouseAisle.selectedItem.toString()
@@ -513,6 +513,7 @@ class EditWineFragment : Fragment() {
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e("API Service Failure", t.message.toString())
+                updateWineStock()
             }
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 if (response.isSuccessful) {

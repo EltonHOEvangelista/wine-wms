@@ -1,6 +1,7 @@
 package com.example.winewms.api
 
 import com.example.winewms.data.model.CumulativeCostRevenue
+import com.example.winewms.data.model.CumulativeSales
 import com.example.winewms.data.model.DataWrapper
 import com.example.winewms.data.model.FinancialDataWrapper
 import com.example.winewms.data.model.PurchaseModel
@@ -101,6 +102,12 @@ interface WineApiService {
 
     @GET("sales/customer/dispatch/{dispatch_status}")
     fun getOrdersNotDispatched(@Path("dispatch_status") dispatchStatus: String): Call<SalesDataWrapper>
+
+    //Get cumulative cost and revenue by range date
+    @GET("sales")
+    fun getCumulativeSales(
+        @QueryMap filters: Map<String, String>? = emptyMap()
+    ): Call<List<CumulativeSales>>
     //---------------------------------------------------------------------------
     // Warehouse/Stock endpoints
 
@@ -115,12 +122,10 @@ interface WineApiService {
 
     //---------------------------------------------------------------------------
     // Financial endpoints
+
     //Get cumulative cost and revenue by range date
     @GET("financial")
     fun getCumulativeCostRevenueByDate(
         @QueryMap filters: Map<String, String>? = emptyMap()
     ): Call<List<CumulativeCostRevenue>>
-
-
-
 }

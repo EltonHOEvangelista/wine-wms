@@ -39,3 +39,10 @@ data class SalesRefused(
     @SerializedName("available_stock") val availableStock: Int,
     @SerializedName("requested_quantity") val requestedQuantity: Int
 ) : Parcelable
+
+@Parcelize
+class CumulativeSales(
+    val date: String,
+    @SerializedName("cumulative_sales_unit") val cumulativeSalesUnit: String,
+    @SerializedName("cumulative_sales_amount") val cumulativeSalesAmount: String
+) : Parcelable
