@@ -12,10 +12,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.winewms.api.WineApi
 import com.example.winewms.api.WineApiService
 import com.example.winewms.data.json.LoadPurchasesFromJson
+import com.example.winewms.data.json.LoadSalesFromJson
 import com.example.winewms.data.json.LoadStockFromJson
 import com.example.winewms.data.json.LoadWinesFromJson
 import com.example.winewms.data.model.PurchaseModel
 import com.example.winewms.data.model.ResponseModel
+import com.example.winewms.data.model.SalesRequestModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.sql.DatabaseHelper
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var wineList: List<WineModel>
     lateinit var purchaseList: List<PurchaseModel>
     lateinit var stockList: List<WarehouseModel>
+    lateinit var salesList: List<SalesRequestModel>
 
     //Variable to manage bottom navigation view
     lateinit var navView: BottomNavigationView
@@ -66,6 +69,44 @@ class MainActivity : AppCompatActivity() {
 
         //Upload initial stock to serve
         //loadInitialStockOnServer()
+
+        //Upload initial sales to serve
+        //loadInitialSalesOnServer()
+    }
+
+    private fun loadInitialSalesOnServer() {
+
+        //Load purchases from json file
+        val dataFile = LoadSalesFromJson()
+        salesList = dataFile.readJsonFile(this,"sales_list.json")!!
+
+        //Making an API call to push initial data to the backend
+        val apiCall = wineApi.create_initial_sales(salesList)
+
+        //Enqueueing the API call for asynchronous execution
+        apiCall.enqueue(object : Callback<ResponseModel> { // <Unit>
+
+            // Handling the failure scenario
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                //Displaying a toast message for user feedback
+                Toast.makeText(baseContext, "Failed to load initial data into MongoDB.", Toast.LENGTH_SHORT).show()
+                // Logging the error details for debugging
+                Log.d("API Service", "Error loading initial data: ${t.message}")
+            }
+
+            // Handling the response
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                if (response.isSuccessful) {
+                    //Successfully pushed data to the backend
+                    Toast.makeText(baseContext, "Initial data loaded successfully.", Toast.LENGTH_SHORT).show()
+                    Log.d("API Service", "Initial data loaded successfully.")
+                } else {
+                    //Handling unsuccessful response
+                    Log.e("API Service", "Failed to load initial data. Error: ${response.errorBody()?.string()}")
+                    Toast.makeText(baseContext, "Failed to load initial data.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun loadInitialPurchasesOnServer() {

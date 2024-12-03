@@ -1,87 +1,355 @@
 {
   "wines": [
     {
-      "image_path": "chateau_rouge.png",
-      "name": "Château Rouge",
-      "producer": "Domaine Du Rouge",
+      "image_path": "Beni_di_Batasiolo_Moscato_dAsti_Bosc_dla_Rei_Orange.png",
+      "name": "Moscato d'Asti Bosc dla Rei",
+      "producer": "Beni di Batasiolo",
+      "country": "Italy",
+      "harvest_year": 2021,
+      "type": "Orange Wine",
+      "rate": 4.7,
+      "description": "A sweet and aromatic Moscato with floral and fruity notes, perfect for desserts.",
+      "reviews": [
+        "Delicious and refreshing, ideal with light cakes.",
+        "Aromatic and perfectly balanced sweetness.",
+        "Highly enjoyable, a must-try for Moscato lovers."
+      ],
+      "grapes": ["Chardonnay"],
+      "taste_characteristics": {
+        "lightness": 9,
+        "tannin": 1,
+        "dryness": 1,
+        "acidity": 4
+      },
+      "food_pair": ["Dark Chocolate"],
+      "sale_price": 19.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Champagne_Moet_Chandon_Imperial_Brut_Sparking.png",
+      "name": "Moet & Chandon Imperial Brut",
+      "producer": "Moet & Chandon",
+      "country": "France",
+      "harvest_year": 2022,
+      "type": "Sparkling",
+      "rate": 4.8,
+      "description": "An iconic champagne with crisp flavors of green apple, citrus, and subtle brioche.",
+      "reviews": [
+        "Elegance in a bottle, perfect for celebrations.",
+        "Crisp, refreshing, and delightful bubbles.",
+        "A classic champagne that never disappoints."
+      ],
+      "grapes": ["Chardonnay", "Pinot Noir"],
+      "taste_characteristics": {
+        "lightness": 8,
+        "tannin": 2,
+        "dryness": 6,
+        "acidity": 5
+      },
+      "food_pair": ["Seafood", "Fish", "Aged Cheeses"],
+      "sale_price": 59.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Chateau_dYquem_2020_Dessert.png",
+      "name": "Chateau dYquem",
+      "producer": "Chateau dYquem",
+      "country": "France",
+      "harvest_year": 2020,
+      "type": "Dessert",
+      "rate": 5.0,
+      "description": "A legendary Sauternes with rich notes of apricot, honey, and almonds.",
+      "reviews": [
+        "Luxurious and perfectly balanced sweetness.",
+        "A wine experience like no other.",
+        "The best dessert wine I've ever tasted."
+      ],
+      "grapes": ["Sauvignon Blanc"],
+      "taste_characteristics": {
+        "lightness": 7,
+        "tannin": 1,
+        "dryness": 1,
+        "acidity": 6
+      },
+      "food_pair": ["Dark Chocolate"],
+      "sale_price": 349.99,
+      "discount": 0.05,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Chateau_Gazin_Pomerol_2021.png",
+      "name": "Chateau Gazin Pomerol",
+      "producer": "Chateau Gazin",
+      "country": "France",
+      "harvest_year": 2021,
+      "type": "Red",
+      "rate": 4.6,
+      "description": "A refined Pomerol with complex layers of cherry, truffle, and earthy undertones.",
+      "reviews": [
+        "Smooth and velvety with an incredible finish.",
+        "A great choice for a special dinner.",
+        "Rich and complex, a true Bordeaux gem."
+      ],
+      "grapes": ["Merlot", "Cabernet Sauvignon"],
+      "taste_characteristics": {
+        "lightness": 5,
+        "tannin": 5,
+        "dryness": 6,
+        "acidity": 4
+      },
+      "food_pair": ["Stake", "Lamb", "Aged Cheeses"],
+      "sale_price": 79.99,
+      "discount": 0.20,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Chateau_Margaux_Pavillon_Rouge_2018.png",
+      "name": "Pavillon Rouge du Chateau Margaux",
+      "producer": "Chateau Margaux",
       "country": "France",
       "harvest_year": 2018,
       "type": "Red",
-      "rate": 4.5,
-      "description": "A full-bodied red wine with notes of blackberries, plums, and hints of oak.",
+      "rate": 4.9,
+      "description": "A second wine from Château Margaux with rich blackcurrant and spice flavors.",
       "reviews": [
-        "Fantastic wine, pairs beautifully with red meat.",
-        "Smooth and well-balanced with a great finish.",
-        "A bit pricey, but worth it for special occasions."
+        "Exquisite and perfectly balanced.",
+        "A premium wine at a more accessible price.",
+        "Elegance in every sip."
       ],
-      "grapes": [
-        "Cabernet Sauvignon",
-        "Merlot",
-        "Cabernet Franc"
+      "grapes": ["Cabernet Sauvignon", "Merlot"],
+      "taste_characteristics": {
+        "lightness": 5,
+        "tannin": 5,
+        "dryness": 6,
+        "acidity": 4
+      },
+      "food_pair": ["Steak", "Aged Cheeses"],
+      "sale_price": 169.99,
+      "discount": 0.18,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Donum_Blanc_de_Blancs_Sparkling_2021.png",
+      "name": "Donum Blanc de Blancs",
+      "producer": "Donum Estate",
+      "country": "USA",
+      "harvest_year": 2021,
+      "type": "Sparkling",
+      "rate": 4.4,
+      "description": "A vibrant sparkling wine with bright citrus and creamy notes.",
+      "reviews": [
+        "Great for festive occasions.",
+        "Light, crisp, and refreshing.",
+        "Beautifully balanced and elegant."
       ],
+      "grapes": ["Chardonnay"],
+      "taste_characteristics": {
+        "lightness": 7,
+        "tannin": 2,
+        "dryness": 5,
+        "acidity": 6
+      },
+      "food_pair": ["Fish", "Salad", "Seafood"],
+      "sale_price": 39.99,
+      "discount": 0.20,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Donum_Carneros_Chardonnay_2022.png",
+      "name": "Donum Carneros Chardonnay",
+      "producer": "Donum Estate",
+      "country": "USA",
+      "harvest_year": 2022,
+      "type": "White",
+      "rate": 4.2,
+      "description": "A creamy and rich Chardonnay with hints of vanilla and ripe pear.",
+      "reviews": [
+        "A top-notch Chardonnay, very enjoyable.",
+        "Smooth with a hint of oak.",
+        "Perfect for fans of buttery whites."
+      ],
+      "grapes": ["Chardonnay"],
+      "taste_characteristics": {
+        "lightness": 5,
+        "tannin": 2,
+        "dryness": 5,
+        "acidity": 4
+      },
+      "food_pair": ["Chicken", "Seafood", "Pasta"],
+      "sale_price": 29.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Donum_Heritage_Clones_Pinot_Noir.png",
+      "name": "Donum Heritage Clones Pinot Noir",
+      "producer": "Donum Estate",
+      "country": "USA",
+      "harvest_year": 2020,
+      "type": "Red",
+      "rate": 4.7,
+      "description": "A complex Pinot Noir with vibrant red fruit and earthy nuances.",
+      "reviews": [
+        "Exceptional Pinot Noir, smooth and rich.",
+        "Beautiful balance of fruit and acidity.",
+        "Highly recommend for Pinot lovers."
+      ],
+      "grapes": ["Pinot Noir"],
       "taste_characteristics": {
         "lightness": 6,
+        "tannin": 3,
+        "dryness": 5,
+        "acidity": 4
+      },
+      "food_pair": ["Chicken", "Pasta", "Aged Cheese"],
+      "sale_price": 59.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Donum_Rose_of_Pinot_Noir_2021.png",
+      "name": "Donum Rose of Pinot Noir",
+      "producer": "Donum Estate",
+      "country": "USA",
+      "harvest_year": 2021,
+      "type": "Rose",
+      "rate": 4.3,
+      "description": "A fresh and fruity rosé with notes of strawberries and rose petals.",
+      "reviews": [
+        "Perfect for a sunny day.",
+        "Light, refreshing, and versatile.",
+        "A delightful and vibrant rosé."
+      ],
+      "grapes": ["Pinot Noir"],
+      "taste_characteristics": {
+        "lightness": 8,
+        "tannin": 1,
+        "dryness": 5,
+        "acidity": 5
+      },
+      "food_pair": ["Chicken", "Salad", "Aged Cheeses"],
+      "sale_price": 24.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Donum_Thomas_Merlot_2020.png",
+      "name": "Donum Thomas Merlot",
+      "producer": "Donum Estate",
+      "country": "USA",
+      "harvest_year": 2020,
+      "type": "Red",
+      "rate": 4.5,
+      "description": "A plush and velvety Merlot with flavors of dark plum and chocolate.",
+      "reviews": [
+        "Rich and smooth, a great Merlot.",
+        "Excellent value for the quality.",
+        "Pairs perfectly with roasted meats."
+      ],
+      "grapes": ["Merlot"],
+      "taste_characteristics": {
+        "lightness": 5,
         "tannin": 4,
         "dryness": 5,
         "acidity": 3
       },
-      "food_pair": ["Steak", "Lamb", "Aged Cheeses"],
-      "sale_price": 45.99,
-      "discount": 0.18
+      "food_pair": ["Lamb", "Aged Cheeses"],
+      "sale_price": 34.99,
+      "discount": 0.12,
+      "stock": 0,
+      "stock_location": []
     },
     {
-      "image_path": "valley_reserve.png",
-      "name": "White Valley Reserve",
-      "producer": "Valley Wines Co.",
-      "country": "United States",
+      "image_path": "Matua_Valley_Sauvignon_Blanc_2023.png",
+      "name": "Matua Valley Sauvignon Blanc",
+      "producer": "Matua Valley",
+      "country": "New Zealand",
       "harvest_year": 2023,
       "type": "White",
-      "rate": 4.2,
-      "description": "Crisp and refreshing with citrus and green apple notes.",
+      "rate": 4.6,
+      "description": "A zesty Sauvignon Blanc with tropical fruit flavors and crisp acidity.",
       "reviews": [
-        "Perfectly light and fresh for a summer evening.",
-        "Loved the acidity, pairs well with seafood.",
-        "A bit too acidic for my taste, but refreshing nonetheless."
+        "A fantastic New Zealand Sauvignon Blanc.",
+        "Refreshing and packed with flavor.",
+        "Perfect for summer evenings."
       ],
-      "grapes": [
-        "Sauvignon Blanc"
-      ],
+      "grapes": ["Sauvignon Blanc"],
       "taste_characteristics": {
-        "lightness": 5,
+        "lightness": 8,
         "tannin": 1,
         "dryness": 4,
-        "acidity": 5
+        "acidity": 6
       },
-      "food_pair": ["Seafood", "Salad", "Pasta with Cream Sauce"],
-      "sale_price": 22.49,
-      "discount": 0.15
+      "food_pair": ["Seafood", "Fish", "Salad"],
+      "sale_price": 18.99,
+      "discount": 0.16,
+      "stock": 0,
+      "stock_location": []
     },
     {
-      "image_path": "sparkling_sun.png",
-      "name": "Sparkling Sun",
-      "producer": "Bubbly Co.",
-      "country": "Italy",
-      "harvest_year": 2021,
-      "type": "Sparkling",
-      "rate": 4.2,
-      "description": "Elegant and bubbly with hints of pear, apple, and toasted almonds.",
+      "image_path": "Oyster_Bay_Sauvignon_Blanc_2023.png",
+      "name": "Oyster Bay Sauvignon Blanc",
+      "producer": "Oyster Bay",
+      "country": "New Zealand",
+      "harvest_year": 2023,
+      "type": "White",
+      "rate": 4.4,
+      "description": "A lively Sauvignon Blanc with notes of citrus, passion fruit, and fresh herbs.",
       "reviews": [
-        "Great for celebrations, light and refreshing.",
-        "One of the best sparkling wines I've had in a long time.",
-        "Good price for such high quality."
+        "Crisp and aromatic, highly enjoyable.",
+        "Excellent value for the quality.",
+        "Pairs wonderfully with light dishes."
       ],
-      "grapes": [
-        "Chardonnay"
-      ],
+      "grapes": ["Sauvignon Blanc"],
       "taste_characteristics": {
-        "lightness": 5,
+        "lightness": 7,
         "tannin": 1,
         "dryness": 4,
         "acidity": 5
       },
-      "food_pair": ["Oysters", "Brunch Dishes", "Light Desserts"],
-      "sale_price": 30.00,
-      "discount": 0.16
+      "food_pair": ["Fish", "Salad", "Aged Cheese"],
+      "sale_price": 17.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
+    },
+    {
+      "image_path": "Sharpham_Valley_Reserve_Sauvignon_Blanc.png",
+      "name": "Sharpham Valley Reserve Sauvignon Blanc",
+      "producer": "Sharpham Vineyard",
+      "country": "England",
+      "harvest_year": 2022,
+      "type": "White",
+      "rate": 4.3,
+      "description": "An elegant Sauvignon Blanc with subtle notes of gooseberry and citrus.",
+      "reviews": [
+        "A refined English Sauvignon Blanc.",
+        "Light and crisp with a lovely finish.",
+        "A great choice for fans of lighter whites."
+      ],
+      "grapes": ["Sauvignon Blanc"],
+      "taste_characteristics": {
+        "lightness": 7,
+        "tannin": 1,
+        "dryness": 5,
+        "acidity": 4
+      },
+      "food_pair": ["Fish", "Salad", "Aged Cheeses"],
+      "sale_price": 22.99,
+      "discount": 0.15,
+      "stock": 0,
+      "stock_location": []
     }
   ]
 }

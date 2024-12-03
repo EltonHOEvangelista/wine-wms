@@ -10,16 +10,16 @@
               "shelf": "S1",
               "wines": [
                 {
-                  "wine_id": "674067bc3b0ab4200ce1ad0c",
-                  "stock": 210
+                  "wine_id": "674f541bb37acf5ce5211a28",
+                  "stock": 145
                 },
                 {
-                  "wine_id": "674067bc3b0ab4200ce1ad0d",
-                  "stock": 125
+                  "wine_id": "674f541bb37acf5ce5211a1e",
+                  "stock": 240
                 },
                 {
-                  "wine_id": "674067bc3b0ab4200ce1ad0e",
-                  "stock": 430
+                  "wine_id": "674f541bb37acf5ce5211a23",
+                  "stock": 94
                 }
               ]
             },
@@ -27,16 +27,181 @@
               "shelf": "S2",
               "wines": [
                 {
-                  "wine_id": "674067bc3b0ab4200ce1ad0c",
-                  "stock": 50
+                  "wine_id": "674f541bb37acf5ce5211a1f",
+                  "stock": 237
                 },
                 {
-                  "wine_id": "674067bc3b0ab4200ce1ad0d",
-                  "stock": 12
+                  "wine_id": "674f541bb37acf5ce5211a21",
+                  "stock": 84
                 },
                 {
-                  "wine_id": "674067bc3b0ab4200ce1ad0e",
-                  "stock": 30
+                  "wine_id": "674f541bb37acf5ce5211a26",
+                  "stock": 194
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a26",
+                  "stock": 86
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a22",
+                  "stock": 242
+                }
+              ]
+            },
+            {
+              "shelf": "S3",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a23",
+                  "stock": 137
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1d",
+                  "stock": 183
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1e",
+                  "stock": 66
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a29",
+                  "stock": 176
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "aisle": "A2",
+          "shelves": [
+            {
+              "shelf": "S1",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1d",
+                  "stock": 105
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a20",
+                  "stock": 215
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a22",
+                  "stock": 235
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1f",
+                  "stock": 124
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a21",
+                  "stock": 251
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a24",
+                  "stock": 140
+                }
+              ]
+            },
+            {
+              "shelf": "S2",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1e",
+                  "stock": 112
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a22",
+                  "stock": 215
+                }
+              ]
+            },
+            {
+              "shelf": "S3",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a28",
+                  "stock": 239
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a29",
+                  "stock": 176
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1d",
+                  "stock": 165
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a25",
+                  "stock": 233
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a26",
+                  "stock": 135
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "aisle": "A3",
+          "shelves": [
+            {
+              "shelf": "S1",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a25",
+                  "stock": 68
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a27",
+                  "stock": 123
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a21",
+                  "stock": 105
+                }
+              ]
+            },
+            {
+              "shelf": "S2",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a20",
+                  "stock": 178
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a24",
+                  "stock": 232
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a24",
+                  "stock": 188
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a25",
+                  "stock": 110
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a27",
+                  "stock": 233
+                }
+              ]
+            },
+            {
+              "shelf": "S3",
+              "wines": [
+                {
+                  "wine_id": "674f541bb37acf5ce5211a1f",
+                  "stock": 155
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a23",
+                  "stock": 146
+                },
+                {
+                  "wine_id": "674f541bb37acf5ce5211a20",
+                  "stock": 247
                 }
               ]
             }

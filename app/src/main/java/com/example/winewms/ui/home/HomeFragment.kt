@@ -74,10 +74,10 @@ class HomeFragment : Fragment(), onFeaturedWinesClickListener {
         binding.btnSparklingWine.setOnClickListener {
             navigateToSearchWithFilter("sparkling")
         }
-        binding.btnSparklingWine.setOnClickListener {
+        binding.btnDessertWine.setOnClickListener {
             navigateToSearchWithFilter("dessert")
         }
-        binding.btnSparklingWine.setOnClickListener {
+        binding.btnOrangeWine.setOnClickListener {
             navigateToSearchWithFilter("orange")
         }
 

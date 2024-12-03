@@ -1,0 +1,2980 @@
+{
+  "sales": [
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 9,
+          "item_total": 458.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 458.91,
+      "sales_date": "2024-03-31T06:31:53.479071+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 23,
+          "item_total": 6439.77,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 6439.77,
+      "sales_date": "2024-02-06T11:29:05.813150+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 6,
+          "item_total": 305.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 305.94,
+      "sales_date": "2024-07-25T03:10:23.632842+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 1,
+          "item_total": 50.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 50.99,
+      "sales_date": "2024-08-12T08:49:19.499822+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 9,
+          "item_total": 2519.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 2519.91,
+      "sales_date": "2024-01-03T22:21:02.186738+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 18,
+          "item_total": 5039.82,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 5039.82,
+      "sales_date": "2024-07-28T12:41:03.947759+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 11,
+          "item_total": 560.89,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 560.89,
+      "sales_date": "2024-12-28T06:08:28.805189+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 10,
+          "item_total": 179.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 179.9,
+      "sales_date": "2024-08-02T02:41:55.361135+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 7,
+          "item_total": 356.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 356.93,
+      "sales_date": "2024-09-27T20:34:25.697144+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 2,
+          "item_total": 559.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 559.98,
+      "sales_date": "2024-05-26T00:33:36.436750+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 2,
+          "item_total": 101.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 101.98,
+      "sales_date": "2024-06-19T16:09:34.485499+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 17,
+          "item_total": 4759.83,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 4759.83,
+      "sales_date": "2024-06-27T14:57:46.994222+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 7,
+          "item_total": 356.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 356.93,
+      "sales_date": "2024-08-24T19:51:03.481701+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 7,
+          "item_total": 125.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 125.93,
+      "sales_date": "2024-08-09T21:52:58.182085+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 8,
+          "item_total": 143.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 143.92,
+      "sales_date": "2024-04-04T00:04:25.764453+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 9,
+          "item_total": 161.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 161.91,
+      "sales_date": "2024-09-19T07:43:08.759968+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 12,
+          "item_total": 3359.88,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 3359.88,
+      "sales_date": "2024-04-20T15:45:58.521365+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 8,
+          "item_total": 143.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 143.92,
+      "sales_date": "2024-01-23T07:07:44.129289+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 2,
+          "item_total": 101.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 101.98,
+      "sales_date": "2024-05-04T02:36:15.532382+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 15,
+          "item_total": 4199.85,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 4199.85,
+      "sales_date": "2024-10-31T01:35:56.915720+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 7,
+          "item_total": 356.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 356.93,
+      "sales_date": "2024-01-29T15:08:40.326022+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 9,
+          "item_total": 161.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 161.91,
+      "sales_date": "2024-02-12T15:08:01.894549+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 10,
+          "item_total": 509.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 509.9,
+      "sales_date": "2024-04-15T13:04:25.160097+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 2,
+          "item_total": 101.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 101.98,
+      "sales_date": "2024-08-17T22:50:36.199514+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 3,
+          "item_total": 53.97,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 53.97,
+      "sales_date": "2024-03-23T09:33:33.463358+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 6,
+          "item_total": 107.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 107.94,
+      "sales_date": "2024-01-26T14:16:44.397079+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 10,
+          "item_total": 179.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 179.9,
+      "sales_date": "2024-06-12T09:05:44.648412+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 16,
+          "item_total": 4479.84,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 4479.84,
+      "sales_date": "2024-11-24T02:44:59.522316+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 15,
+          "item_total": 4199.85,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 4199.85,
+      "sales_date": "2024-03-22T08:08:07.415920+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 8,
+          "item_total": 143.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 143.92,
+      "sales_date": "2024-06-03T10:48:26.214889+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 8,
+          "item_total": 407.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 407.92,
+      "sales_date": "2024-11-11T16:47:55.484573+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 12,
+          "item_total": 3359.88,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 3359.88,
+      "sales_date": "2024-01-18T03:39:59.800044+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 1,
+          "item_total": 17.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 17.99,
+      "sales_date": "2024-02-19T22:27:10.866164+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 10,
+          "item_total": 179.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 179.9,
+      "sales_date": "2024-04-07T18:00:45.260724+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 6,
+          "item_total": 305.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 305.94,
+      "sales_date": "2024-04-15T23:04:06.400006+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 3,
+          "item_total": 53.97,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 53.97,
+      "sales_date": "2024-07-02T10:51:42.729115+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 6,
+          "item_total": 107.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 107.94,
+      "sales_date": "2024-12-21T14:27:26.790212+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 7,
+          "item_total": 356.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 356.93,
+      "sales_date": "2024-04-08T16:51:25.116336+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 12,
+          "item_total": 3359.88,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 3359.88,
+      "sales_date": "2024-05-14T15:03:25.562653+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 4,
+          "item_total": 1119.96,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 1119.96,
+      "sales_date": "2024-11-16T05:34:57.452318+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 10,
+          "item_total": 509.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 509.9,
+      "sales_date": "2024-10-23T08:12:29.929641+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 22,
+          "item_total": 6159.78,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 6159.78,
+      "sales_date": "2024-03-31T07:25:20.021607+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 1,
+          "item_total": 50.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 50.99,
+      "sales_date": "2024-01-23T02:04:46.357483+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 13,
+          "item_total": 3639.87,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 3639.87,
+      "sales_date": "2024-02-06T14:40:20.925435+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 16,
+          "item_total": 4479.84,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 4479.84,
+      "sales_date": "2024-06-22T02:46:53.624554+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 1,
+          "item_total": 50.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 50.99,
+      "sales_date": "2024-09-08T17:58:10.412586+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 1,
+          "item_total": 17.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 17.99,
+      "sales_date": "2024-09-09T04:24:43.522102+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 3,
+          "item_total": 53.97,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 53.97,
+      "sales_date": "2024-10-16T01:58:51.450103+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 20,
+          "item_total": 5599.8,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 5599.8,
+      "sales_date": "2024-07-13T07:38:39.709827+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 2,
+          "item_total": 101.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 101.98,
+      "sales_date": "2024-12-23T04:37:59.255457+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 3,
+          "item_total": 152.97,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 152.97,
+      "sales_date": "2024-12-21T16:25:06.549087+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 5,
+          "item_total": 254.95,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 254.95,
+      "sales_date": "2024-03-14T22:25:03.055944+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 6,
+          "item_total": 305.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 305.94,
+      "sales_date": "2024-05-26T05:26:56.317595+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 6,
+          "item_total": 1679.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 1679.94,
+      "sales_date": "2024-02-13T23:45:32.084322+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 5,
+          "item_total": 89.95,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 89.95,
+      "sales_date": "2024-03-09T03:41:01.296761+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 10,
+          "item_total": 509.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 509.9,
+      "sales_date": "2024-11-09T04:45:48.506153+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 6,
+          "item_total": 107.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 107.94,
+      "sales_date": "2024-11-25T07:22:25.928257+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 16,
+          "item_total": 4479.84,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 4479.84,
+      "sales_date": "2024-10-25T16:29:35.661654+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 8,
+          "item_total": 143.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 143.92,
+      "sales_date": "2024-08-03T07:12:18.191857+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 7,
+          "item_total": 1959.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 1959.93,
+      "sales_date": "2024-12-12T02:01:25.326508+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 8,
+          "item_total": 2239.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 2239.92,
+      "sales_date": "2024-01-28T18:31:19.791420+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 9,
+          "item_total": 161.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 161.91,
+      "sales_date": "2024-05-27T08:56:58.711158+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 4,
+          "item_total": 203.96,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 203.96,
+      "sales_date": "2024-01-13T05:01:43.955864+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 1,
+          "item_total": 50.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 50.99,
+      "sales_date": "2024-07-03T12:02:45.145302+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 9,
+          "item_total": 161.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 161.91,
+      "sales_date": "2024-07-10T11:32:36.704905+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 22,
+          "item_total": 6159.78,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 6159.78,
+      "sales_date": "2024-09-23T10:21:23.240781+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 11,
+          "item_total": 560.89,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 560.89,
+      "sales_date": "2024-01-02T17:31:36.747585+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 10,
+          "item_total": 509.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 509.9,
+      "sales_date": "2024-11-03T16:58:28.960656+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 10,
+          "item_total": 509.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 509.9,
+      "sales_date": "2024-02-24T09:01:43.953157+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 6,
+          "item_total": 1679.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 1679.94,
+      "sales_date": "2024-12-02T09:44:08.749318+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 10,
+          "item_total": 179.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 179.9,
+      "sales_date": "2024-05-08T15:40:27.876675+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 1,
+          "item_total": 50.99,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 50.99,
+      "sales_date": "2024-07-21T03:18:15.117719+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 6,
+          "item_total": 107.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 107.94,
+      "sales_date": "2024-12-20T11:02:44.921892+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 8,
+          "item_total": 143.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 143.92,
+      "sales_date": "2024-09-23T02:50:21.159518+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 17,
+          "item_total": 4759.83,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 4759.83,
+      "sales_date": "2024-09-20T17:09:18.060164+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 16,
+          "item_total": 4479.84,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 4479.84,
+      "sales_date": "2024-06-26T16:22:52.490646+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 20,
+          "item_total": 5599.8,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 5599.8,
+      "sales_date": "2024-07-09T04:57:29.132949+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 2,
+          "item_total": 35.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 35.98,
+      "sales_date": "2024-08-15T20:22:16.855483+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 6,
+          "item_total": 305.94,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 305.94,
+      "sales_date": "2024-06-17T03:13:46.867510+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 10,
+          "item_total": 509.9,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 509.9,
+      "sales_date": "2024-06-30T21:56:08.978131+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 11,
+          "item_total": 3079.89,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 3079.89,
+      "sales_date": "2024-12-05T04:20:52.444805+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 14,
+          "item_total": 3919.86,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 3919.86,
+      "sales_date": "2024-02-08T00:17:19.627338+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 9,
+          "item_total": 161.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 161.91,
+      "sales_date": "2024-06-13T03:07:36.312265+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 2,
+          "item_total": 559.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 559.98,
+      "sales_date": "2024-01-28T03:57:10.350783+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 4,
+          "item_total": 71.96,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 71.96,
+      "sales_date": "2024-02-15T21:49:44.128338+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 3,
+          "item_total": 53.97,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 53.97,
+      "sales_date": "2024-07-31T02:15:44.025060+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 9,
+          "item_total": 161.91,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 161.91,
+      "sales_date": "2024-08-30T19:17:23.100159+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 2,
+          "item_total": 35.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 35.98,
+      "sales_date": "2024-06-05T16:43:42.835886+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1f",
+          "name": "Chateau dYquem",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 279.99,
+          "quantity": 19,
+          "item_total": 5319.81,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 5319.81,
+      "sales_date": "2024-11-09T02:29:17.896628+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 4,
+          "item_total": 203.96,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A3",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 203.96,
+      "sales_date": "2024-10-05T01:50:06.124681+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 2,
+          "item_total": 35.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 35.98,
+      "sales_date": "2024-06-27T03:02:32.327196+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 5,
+          "item_total": 254.95,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A1",
+              "shelf": "S2"
+            }
+          ]
+        }
+      ],
+      "total_price": 254.95,
+      "sales_date": "2024-07-02T20:55:19.477552+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 7,
+          "item_total": 356.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 356.93,
+      "sales_date": "2024-06-13T19:02:16.356207+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 8,
+          "item_total": 407.92,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 407.92,
+      "sales_date": "2024-11-14T03:01:10.549283+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1e",
+          "name": "Moet & Chandon Imperial Brut",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 50.99,
+          "quantity": 2,
+          "item_total": 101.98,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2c",
+              "aisle": "A1",
+              "shelf": "S3"
+            }
+          ]
+        }
+      ],
+      "total_price": 101.98,
+      "sales_date": "2024-03-20T17:11:22.195976+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    },
+    {
+      "account_id": "674f57f1b37acf5ce5211a2a",
+      "items": [
+        {
+          "wine_id": "674f541bb37acf5ce5211a1d",
+          "name": "Moscato d'Asti Bosc dla Rei",
+          "sale_price": 0.00,
+          "discount": 0.00,
+          "final_price_per_unit": 17.99,
+          "quantity": 7,
+          "item_total": 125.93,
+          "stock_location": [
+            {
+              "warehouse_id": "674f5818b37acf5ce5211a2d",
+              "aisle": "A2",
+              "shelf": "S1"
+            }
+          ]
+        }
+      ],
+      "total_price": 125.93,
+      "sales_date": "2024-03-07T09:59:58.861851+00:00",
+      "shipping_address": {
+        "address": "1211 8th Ave",
+        "city": "New Westminster",
+        "country": "Canada",
+        "postalCode": "V3M 2R8",
+        "province": "BC"
+      },
+      "dispatch_status": "1"
+    }
+  ]
+}

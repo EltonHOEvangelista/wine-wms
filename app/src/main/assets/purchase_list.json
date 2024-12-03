@@ -1,40 +1,220 @@
 {
   "purchases": [
     {
-      "wine_id": "674067bc3b0ab4200ce1ad0c",
-      "cost_price": 14.50,
-      "amount": 210,
-      "date": "21:58:21 11/17/2024"
+      "wine_id": "674f541bb37acf5ce5211a1d",
+      "cost_price": 12.99,
+      "amount": 105,
+      "date": "2024-08-22T12:50:28+00:00"
     },
     {
-      "wine_id": "674067bc3b0ab4200ce1ad0d",
-      "cost_price": 13.50,
-      "amount": 125,
-      "date": "21:58:21 11/17/2024"
+      "wine_id": "674f541bb37acf5ce5211a1e",
+      "cost_price": 38.99,
+      "amount": 112,
+      "date": "2024-08-04T11:06:28+00:00"
     },
     {
-      "wine_id": "674067bc3b0ab4200ce1ad0e",
-      "cost_price": 10.50,
-      "amount": 430,
-      "date": "21:58:21 11/17/2024"
+      "wine_id": "674f541bb37acf5ce5211a1f",
+      "cost_price": 227.49,
+      "amount": 237,
+      "date": "2024-11-08T06:52:36+00:00"
     },
     {
-      "wine_id": "674067bc3b0ab4200ce1ad0c",
-      "cost_price": 14.50,
-      "amount": 50,
-      "date": "21:58:21 11/18/2024"
+      "wine_id": "674f541bb37acf5ce5211a20",
+      "cost_price": 51.99,
+      "amount": 178,
+      "date": "2024-02-12T13:19:01+00:00"
     },
     {
-      "wine_id": "674067bc3b0ab4200ce1ad0d",
-      "cost_price": 13.50,
-      "amount": 12,
-      "date": "21:58:21 11/18/2024"
+      "wine_id": "674f541bb37acf5ce5211a21",
+      "cost_price": 110.49,
+      "amount": 84,
+      "date": "2024-10-14T01:47:08+00:00"
     },
     {
-      "wine_id": "674067bc3b0ab4200ce1ad0e",
-      "cost_price": 10.50,
-      "amount": 30,
-      "date": "21:58:21 11/18/2024"
+      "wine_id": "674f541bb37acf5ce5211a22",
+      "cost_price": 25.99,
+      "amount": 215,
+      "date": "2024-07-17T22:00:20+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a23",
+      "cost_price": 19.49,
+      "amount": 137,
+      "date": "2024-06-23T04:08:54+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a24",
+      "cost_price": 38.99,
+      "amount": 232,
+      "date": "2024-09-15T01:39:54+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a25",
+      "cost_price": 16.24,
+      "amount": 68,
+      "date": "2024-11-02T23:48:56+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a26",
+      "cost_price": 22.74,
+      "amount": 194,
+      "date": "2024-05-30T22:02:43+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a27",
+      "cost_price": 12.34,
+      "amount": 123,
+      "date": "2024-07-01T20:21:23+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a28",
+      "cost_price": 11.69,
+      "amount": 239,
+      "date": "2024-07-11T09:22:12+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a29",
+      "cost_price": 14.94,
+      "amount": 176,
+      "date": "2024-06-13T16:44:17+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a1d",
+      "cost_price": 12.99,
+      "amount": 183,
+      "date": "2024-10-01T21:16:37+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a1e",
+      "cost_price": 38.99,
+      "amount": 66,
+      "date": "2024-11-09T16:31:48+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a1f",
+      "cost_price": 227.49,
+      "amount": 155,
+      "date": "2024-03-12T22:36:59+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a20",
+      "cost_price": 51.99,
+      "amount": 215,
+      "date": "2024-09-20T05:16:55+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a21",
+      "cost_price": 110.49,
+      "amount": 105,
+      "date": "2024-05-10T06:32:02+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a22",
+      "cost_price": 25.99,
+      "amount": 235,
+      "date": "2024-12-04T07:58:08+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a23",
+      "cost_price": 19.49,
+      "amount": 146,
+      "date": "2024-02-13T10:22:00+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a24",
+      "cost_price": 38.99,
+      "amount": 188,
+      "date": "2024-06-08T04:04:49+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a25",
+      "cost_price": 16.24,
+      "amount": 110,
+      "date": "2024-11-29T08:32:58+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a26",
+      "cost_price": 22.74,
+      "amount": 86,
+      "date": "2024-02-01T16:21:05+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a27",
+      "cost_price": 12.34,
+      "amount": 233,
+      "date": "2024-08-07T14:18:42+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a28",
+      "cost_price": 11.69,
+      "amount": 145,
+      "date": "2024-06-21T09:17:43+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a29",
+      "cost_price": 14.94,
+      "amount": 176,
+      "date": "2024-03-27T12:23:31+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a1d",
+      "cost_price": 12.99,
+      "amount": 165,
+      "date": "2024-02-07T01:37:00+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a1e",
+      "cost_price": 38.99,
+      "amount": 240,
+      "date": "2024-08-09T04:08:19+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a1f",
+      "cost_price": 227.49,
+      "amount": 124,
+      "date": "2024-06-04T11:36:00+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a20",
+      "cost_price": 51.99,
+      "amount": 247,
+      "date": "2024-01-07T20:12:54+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a21",
+      "cost_price": 110.49,
+      "amount": 251,
+      "date": "2024-05-03T01:57:27+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a22",
+      "cost_price": 25.99,
+      "amount": 242,
+      "date": "2024-07-17T02:33:03+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a23",
+      "cost_price": 19.49,
+      "amount": 94,
+      "date": "2024-07-17T12:35:37+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a24",
+      "cost_price": 38.99,
+      "amount": 140,
+      "date": "2024-12-30T10:23:56+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a25",
+      "cost_price": 16.24,
+      "amount": 233,
+      "date": "2024-07-03T05:12:43+00:00"
+    },
+    {
+      "wine_id": "674f541bb37acf5ce5211a26",
+      "cost_price": 22.74,
+      "amount": 135,
+      "date": "2024-09-17T13:54:09+00:00"
     }
   ]
 }

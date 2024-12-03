@@ -8,6 +8,7 @@ import com.example.winewms.data.model.PurchaseModel
 import com.example.winewms.data.model.ResponseModel
 import com.example.winewms.data.model.SalesDataWrapper
 import com.example.winewms.data.model.SalesModel
+import com.example.winewms.data.model.SalesRequestModel
 import com.example.winewms.data.model.WarehouseModel
 import com.example.winewms.data.model.WineModel
 import com.example.winewms.data.model.WinesWrapper
@@ -93,6 +94,9 @@ interface WineApiService {
 
     //---------------------------------------------------------------------------
     // Sales endpoints
+
+    @POST("sales/all")
+    fun create_initial_sales(@Body salesList: List<SalesRequestModel>): Call<ResponseModel>
 
     @POST("sales")
     fun placeSalesOrder(@Body salesModel: SalesModel): Call<SalesDataWrapper>

@@ -214,7 +214,8 @@
     <string name="labelWarehouseManagement">Warehouse Management</string>
     <string name="labelFinancialManagement">Financial Management</string>
     <string name="labelProductManagement">Product Management</string>
-    <string name="txtWarehouseWineSearch">Search any wine in the warehouse</string>
+    <string name="txtWarehouseWineSearch"></string>
+    <string name="txtWarehouseWineSearchHint">Search any wine in the warehouse</string>
     <string name="labelStockQty">Stock</string>
     <string name="txtWarehouseStock">00 Unit(s)</string>
     <string name="labelWarehouseLocation">Location(s)</string>
@@ -263,8 +264,8 @@
         <item>White</item>
         <item>Rose</item>
         <item>Sparkling</item>
-        <item>Dessert Wine</item>
-        <item>Orange Wine</item>
+        <item>Dessert</item>
+        <item>Orange</item>
     </string-array>
     <string-array name="spinner_1_10">
         <item>1</item>

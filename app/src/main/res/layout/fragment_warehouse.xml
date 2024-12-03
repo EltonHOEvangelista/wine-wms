@@ -51,7 +51,6 @@
             android:layout_margin="8dp"
             android:layout_weight="0.7"
             android:background="@android:color/transparent"
-            android:hint="@string/txtWineSearchHint"
             android:inputType="text"
             android:text="@string/txtWarehouseWineSearch"
             android:textAlignment="textEnd"

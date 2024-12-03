@@ -296,7 +296,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <Button
-                            android:id="@+id/btnFinantialManagement"
+                            android:id="@+id/btnDessertWine"
                             style="@style/DessertWineButton"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
