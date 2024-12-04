@@ -192,9 +192,9 @@ class AddWineFragment : Fragment() {
         val name = binding.txtAddWineName.text.toString().trim()
         val producer = binding.txtAddWineProducer.text.toString().trim()
         val country = binding.txtAddWineCountry.text.toString().trim()
-        val harvest_year = binding.txtAddWineHarvest.text.toString().toInt()
+        val harvest_year = binding.txtAddWineHarvest.text.toString().toIntOrNull() ?: 0
         val type = binding.spinnerWineType.selectedItem.toString()
-        val rate = binding.txtAddWineRate.text.toString().toFloat()
+        val rate = binding.txtAddWineRate.text.toString().toFloatOrNull() ?: 0.0f
         val description = binding.txtAddWineDescription.text.toString().trim()
         val reviews: List<String> = binding.txtAddWineReviews.text.toString().trim().split(";")
 
@@ -245,10 +245,10 @@ class AddWineFragment : Fragment() {
             }
         }
 
-        val sale_price = binding.txtSalePrice.text.toString().toFloat()
-        val discount = binding.txtSaleDiscont.text.toString().toFloat() / 100.00
-        cost_price = binding.txtCostPrice.text.toString().toFloat()
-        stock = binding.txtStock.text.toString().trim().toInt()
+        val sale_price = binding.txtSalePrice.text.toString().toFloatOrNull() ?: 0.0f
+        val discount = binding.txtSaleDiscont.text.toString().toFloatOrNull() ?: 0.0f
+        cost_price = binding.txtCostPrice.text.toString().toFloatOrNull() ?: 0.0f
+        stock = binding.txtStock.text.toString().trim().toIntOrNull() ?: 0
 
         warehouse_location = binding.spinnerWarehouseLocation.selectedItem.toString()
         warehouse_aisle = binding.spinnerWarehouseAisle.selectedItem.toString()
@@ -256,12 +256,11 @@ class AddWineFragment : Fragment() {
 
         if (listOf(name, producer, country, type, description, lightness, tannin, dryness, acidity,
                 warehouse_location, warehouse_aisle, warehouse_shelf).any { it.isEmpty() } ||
-            harvest_year == null || rate == null || sale_price == null || discount == null || cost_price == 0.0f ||
-            grapes.isEmpty() || food_pair.isEmpty() ||
+            harvest_year == 0 || sale_price == 0.0f || grapes.isEmpty() || food_pair.isEmpty() ||
             !::image_path.isInitialized) {
             Toast.makeText(requireContext(), "Please fill out all required fields, including wine image.", Toast.LENGTH_SHORT).show()
         }
-        else if ((cost_price == 0.0f || stock == 0) ||
+        else if ((cost_price == 0.0f && stock != 0) || (cost_price != 0.0f && stock == 0) ||
             warehouse_location.isEmpty() ||
             warehouse_aisle.isEmpty() ||
             warehouse_shelf.isEmpty()) {
@@ -291,7 +290,7 @@ class AddWineFragment : Fragment() {
                 taste_characteristics = tasteCharacteristics,
                 food_pair = food_pair,
                 sale_price = sale_price,
-                discount = discount.toFloat(),
+                discount = discount / 100.00f,
                 stock = 0,
                 stockLocation = mutableListOf()
             )

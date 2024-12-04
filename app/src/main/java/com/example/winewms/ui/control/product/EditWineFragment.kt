@@ -288,9 +288,9 @@ class EditWineFragment : Fragment() {
         val name = binding.txtAddWineName.text.toString().trim()
         val producer = binding.txtAddWineProducer.text.toString().trim()
         val country = binding.txtAddWineCountry.text.toString().trim()
-        val harvest_year = binding.txtAddWineHarvest.text.toString().toInt()
+        val harvest_year = binding.txtAddWineHarvest.text.toString().toIntOrNull() ?: 0
         val type = binding.spinnerWineType.selectedItem.toString()
-        val rate = binding.txtAddWineRate.text.toString().toFloat()
+        val rate = binding.txtAddWineRate.text.toString().toFloatOrNull() ?: 0.0f
         val description = binding.txtAddWineDescription.text.toString().trim()
         val reviews: List<String> = binding.txtAddWineReviews.text.toString().trim().split(";")
 
@@ -341,8 +341,8 @@ class EditWineFragment : Fragment() {
             }
         }
 
-        val sale_price = binding.txtSalePrice.text.toString().toFloat()
-        val discount = binding.txtSaleDiscont.text.toString().toFloat() / 100.00
+        val sale_price = binding.txtSalePrice.text.toString().toFloatOrNull() ?: 0.0f
+        val discount = binding.txtSaleDiscont.text.toString().toFloatOrNull() ?: 0.0f
 
         cost_price = binding.txtNewCostPrice.text.toString().takeIf { it.isNotBlank() }?.toFloat() ?: 0.0f
         stock = binding.txtAdditionalStock.text.toString().takeIf { it.isNotBlank() }?.toInt() ?: 0
@@ -353,7 +353,7 @@ class EditWineFragment : Fragment() {
 
         if (listOf(name, producer, country, type, description, lightness, tannin, dryness, acidity,
                 warehouse_location, warehouse_aisle, warehouse_shelf).any { it.isEmpty() } ||
-            harvest_year == null || rate == null || sale_price == null || discount == null ||
+            harvest_year == 0 || rate == 0.0f || sale_price == 0.0f ||
             grapes.isEmpty() || food_pair.isEmpty() ||
             !::image_path.isInitialized) {
             Toast.makeText(requireContext(), "Please fill out all required fields, including wine image.", Toast.LENGTH_SHORT).show()
@@ -385,7 +385,7 @@ class EditWineFragment : Fragment() {
                 taste_characteristics = tasteCharacteristics,
                 food_pair = food_pair,
                 sale_price = sale_price,
-                discount = discount.toFloat(),
+                discount = discount / 100.00f,
                 stock = 0,
                 stockLocation = mutableListOf()
             )

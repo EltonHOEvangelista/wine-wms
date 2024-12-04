@@ -99,7 +99,7 @@ class WarehouseFragment : Fragment(), onWarehouseSearchClickListener, onDelivery
 
     private fun getWinesWithLowStock() {
         val filters = mutableMapOf<String, String>()
-        filters["min_stock"] = "200"  //minimum stock level required
+        filters["min_stock"] = "50"  //minimum stock level required
 
         val apiCall = wineApi.getLowStockWines(filters = filters)
         apiCall.enqueue(object : Callback<WinesWrapper> {
